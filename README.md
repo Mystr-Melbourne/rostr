@@ -1,7 +1,7 @@
 # ![Icon](https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo-small.png) Rostr
 Rostr is an employee management and scheduling app that allows…
 * Managers to manage and schedule employees
-* Employees to view work schedules
+* Employees to view work scheduleso
 
 View app live on [Heroku](https://reactRostr.herokuapp.com)
 
