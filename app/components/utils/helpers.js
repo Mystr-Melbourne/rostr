@@ -39,29 +39,19 @@ var helper = {
     });
   },
 
-  addEmployee: function(firstName, lastName, addressOne, addressTwo, city, state, zip, email, phone, phoneType) {
+  addEmployee: function(firstName, lastName, email, phone, phoneType) {
     return axios.post("/addEmployee", {
         firstName: firstName,
         lastName: lastName,
-        addressOne: addressOne,
-        addressTwo: addressTwo,
-        city: city,
-        state: state,
-        zip: zip,
         email: email,
         phone: phone,
         phoneType: phoneType });
   },
 
-  updateEmployee: function(id, firstName, lastName, addressOne, addressTwo, city, state, zip, email, phone, phoneType) {
+  updateEmployee: function(id, firstName, lastName, email, phone, phoneType) {
        return axios.put("/updateEmployee/" + id, {
            firstName: firstName,
            lastName: lastName,
-           addressOne: addressOne,
-           addressTwo: addressTwo,
-           city: city,
-           state: state,
-           zip: zip,
            email: email,
            phone: phone,
            phoneType: phoneType
