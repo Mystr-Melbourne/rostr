@@ -11,7 +11,8 @@ var ManagerEmployeeAll = React.createClass({
             phoneType: "",
             allEmployees: [],
             selectedEmployee: "",
-            emp_id: ""
+            emp_id: "",
+            department: ""
         };
     },
 
@@ -34,7 +35,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleAddForm: function(event) {
         event.preventDefault();
-        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType).then(function(response) {
+        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
             helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName).then(function(response) {
@@ -49,7 +50,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleUpdateForm: function(event) {
         event.preventDefault();
-        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType).then(function(response) {
+        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
         }.bind(this));
 
         helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName).then(function(response) {
@@ -82,7 +83,8 @@ var ManagerEmployeeAll = React.createClass({
                         email: this.state.allEmployees[i].email,
                         phone: this.state.allEmployees[i].phone,
                         phoneType: this.state.allEmployees[i].phoneType,
-                        emp_id: this.state.selectedEmployee
+                        emp_id: this.state.selectedEmployee,
+                        department: this.state.allEmployees[i].department
                     });
                     this.activeButtons();
                 }
@@ -108,7 +110,7 @@ var ManagerEmployeeAll = React.createClass({
     },
 
     clearStates: function() {
-        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", selectedEmployee: ""});
+        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", selectedEmployee: "", department: ""});
     },
 
     activeButtons: function() {
@@ -206,6 +208,15 @@ var ManagerEmployeeAll = React.createClass({
                                         <option value="mobile">Mobile</option>
                                         <option value="work">Work</option>
                                         <option value="home">Home</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col m4 s4">
+                                    <select className="browser-default" name="department" value={this.state.department} onChange={this.handleUserChange} required>
+                                        <option value="" disabled>Department</option>
+                                        <option value="cleaning">Cleaning</option>
+                                        <option value="catering">Catering</option>
                                     </select>
                                 </div>
                             </div>

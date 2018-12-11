@@ -17,6 +17,9 @@ var EmployeeSchema = new Schema({
     phoneType: {
         type: String
     },
+    department: {
+        type: String
+    },
     active: {
         type: Number,
         default: 1
