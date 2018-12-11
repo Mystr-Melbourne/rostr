@@ -44,7 +44,7 @@ Wait for webpack to bundle then
 
 Open a browser and go to [http://localhost:8080](http://localhost:8080)
 
-## Team
+## Original Developers of [Schedulr](https://github.com/clsavino/react-shift-scheduler) on which this project is based
 * Andrea Roche [@amr08](https://github.com/amr08)
 * Christi Savino [@clsavino](https://github.com/clsavino)
 * Houston Breedlove [@hcbreedl](https://github.com/hcbreedl)
