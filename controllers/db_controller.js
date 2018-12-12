@@ -5,9 +5,14 @@
 
   var employee = require("../models/employee");
   var EmployeeSchedule = require("../models/employeeSchedule");
-  var announcements = require("../models/announcements")
+  var announcements = require("../models/announcements");
+  var department = require("../models/department"); // add Department
 
-//Getting Employees from the database
+  router.get("/", function(req,res) {
+    console.log("hi");
+  })
+
+  //Getting Employees from the database
   router.get("/getAllEmployees", function(req, res) {
     employee.find({ "active": 1 }).exec(function(err, doc) {
       if (err) {
