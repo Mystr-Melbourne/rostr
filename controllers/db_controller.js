@@ -75,7 +75,8 @@
       lastName: req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
-      phoneType: req.body.phoneType
+      phoneType: req.body.phoneType,
+      department: req.body.department
     }, function(err,doc) {
       if (err) {
         console.log(err);
@@ -93,7 +94,8 @@
          lastName: req.body.lastName,
          email: req.body.email,
          phone: req.body.phone,
-         phoneType: req.body.phoneType
+         phoneType: req.body.phoneType,
+         department: req.body.department
      }, function(err) {
          if (err) {
              console.log(err);
