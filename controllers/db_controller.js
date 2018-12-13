@@ -8,13 +8,13 @@
   var announcements = require("../models/announcements");
   let Department = require("../models/department"); // add Department
 
-  // try to do the same thing but for department
+  // Get department - read helpers.js
   router.get("/getAllDepartments", function(req,res) {
     Department.create({department: "Cleaning"}, function(err,doc){
       if(err) {
         console.log(err);
       } else {
-        res.send(doc);
+        res.send(doc); // send docs so font-end can read.
       }
     })
   });
