@@ -34,6 +34,8 @@ var ScheduleView = React.createClass({
                                     <th data-field="name">Fri</th>
                                     <th data-field="name">Sat</th>
                                     <th data-field="name">Sun</th>
+                                    <th data-field="name">Department</th>
+
                                 </tr>
                             </thead>
                             <tbody>
