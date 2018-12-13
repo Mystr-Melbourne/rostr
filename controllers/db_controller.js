@@ -49,7 +49,8 @@
     EmployeeSchedule.create({
       emp_id: req.body.emp_id,
       firstName: req.body.firstName,
-      lastName: req.body.lastName
+      lastName: req.body.lastName,
+      department: req.body.department
     }, function(err) {
       if (err) {
         console.log(err);

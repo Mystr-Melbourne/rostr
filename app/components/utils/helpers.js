@@ -19,6 +19,7 @@ var helper = {
   //   return axios.get("/register");
   // },
 
+
   getEmployee: function(id) {
     return axios.get("/getEmployee/" + id);
   },
@@ -30,11 +31,12 @@ var helper = {
     })
   },
 
-  addEmpSchedule:function(emp_id, firstName, lastName) {
+  addEmpSchedule:function(emp_id, firstName, lastName, depart) {
     return axios.post('/addEmpSchedule', {
       emp_id: emp_id,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      department: depart
     });
   },
 

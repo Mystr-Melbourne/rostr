@@ -40,6 +40,7 @@ var ScheduleView = React.createClass({
                             </thead>
                             <tbody>
                                 {this.state.empSchedules.map(function(schedules, i) {
+
                                 return (
                                     <tr key={i}>
                                         <td className="fullName">
@@ -65,6 +66,9 @@ var ScheduleView = React.createClass({
                                         </td>
                                         <td>
                                             {schedules.sunday}
+                                        </td>
+                                        <td>
+                                            {schedules.department}
                                         </td>
                                     </tr>
                                 );
