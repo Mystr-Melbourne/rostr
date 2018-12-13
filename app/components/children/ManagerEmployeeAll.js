@@ -225,8 +225,8 @@ var ManagerEmployeeAll = React.createClass({
                                 <div className="input-field col m4 s4">
                                     <select className="browser-default" name="department" value={this.state.department} onChange={this.handleUserChange} required>
                                         <option value="" disabled>Department</option>
-                                        {this.state.departments.map((each) => {
-                                            return(<option value={each}>{each}</option>);
+                                        {this.state.departments.map((each, i) => {
+                                            return(<option key={i} value={each}>{each}</option>);
                                         })
                                     }
                                     </select>
