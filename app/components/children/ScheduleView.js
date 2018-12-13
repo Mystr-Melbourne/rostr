@@ -16,15 +16,11 @@ var ScheduleView = React.createClass({
                 this.setState({ empSchedules: response.data });
             }
         }.bind(this));
-        this.getAllDepartments();
-    },
-
-    getAllDepartments: function() {
         helpers.getAllDepartments().then(function(response){
             this.setState({
                 departments: response.data.department
             });
-        }.bind(this));
+        }.bind(this));    
     },
 
     render: function() {
@@ -48,9 +44,16 @@ var ScheduleView = React.createClass({
                                     
                                     <select>
                                         <option value="" disabled>Department</option>
-                                        {this.state.departments.map((each, i) => {
-                                            return(<option key={i} value={each}>{each}</option>);
-                                        })}
+                                        {
+                                        
+                                                this.state.departments.map((each, i) => {
+                                                return(<option key={i} value={each}>{each}</option>)
+                                                })
+                                           
+                                        }
+                                    
+                                        
+                                        {console.log(this.state.departments)}
                                     </select>
                                     
                                     </th>
