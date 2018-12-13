@@ -5,9 +5,21 @@
 
   var employee = require("../models/employee");
   var EmployeeSchedule = require("../models/employeeSchedule");
-  var announcements = require("../models/announcements")
+  var announcements = require("../models/announcements");
+  let Department = require("../models/department"); // add Department
 
-//Getting Employees from the database
+  // Get department - read helpers.js
+  router.get("/getAllDepartments", function(req,res) {
+    Department.create({department: ["Cleaning", "Catering", "Event Management"]}, function(err,doc){
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(doc); // send docs so font-end can read.
+      }
+    })
+  });
+
+  //Getting Employees from the database
   router.get("/getAllEmployees", function(req, res) {
     employee.find({ "active": 1 }).exec(function(err, doc) {
       if (err) {

@@ -8,12 +8,14 @@ var ManagerHome = React.createClass({
     getInitialState: function() {
         return {
             title: "",
-            content: ""
+            content: "",
+            department: "",
         };
     },
 
     componentDidMount: function() {
         this.getAnnouncements();
+        this.getAllDepartments();
     },
 
     // componentDidUpdate: function(prevState) {
@@ -21,7 +23,14 @@ var ManagerHome = React.createClass({
     //         this.getAnnouncements();
     //     }
     // },
-
+    getAllDepartments: function() {
+        helpers.getAllDepartments().then(function(response){
+            console.log(response);
+            this.setState({
+                department: response.data.department
+            });
+        }.bind(this));
+    },
     getAnnouncements: function() {
         helpers.getAnnouncements().then(function(response) {
           this.setState({

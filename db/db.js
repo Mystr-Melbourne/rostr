@@ -12,11 +12,11 @@
     }
 
   var db = mongoose.connection;
-
+// check for error
   db.on("error", function(err) {
     console.log("Mongoose Error: ", err);
   });
-
+// check connection
   db.once("open", function() {
     console.log("Mongoose connection successful.");
   });

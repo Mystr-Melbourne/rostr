@@ -12,12 +12,23 @@ var ManagerEmployeeAll = React.createClass({
             allEmployees: [],
             selectedEmployee: "",
             emp_id: "",
-            department: ""
+            department: "",
+            departments: []
         };
     },
 
     componentDidMount: function() {
         this.getEmployees();
+        this.getAllDepartments();
+    },
+
+    getAllDepartments: function() {
+        helpers.getAllDepartments().then(function(response){
+            console.log(response);
+            this.setState({
+                departments: response.data.department
+            });
+        }.bind(this));
     },
 
     getEmployees: function() {
@@ -215,8 +226,10 @@ var ManagerEmployeeAll = React.createClass({
                                 <div className="input-field col m4 s4">
                                     <select className="browser-default" name="department" value={this.state.department} onChange={this.handleUserChange} required>
                                         <option value="" disabled>Department</option>
-                                        <option value="cleaning">Cleaning</option>
-                                        <option value="catering">Catering</option>
+                                        {this.state.departments.map((each) => {
+                                            return(<option value={each}>{each}</option>);
+                                        })
+                                    }
                                     </select>
                                 </div>
                             </div>
