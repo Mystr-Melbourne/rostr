@@ -6,11 +6,18 @@
   var employee = require("../models/employee");
   var EmployeeSchedule = require("../models/employeeSchedule");
   var announcements = require("../models/announcements");
-  var department = require("../models/department"); // add Department
+  let Department = require("../models/department"); // add Department
 
-  router.get("/", function(req,res) {
-    console.log("hi");
-  })
+  // try to do the same thing but for department
+  router.get("/getAllDepartments", function(req,res) {
+    Department.create({department: "Cleaning"}, function(err,doc){
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(doc);
+      }
+    })
+  });
 
   //Getting Employees from the database
   router.get("/getAllEmployees", function(req, res) {
