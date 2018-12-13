@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var departmentSchema = new Schema({
     //department: ["Cleaning", "Catering"]
     department: {
-        type: String
+        type: []
     }
 });
 
