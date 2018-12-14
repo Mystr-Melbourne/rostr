@@ -6,6 +6,7 @@ var ScheduleView = React.createClass({
         return {
             empSchedules: [],
             departments: [],
+            filter: "",
             isLoaded: false
         };
     },
@@ -14,7 +15,8 @@ var ScheduleView = React.createClass({
         helpers.getAllDepartments().then(function(response){
             if (response !== this.state.departments) {
             this.setState({
-                departments: response.data.department
+                departments: response.data.department,
+                isLoaded: true
                 
             }, this.getOptions());
             }
@@ -28,11 +30,10 @@ var ScheduleView = React.createClass({
      
     },
 
-    getOptions: function() {
-        this.setState({
-            isLoaded: true
-        })
-    },
+    handleUserChange(event) {
+        this.setState({ [event.target.name]: event.target.value});
+     },
+
 
     shouldComponentUpdate(nextProps, nextState){
         if ( this.state.input == nextState.input){
@@ -115,11 +116,11 @@ var ScheduleView = React.createClass({
                             </table>
                               
                             <select>
-                                            <option value="">Department</option>
+                                            <option value={this.state.filter} onChange={this.handleUserChange}>Department</option>
                                             {
                                                this.state.departments.map((each, i) => {
                                                 return(<option key={i} value={each}>{each}</option>)
-                                            }, this)
+                                            },)
                                             }
                             </select>
                         </div>
