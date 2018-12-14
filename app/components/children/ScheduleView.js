@@ -1,20 +1,23 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-
 var ScheduleView = React.createClass({
 
     getInitialState: function() {
         return {
             empSchedules: [],
-            departments: []
+            departments: [],
+            isLoaded: false
         };
     },
 
     componentDidMount: function() {
         helpers.getAllDepartments().then(function(response){
+            if (response !== this.state.departments) {
             this.setState({
                 departments: response.data.department
-            });
+                
+            }, this.getOptions());
+            }
         }.bind(this));
         
         helpers.getEmpSchedules().then(function(response) {
@@ -25,14 +28,23 @@ var ScheduleView = React.createClass({
      
     },
 
-    render: function() {
-        let test;
-        if(this.state.departments.length > 0) {
-            test =  this.state.departments.map((each, i) => {
-                return(<option key={i} value={each}>{each}</option>)
-                })
+    getOptions: function() {
+        this.setState({
+            isLoaded: true
+        })
+    },
+
+    shouldComponentUpdate(nextProps, nextState){
+        if ( this.state.input == nextState.input){
+            return true;
         }
-            return (
+       
+
+  },
+
+    render: function() {
+       
+            return ( 
                 <div className="row">
                     <div className="col s12">
                         <div className="section">
@@ -53,12 +65,11 @@ var ScheduleView = React.createClass({
                                         <select>
                                             <option value="">Department</option>
                                             {
-                                               (this.state.departments.length > 0) ? test : null
+                                               (this.state.isLoaded) ? this.state.departments.map((each, i) => {
+                                                return(<option key={i} value={each}>{each}</option>)
+                                            }) : <option>NOthing</option>
                                             }
-                                        
-                                            
-                                            {console.log(this.state.departments.length)}
-                                            {console.log(test)}
+                                            {console.log(this.state)}
                                         </select>
                                         
                                         </th>
@@ -102,6 +113,15 @@ var ScheduleView = React.createClass({
                                 }, this)}
                                 </tbody>
                             </table>
+                              
+                            <select>
+                                            <option value="">Department</option>
+                                            {
+                                               this.state.departments.map((each, i) => {
+                                                return(<option key={i} value={each}>{each}</option>)
+                                            }, this)
+                                            }
+                            </select>
                         </div>
                     </div>
                 </div>
