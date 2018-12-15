@@ -39,6 +39,10 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
+  department:{
+    type: String,
+    default: ""
+  },
   active: {
     type: Number,
     default: 1,
