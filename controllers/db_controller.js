@@ -10,7 +10,7 @@
 
   // Get department - read helpers.js
   router.get("/getAllDepartments", function(req,res) {
-    Department.create({department: ["Cleaning", "Catering", "Event Management"]}, function(err,doc){
+    Department.create({department: ["Cleaning", "Catering", "Event Management", "Food service"]}, function(err,doc){
       if(err) {
         console.log(err);
       } else {
