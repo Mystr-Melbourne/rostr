@@ -25,7 +25,6 @@ var ManagerHome = React.createClass({
     // },
     getAllDepartments: function() {
         helpers.getAllDepartments().then(function(response){
-            console.log(response);
             this.setState({
                 department: response.data.department
             });

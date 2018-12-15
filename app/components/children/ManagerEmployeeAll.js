@@ -24,7 +24,6 @@ var ManagerEmployeeAll = React.createClass({
 
     getAllDepartments: function() {
         helpers.getAllDepartments().then(function(response){
-            console.log(response);
             this.setState({
                 departments: response.data.department
             });
@@ -49,7 +48,7 @@ var ManagerEmployeeAll = React.createClass({
         helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
-            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName).then(function(response) {
+            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
                 this.clearStates();
             }.bind(this));
 
@@ -64,7 +63,7 @@ var ManagerEmployeeAll = React.createClass({
         helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
         }.bind(this));
 
-        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName).then(function(response) {
+        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
             this.clearStates();
         }.bind(this));
         Materialize.toast("Employee updated", 3000);
@@ -226,8 +225,8 @@ var ManagerEmployeeAll = React.createClass({
                                 <div className="input-field col m4 s4">
                                     <select className="browser-default" name="department" value={this.state.department} onChange={this.handleUserChange} required>
                                         <option value="" disabled>Department</option>
-                                        {this.state.departments.map((each) => {
-                                            return(<option value={each}>{each}</option>);
+                                        {this.state.departments.map((each, i) => {
+                                            return(<option key={i} value={each}>{each}</option>);
                                         })
                                     }
                                     </select>
