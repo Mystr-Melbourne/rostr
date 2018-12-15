@@ -12,12 +12,6 @@ var ScheduleView = React.createClass({
     },
 
     componentDidMount: function() {
-        helpers.getAllDepartments().then(function(response){
-            this.setState({
-                departments: response.data.department,
-                isLoaded: true
-            });
-        }.bind(this));
         
         helpers.getEmpSchedules().then(function(response) {
             if (response !== this.state.empSchedules) {
@@ -25,6 +19,15 @@ var ScheduleView = React.createClass({
             }
         }.bind(this));
      
+    },
+
+    componentWillMount: function() {
+        helpers.getAllDepartments().then(function(response){
+            this.setState({
+                departments: response.data.department,
+                
+            }, this.setState({isLoaded: true}));
+        }.bind(this));  
     },
 
     render: function() {
@@ -46,16 +49,13 @@ var ScheduleView = React.createClass({
                                         <th data-field="name">Sun</th>
                                         <th data-field="name">
                                         
-                                        <select>
+                                        <select className="browser-default" >
                                             <option value="">Department</option>
                                           {(this.state.isLoaded)?this.state.departments.map((each, i) => {
                                             return(<option key={i} value={each}>{each}</option>)
                                             }):<option>Nothing</option>}
-                                            {console.log(this.state.departments.map((each, i) => {
-                                            return(<option key={i} value={each}>{each}</option>)
-                                            }))}
+                                         
                                         </select>
-                                        
                                         </th>
     
                                     </tr>
