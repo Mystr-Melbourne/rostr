@@ -29,8 +29,10 @@ var Manager = React.createClass({
                         <a href="/manager" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png"/><span className="hide-on-med-and-down">Rostr</span></a>
                         <a href="/" data-activates="slide-out" className="button-collapse blue-text text-darken-1"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
-                            <li><a className="black-text" href="/manager/employeeAll">Employee Management<i className="material-icons right">group</i></a></li>
-                            <li><a className="black-text" href="/manager/schedulesCreate">Schedules<i className="material-icons right">access_time</i></a></li>
+                            <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>
+
+                            <li><a className="black-text" href="/manager/employeeAll">Edit Staff<i className="material-icons right">group</i></a></li>
+                            <li><a className="black-text" href="/manager/schedulesCreate">Edit Schedules<i className="material-icons right">access_time</i></a></li>
                             <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture}/></a></li>
                         </ul>
                         <ul id="slide-out" className="side-nav">
