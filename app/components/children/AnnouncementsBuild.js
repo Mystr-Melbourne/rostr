@@ -5,13 +5,20 @@ var AnnouncementsBuild = React.createClass({
     getInitialState: function() {
         return {
             title: "",
-            content: ""
+            content: "",
+            departments: [],
+            sendTo: ""
         };
     },
 
-    // componentDidMount: function() {
-    //     this.getAnnouncements();
-    // },
+    componentDidMount: function() {
+        helpers.getAllDepartments().then(function(response){
+            this.setState({
+                departments: response.data.department,
+                
+            }, this.setState({isLoaded: true}));
+        }.bind(this));  
+    },
     //
     // getAnnouncements: function() {
     //     helpers.getAnnouncements().then(function(response) {
@@ -53,10 +60,17 @@ var AnnouncementsBuild = React.createClass({
                     </div>
                 </div>
                 <form onSubmit={this.addAnnouncements}>
+                <select className="browser-default" name="sendTo" onChange={this.handleAnnouncementBuild}>
+                                            <option value="all">Department</option>
+                                          {(this.state.isLoaded)?this.state.departments.map((each, i) => {
+                                            return(<option key={i} value={each}>{each}</option>)
+                                            }):<option>Nothing</option>}
+                                         
+                </select>
                     <div className="row">
                         <div className="input-field col s12">
                             <input
-                                placeholder="Title"
+                                placeholder="Job Title"
                                 id="title"
                                 type="text"
                                 className="validate"
@@ -68,7 +82,7 @@ var AnnouncementsBuild = React.createClass({
                     <div className="row">
                         <div className="input-field col s12">
                             <textarea
-                                placeholder="Announcement"
+                                placeholder="Description"
                                 id="content"
                                 type="text"
                                 className="materialize-textarea"
