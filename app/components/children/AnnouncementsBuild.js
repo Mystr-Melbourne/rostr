@@ -7,7 +7,8 @@ var AnnouncementsBuild = React.createClass({
             title: "",
             content: "",
             departments: [],
-            sendTo: ""
+            sendTo: "",
+            empSchedules: []
         };
     },
 
@@ -18,6 +19,11 @@ var AnnouncementsBuild = React.createClass({
                 
             }, this.setState({isLoaded: true}));
         }.bind(this));  
+        helpers.getEmpSchedules().then(function(response) {
+            if (response !== this.state.empSchedules) {
+              this.setState({ empSchedules: response.data });
+            }
+        }.bind(this));
     },
     //
     // getAnnouncements: function() {
@@ -61,12 +67,28 @@ var AnnouncementsBuild = React.createClass({
                 </div>
                 <form onSubmit={this.addAnnouncements}>
                 <select className="browser-default" name="sendTo" onChange={this.handleAnnouncementBuild}>
-                                            <option value="all">Department</option>
+                                            <option value="all">All Department</option>
                                           {(this.state.isLoaded)?this.state.departments.map((each, i) => {
                                             return(<option key={i} value={each}>{each}</option>)
                                             }):<option>Nothing</option>}
                                          
                 </select>
+                <br />
+                
+                {/* <select className="browser-default" name="monday" value={schedules.monday} onChange={this.handleUserChange.bind(this, i)}> */}
+                <select className="browser-default" name="monday">
+                        <option value="">Select a day</option>
+                        <option name="monday">Monday</option>
+                        <option name="tuesday">Tuesday</option>
+                        <option name="wednesday">Wednesday</option>
+                        <option name="thursday">Thrusday</option>
+                        <option name="friday">Friday</option>
+                        <option name="saturday">Saturday</option>
+                        <option name="sunday">Sunday</option>
+                </select>
+
+                <input type="text" placeholder="Time"></input>
+                <br />
                     <div className="row">
                         <div className="input-field col s12">
                             <input
