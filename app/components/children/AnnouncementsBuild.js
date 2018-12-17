@@ -7,7 +7,7 @@ var AnnouncementsBuild = React.createClass({
             title: "",
             content: "",
             departments: [],
-            sendTo: "",
+            sendTo: "all",
             empSchedules: [],
             day: "",
             time: ""
@@ -70,7 +70,13 @@ var AnnouncementsBuild = React.createClass({
     handleUpdateEmpSchedule: function(event) {
         var saveButtonBlue = document.getElementById(event);
         this.state.empSchedules.map((person,i) => {
-            if(person.department == this.state.sendTo) {
+            if(this.state.sendTo == "all") {
+                person[this.state.day] = this.state.time;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    var empName = person.firstName + " " + person.lastName + "'s ";
+                    Materialize.toast(empName + "schedule updated", 2000);
+                }.bind(this));
+            } else if(person.department == this.state.sendTo) {
                 person[this.state.day] = this.state.time;
                 helpers.updateEmpSchedule(person).then(function(response) {
                     var empName = person.firstName + " " + person.lastName + "'s ";
