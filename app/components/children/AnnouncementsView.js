@@ -6,7 +6,7 @@ var AnnouncementsView = React.createClass({
             <div className="card-panel">
                 <div className="row">
                     <div className="col s12">
-                        <h5>Latest announcement</h5>
+                        <h5>Would you like this shift?</h5>
                     </div>
                 </div>
                 <div className="row">

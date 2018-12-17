@@ -85,7 +85,7 @@ var AnnouncementsBuild = React.createClass({
             <div className="card-panel">
                 <div className="row">
                     <div className="col s12">
-                        <h5>Make an announcement</h5>
+                        <h5>Push out new shift</h5>
                     </div>
                 </div>
                 <form onSubmit={this.addAnnouncements}>
