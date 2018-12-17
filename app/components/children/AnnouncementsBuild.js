@@ -67,18 +67,19 @@ var AnnouncementsBuild = React.createClass({
         this.setState({ title: "", content: "" });
     },
 
-    // handleUpdateEmpSchedule: function(event) {
-    //     var saveButtonBlue = document.getElementById(event);
-    //     this.state.empSchedules.map((person,i) => {
-    //         if(person.department == this.state.sendTo) {
-    //             helpers.updateEmpSchedule(person).then(function(response) {
-    //                 var empName = person.firstName + " " + person.lastName + "'s ";
-    //                 Materialize.toast(empName + "schedule updated", 2000);
-    //             }.bind(this));
-    //         }
-    //     });
+    handleUpdateEmpSchedule: function(event) {
+        var saveButtonBlue = document.getElementById(event);
+        this.state.empSchedules.map((person,i) => {
+            if(person.department == this.state.sendTo) {
+                person[this.state.day] = this.state.time;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    var empName = person.firstName + " " + person.lastName + "'s ";
+                    Materialize.toast(empName + "schedule updated", 2000);
+                }.bind(this));
+            }
+        });
         
-    // },
+    },
 
     render: function() {
         return (
