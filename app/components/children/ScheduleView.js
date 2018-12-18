@@ -74,41 +74,75 @@ var ScheduleView = React.createClass({
                                                         {schedules.firstName} {schedules.lastName}
                                                     </td>
                                                     <td className="schedule">
-                                                        {schedules.monday}<br/>
-                                                        <b>{schedules.monday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.monday_des}</i></div>
+                                                        {(schedules.monday_accept)?
+                                                                <div>
+                                                                    {schedules.monday}<br/>
+                                                                <b>{schedules.monday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.monday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
+                                                        
                                                     </td>
                                                     <td>
-                                                        {schedules.tuesday}<br />
-                                                        <b>{schedules.tuesday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.tuesday_des}</i></div>
+                                                        {(schedules.tuesday_accept)?
+                                                                <div>
+                                                                    {schedules.tuesday}<br/>
+                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.tuesday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
                                                     </td>
                                                     <td>
-                                                        {schedules.wednesday}<br />
-                                                        <b>{schedules.wednesday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.wednesday_des}</i></div>
-
+                                                    {(schedules.wednesday_accept)?
+                                                                <div>
+                                                                    {schedules.wednesday}<br/>
+                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.wednesday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
                                                     </td>
                                                     <td>
-                                                        {schedules.thursday}<br />
-                                                        <b>{schedules.thursday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.thursday_des}</i></div>
-
+                                                    {(schedules.thursday_accept)?
+                                                                <div>
+                                                                    {schedules.thursday}<br/>
+                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.thursday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
                                                     </td>
                                                     <td>
-                                                        {schedules.friday}<br />
-                                                        <b>{schedules.friday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.friday_des}</i></div>
+                                                    {(schedules.friday_accept)?
+                                                                <div>
+                                                                    {schedules.friday}<br/>
+                                                                <b>{schedules.friday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.friday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
                                                     </td>
                                                     <td>
-                                                        {schedules.saturday} <br/>
-                                                        <b>{schedules.saturday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.saturday_des}</i></div>
+                                                    {(schedules.saturday_accept)?
+                                                                <div>
+                                                                    {schedules.saturday}<br/>
+                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.saturday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
                                                     </td>
                                                     <td>
-                                                        {schedules.sunday}<br />
-                                                        <b>{schedules.sunday_title}</b><br />
-                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.sunday_des}</i></div>
+                                                    {(schedules.sunday_accept)?
+                                                                <div>
+                                                                    {schedules.sunday}<br/>
+                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.sunday_des}</i></div>
+                                                                </div>
+                                                            : null
+                                                        }
 
                                                     </td>
                                                     <td>
