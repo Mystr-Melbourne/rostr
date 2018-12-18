@@ -63,13 +63,22 @@
 // THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
 // use ngrok to host up the service so that it can receive texts
 app.post('/sms', function(req, res) {
+  console.log(req)
+  
   const twiml = new MessagingResponse();
 
-  twiml.message('Thankyou for confirming your shift!');
+  console.log(req.body.Body)
+
+  if (req.body.Body == 'yes') {
+    twiml.message('Alright we have comfirmed your shift');
+  } else if (req.body.Body == 'no') {
+    twiml.message('We understand you cannot work');
+  } else {
+    twiml.message('I did not quite understand that, can you please say yes/no');
+  }
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
-  console.log(twiml.toString());
 });
 
 //GOOGLE AUTH
