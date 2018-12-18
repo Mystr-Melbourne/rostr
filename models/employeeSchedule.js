@@ -104,31 +104,31 @@ var EmployeeScheduleSchema = new Schema({
     default: 1,
   },
   monday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   tuesday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   wednesday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   thursday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   friday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   saturday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   },
   sunday_accept: {
-    type: boolean,
+    type: Boolean,
     default: false
   }
 });

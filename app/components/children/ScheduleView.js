@@ -74,7 +74,9 @@ var ScheduleView = React.createClass({
                                                         {schedules.firstName} {schedules.lastName}
                                                     </td>
                                                     <td className="schedule">
-                                                        {schedules.monday}
+                                                        {schedules.monday}<br/>
+                                                        {schedules.monday_title}
+                                                        {schedules.monday_des}
                                                     </td>
                                                     <td>
                                                         {schedules.tuesday}
