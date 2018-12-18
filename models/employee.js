@@ -17,6 +17,9 @@ var EmployeeSchema = new Schema({
     phoneType: {
         type: String
     },
+    password: {
+        type: String
+    },
     department: {
         type: String
     },

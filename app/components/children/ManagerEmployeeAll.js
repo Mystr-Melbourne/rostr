@@ -9,6 +9,7 @@ var ManagerEmployeeAll = React.createClass({
             email: "",
             phone: "",
             phoneType: "",
+            password: "",
             allEmployees: [],
             selectedEmployee: "",
             emp_id: "",
@@ -45,7 +46,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleAddForm: function(event) {
         event.preventDefault();
-        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
+        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
             helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
@@ -60,7 +61,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleUpdateForm: function(event) {
         event.preventDefault();
-        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
+        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
         }.bind(this));
 
         helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
@@ -93,6 +94,7 @@ var ManagerEmployeeAll = React.createClass({
                         email: this.state.allEmployees[i].email,
                         phone: this.state.allEmployees[i].phone,
                         phoneType: this.state.allEmployees[i].phoneType,
+                        password: this.state.allEmployees[i].password,
                         emp_id: this.state.selectedEmployee,
                         department: this.state.allEmployees[i].department
                     });
@@ -120,7 +122,7 @@ var ManagerEmployeeAll = React.createClass({
     },
 
     clearStates: function() {
-        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", selectedEmployee: "", department: ""});
+        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", password: "", selectedEmployee: "", department: ""});
     },
 
     activeButtons: function() {
@@ -197,6 +199,16 @@ var ManagerEmployeeAll = React.createClass({
                                         type="email"
                                         className="validate"
                                         value={this.state.email}
+                                        onChange={this.handleUserChange}
+                                        required />
+                                </div>
+                                <div className="input-field col m12 s12">
+                                    <input
+                                        placeholder="password"
+                                        name="password"
+                                        type="password"
+                                        className="validate"
+                                        value={this.state.password}
                                         onChange={this.handleUserChange}
                                         required />
                                 </div>

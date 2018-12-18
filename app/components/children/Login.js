@@ -33,10 +33,10 @@ class Login extends React.Component {
                             <div className="row">
                                 <div className="col s12">
                                     <input
-                                        placeholder="Username"
+                                        placeholder="Phone Number"
                                         type="text"
                                         className="validate"
-                                        value={this.state.username}
+                                        value={this.state.phone}
                                         name="username"
                                         onChange={this.handleUserChange}
                                         required />
