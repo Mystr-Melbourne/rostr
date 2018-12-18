@@ -40,7 +40,7 @@ var ScheduleView = React.createClass({
                 <div className="row">
                     <div className="col s12">
                         <div className="section">
-                            <h5>My roster</h5>
+                            <h5>Week at a glance</h5>
                             <table className="bordered highlight">
                                 <thead>
                                     <tr>
