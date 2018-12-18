@@ -14,13 +14,19 @@ var ManagerEmployeeAll = React.createClass({
             selectedEmployee: "",
             emp_id: "",
             department: "",
-            departments: []
+            departments: [],
+            empSchedules: []
         };
     },
 
     componentDidMount: function() {
         this.getEmployees();
         this.getAllDepartments();
+        helpers.getEmpSchedules().then(function(response) {
+            if (response !== this.state.empSchedules) {
+              this.setState({ empSchedules: response.data });
+            }
+        }.bind(this));
     },
 
     getAllDepartments: function() {
@@ -67,6 +73,16 @@ var ManagerEmployeeAll = React.createClass({
         helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
             this.clearStates();
         }.bind(this));
+
+        this.state.empSchedules.map((person, i) => {
+            if(person.emp_id == this.state.selectedEmployee) {
+                person.department = this.state.department;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    var empName = person.firstName + " " + person.lastName + "'s ";
+                    Materialize.toast(empName + "schedule updated", 2000);
+                }.bind(this));;
+            }
+        })
         Materialize.toast("Employee updated", 3000);
         this.clearForm();
         this.getEmployees();
