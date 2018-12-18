@@ -117,6 +117,7 @@
       email: req.body.email,
       phone: req.body.phone,
       phoneType: req.body.phoneType,
+      password: req.body.password,
       department: req.body.department
     }, function(err,doc) {
       if (err) {
@@ -136,6 +137,7 @@
          email: req.body.email,
          phone: req.body.phone,
          phoneType: req.body.phoneType,
+         password: req.body.password,
          department: req.body.department
      }, function(err) {
          if (err) {
