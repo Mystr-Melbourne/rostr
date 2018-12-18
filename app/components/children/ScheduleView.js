@@ -79,7 +79,7 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.monday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.monday_des}</i></div>
                                                                 </div>
-                                                                <b>{(schedules.monday_accept)?"Accepted":"Not Accepted"}</b>
+                                                                {(schedules.monday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.monday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
                                     
                                                         
                                                     </td>
@@ -89,7 +89,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.tuesday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.tuesday_des}</i></div>
                                                                 </div>
-                                                       
+                                                                {(schedules.tuesday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.tuesday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
                                                                 <div>
@@ -97,7 +98,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.wednesday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.wednesday_des}</i></div>
                                                                 </div>
-                                     
+                                                                {(schedules.wednesday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.wednesday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
                                                                 <div>
@@ -105,7 +107,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.thursday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.thursday_des}</i></div>
                                                                 </div>
-                                     
+                                                                {(schedules.thursday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.thursday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
                                                                 <div>
@@ -113,7 +116,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.friday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.friday_des}</i></div>
                                                                 </div>
-                             
+                                                                {(schedules.friday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.friday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
                                                                 <div>
@@ -121,6 +125,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.saturday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.saturday_des}</i></div>
                                                                 </div>
+                                                                {(schedules.saturday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.saturday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                           
                                                     </td>
                                                     <td>
@@ -129,7 +135,8 @@ var ScheduleView = React.createClass({
                                                                 <b>{schedules.sunday_title}</b><br />
                                                                 <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.sunday_des}</i></div>
                                                                 </div>
-                                              
+                                                                {(schedules.sunday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.sunday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
 
                                                     </td>
                                                     <td>
