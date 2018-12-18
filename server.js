@@ -11,8 +11,15 @@
   var db = require("./db/db.js")
   var User = require("./models/user")
 
+  //twilio
+  const http = require('http');
+  //const express = require('express');
+  const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
+  const app = express();
+
 //Initialize Express
-  var app = express();
+  //var app = express();
   var PORT = process.env.PORT || 8080;
 
 //Express session
@@ -50,6 +57,20 @@
 
 //Public files <this needs to stay right below app.get("/")!!!!
   app.use(express.static(__dirname + "/public"))
+
+
+// TWILIO SMS functionality
+// THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
+// use ngrok to host up the service so that it can receive texts
+app.post('/sms', function(req, res) {
+  const twiml = new MessagingResponse();
+
+  twiml.message('Thankyou for confirming your shift!');
+
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
+  console.log(twiml.toString());
+});
 
 //GOOGLE AUTH
   app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -245,6 +266,11 @@
   })
 
 //Port Listener
-  app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
+  // app.listen(PORT, function() {
+  //   console.log("App listening on PORT: " + PORT);
+  // });
+  
+  http.createServer(app).listen(PORT, () => {
+    console.log('Express server listening on port 8080');
   });
+
