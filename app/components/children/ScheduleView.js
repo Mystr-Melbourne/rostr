@@ -75,26 +75,38 @@ var ScheduleView = React.createClass({
                                                     </td>
                                                     <td className="schedule">
                                                         {schedules.monday}<br/>
-                                                        {schedules.monday_title}
-                                                        {schedules.monday_des}
+                                                        <b>{schedules.monday_title}</b><br />
+                                                        <i>{schedules.monday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.tuesday}
+                                                        {schedules.tuesday}<br />
+                                                        <b>{schedules.tuesday_title}</b><br />
+                                                        <i>{schedules.tuesday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.wednesday}
+                                                        {schedules.wednesday}<br />
+                                                        <b>{schedules.wednesday_title}</b><br />
+                                                        <i>{schedules.wednesday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.thursday}
+                                                        {schedules.thursday}<br />
+                                                        <b>{schedules.thursday_title}</b><br />
+                                                        <i>{schedules.thursday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.friday}
+                                                        {schedules.friday}<br />
+                                                        <b>{schedules.friday_title}</b><br />
+                                                        <i>{schedules.friday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.saturday}
+                                                        {schedules.saturday} <br/>
+                                                        <b>{schedules.friday_title}</b><br />
+                                                        <i>{schedules.friday_des}</i>
                                                     </td>
                                                     <td>
-                                                        {schedules.sunday}
+                                                        {schedules.sunday}<br />
+                                                        <b>{schedules.sunday_title}</b><br />
+                                                        <i>{schedules.sunday_des}</i>
                                                     </td>
                                                     <td>
                                                         {schedules.department}

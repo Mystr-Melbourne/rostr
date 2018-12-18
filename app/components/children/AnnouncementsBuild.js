@@ -74,6 +74,7 @@ var AnnouncementsBuild = React.createClass({
                 person[this.state.day] = this.state.time;
                 person[this.state.day + "_title"] = this.state.title;
                 person[this.state.day + "_des"] = this.state.content;
+                console.log(person)
                 helpers.updateEmpSchedule(person).then(function(response) {
                     var empName = person.firstName + " " + person.lastName + "'s ";
                     Materialize.toast(empName + "schedule updated", 2000);
@@ -82,6 +83,7 @@ var AnnouncementsBuild = React.createClass({
                 person[this.state.day] = this.state.time;
                 person[this.state.day + "_title"] = this.state.title;
                 person[this.state.day + "_des"] = this.state.content;
+                console.log(person)
                 helpers.updateEmpSchedule(person).then(function(response) {
                     var empName = person.firstName + " " + person.lastName + "'s ";
                     Materialize.toast(empName + "schedule updated", 2000);
@@ -113,7 +115,7 @@ var AnnouncementsBuild = React.createClass({
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
                                 <option value="wednesday">Wednesday</option>
-                                <option value="thursday">Thrusday</option>
+                                <option value="thursday">Thursday</option>
                                 <option value="friday">Friday</option>
                                 <option value="saturday">Saturday</option>
                                 <option value="sunday">Sunday</option>
