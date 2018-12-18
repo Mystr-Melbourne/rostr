@@ -100,6 +100,7 @@
         sunday_des: newSchedule.sunday_des,
         sunday_accept: newSchedule.sunday_accept,
         
+        department: newSchedule.department
     }, function(err) {
        if (err) {
            console.log(err);
