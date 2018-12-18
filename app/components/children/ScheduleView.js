@@ -76,37 +76,40 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         {schedules.monday}<br/>
                                                         <b>{schedules.monday_title}</b><br />
-                                                        <i>{schedules.monday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.monday_des}</i></div>
                                                     </td>
                                                     <td>
                                                         {schedules.tuesday}<br />
                                                         <b>{schedules.tuesday_title}</b><br />
-                                                        <i>{schedules.tuesday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.tuesday_des}</i></div>
                                                     </td>
                                                     <td>
                                                         {schedules.wednesday}<br />
                                                         <b>{schedules.wednesday_title}</b><br />
-                                                        <i>{schedules.wednesday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.wednesday_des}</i></div>
+
                                                     </td>
                                                     <td>
                                                         {schedules.thursday}<br />
                                                         <b>{schedules.thursday_title}</b><br />
-                                                        <i>{schedules.thursday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.thursday_des}</i></div>
+
                                                     </td>
                                                     <td>
                                                         {schedules.friday}<br />
                                                         <b>{schedules.friday_title}</b><br />
-                                                        <i>{schedules.friday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.friday_des}</i></div>
                                                     </td>
                                                     <td>
                                                         {schedules.saturday} <br/>
-                                                        <b>{schedules.friday_title}</b><br />
-                                                        <i>{schedules.friday_des}</i>
+                                                        <b>{schedules.saturday_title}</b><br />
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.saturday_des}</i></div>
                                                     </td>
                                                     <td>
                                                         {schedules.sunday}<br />
                                                         <b>{schedules.sunday_title}</b><br />
-                                                        <i>{schedules.sunday_des}</i>
+                                                        <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.sunday_des}</i></div>
+
                                                     </td>
                                                     <td>
                                                         {schedules.department}
