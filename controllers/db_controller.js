@@ -66,12 +66,41 @@
     var newSchedule = req.body.employeeSchedule;
     EmployeeSchedule.findOneAndUpdate({ "_id": req.params.id }, {
         monday: newSchedule.monday,
+        monday_title: newSchedule.monday_title,
+        monday_des: newSchedule.monday_des,
+        monday_accept: newSchedule.monday_accept,
+
         tuesday: newSchedule.tuesday,
+        tuesday_title: newSchedule.tuesday_title,
+        tuesday_des: newSchedule.tuesday_des,
+        tuesday_accept: newSchedule.tuesday_accept,
+
         wednesday: newSchedule.wednesday,
+        wednesday_title: newSchedule.wednesday_title,
+        wednesday_des: newSchedule.wednesday_des,
+        wednesday_accept: newSchedule.wednesday_accept,
+
         thursday: newSchedule.thursday,
+        thursday_title: newSchedule.thursday_title,
+        thursday_des: newSchedule.thursday_des,
+        thursday_accept: newSchedule.thursday_accept,
+
         friday: newSchedule.friday,
+        friday_title: newSchedule.friday_title,
+        friday_des: newSchedule.friday_des,
+        friday_accept: newSchedule.friday_accept,
+
         saturday: newSchedule.saturday,
-        sunday: newSchedule.sunday
+        saturday_title: newSchedule.saturday_title,
+        saturday_des: newSchedule.saturday_des,
+        saturday_accept: newSchedule.saturday_accept,
+
+        sunday: newSchedule.sunday,
+        sunday_title: newSchedule.sunday_title,
+        sunday_des: newSchedule.sunday_des,
+        sunday_accept: newSchedule.sunday_accept,
+        
+        department: newSchedule.department
     }, function(err) {
        if (err) {
            console.log(err);
