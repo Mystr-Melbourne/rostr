@@ -135,7 +135,7 @@
 
 //LOCAL AUTH
   app.post("/register", function(req, res) {
-    if(req.body.redirect == 0) {
+    if(req.body.redirect == 0) { // no redirect
       User.register(new User({
         username: req.body.username,
         email: req.body.email,

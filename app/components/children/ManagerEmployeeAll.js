@@ -62,8 +62,6 @@ var ManagerEmployeeAll = React.createClass({
 
         }.bind(this));
         Materialize.toast('Employee added', 3000);
-        this.clearForm();
-        this.getEmployees();
         $.ajax({
             url:'/register',
             type:'post',
@@ -72,6 +70,9 @@ var ManagerEmployeeAll = React.createClass({
                 alert("worked");
             }
         });
+        this.clearForm();
+        this.getEmployees();
+       
         // document.querySelector("#addNew").submit();
     },
 
