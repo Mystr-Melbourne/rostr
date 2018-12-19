@@ -135,25 +135,43 @@
 
 //LOCAL AUTH
   app.post("/register", function(req, res) {
-
-    User.register(new User({
-      username: req.body.username,
-      email: req.body.email,
-      userType: req.body.userType,
-      picture: "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
-    }),
-
-    req.body.password, function(err, user) {
-       if(err){
-        res.sendFile(path.resolve(__dirname, "public", "error.html"));
-        console.log(err);
-       } else {
-
-      passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
-      });
-      }
-    })
+    if(req.body.redirect == 0) {
+      User.register(new User({
+        username: req.body.username,
+        email: req.body.email,
+        userType: req.body.userType,
+        picture: "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
+      }),
+  
+      req.body.password, function(err, user) {
+        if(err){
+         res.sendFile(path.resolve(__dirname, "public", "error.html"));
+         console.log(err);
+        } else {
+           passport.authenticate("local")(req, res, function() {
+            //  res.redirect("/");
+           });
+       }
+     })
+    } else {
+      User.register(new User({
+        username: req.body.username,
+        email: req.body.email,
+        userType: req.body.userType,
+        picture: "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
+      }),
+  
+      req.body.password, function(err, user) {
+         if(err){
+          res.sendFile(path.resolve(__dirname, "public", "error.html"));
+          console.log(err);
+         } else {
+            passport.authenticate("local")(req, res, function() {
+              res.redirect("/");
+            });
+        }
+      })
+    }
   });
 
   app.post("/login", passport.authenticate("local", {

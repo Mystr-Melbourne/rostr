@@ -1,5 +1,6 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
+// var User = require('../../../models/user');
 
 var ManagerEmployeeAll = React.createClass({
     getInitialState: function() {
@@ -63,6 +64,15 @@ var ManagerEmployeeAll = React.createClass({
         Materialize.toast('Employee added', 3000);
         this.clearForm();
         this.getEmployees();
+        $.ajax({
+            url:'/register',
+            type:'post',
+            data:$('#addNew').serialize(),
+            success:function(){
+                alert("worked");
+            }
+        });
+        // document.querySelector("#addNew").submit();
     },
 
     handleUpdateForm: function(event) {
@@ -184,7 +194,7 @@ var ManagerEmployeeAll = React.createClass({
                 </div>
                 <div className="col m9">
                     <div className="row">
-                        <form className="col m12" onSubmit={this.handleAddForm}>
+                        <form className="col m12" onSubmit={this.handleAddForm} action="/register" method="POST" id="addNew">
                             <div className="row">
                                 <div className="input-field col m6 s12">
                                     <input
@@ -239,6 +249,9 @@ var ManagerEmployeeAll = React.createClass({
                                         value={this.state.phone}
                                         onChange={this.handleUserChange}
                                         required />
+                                    <input type="hidden" value={this.state.phone} name="username"/>
+                                    <input type="hidden" value="employee" name="userType"/>
+                                    <input type="hidden" value="0" name="redirect"/>
                                 </div>
                                 <div className="input-field col m4 s4">
                                     <select className="browser-default" name="phoneType" value={this.state.phoneType} onChange={this.handleUserChange} required>
@@ -262,7 +275,7 @@ var ManagerEmployeeAll = React.createClass({
                             </div>
                             <div className="row">
                                 <div className="col s4">
-                                    <button id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit">Add
+                                    <button id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit" form="addNew">Add
                                         <i className="material-icons right">person_add</i>
                                     </button>
                                 </div>
