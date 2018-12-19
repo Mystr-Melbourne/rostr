@@ -48,3 +48,49 @@
 	margin-left: 15px;
 	margin-bottom: -10px;
 }
+
+/* announcementview button */
+#accept-reject-button button {
+	display: inline-block;
+	border-radius: 4px;
+	border: none;
+	text-align: center;
+	font-size: 20px;
+	padding: 20px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+#accept-reject-button:hover span::after {
+	padding-right: 25px;
+}
+
+.accept-button {
+	color: #00ff00;
+}
+
+.accept-button:hover {
+	background: #00ff00;
+	color: #ffffff;
+}
+
+.accept-button:hover span::after {
+	content: '\2713';
+	position: absolute;
+}
+
+.reject-button {
+	color: #ff0000;
+}
+
+.reject-button:hover {
+	background: #ff0000;
+	color: #ffffff;
+}
+
+.reject-button:hover span::after {
+	content: '\292B';
+	position: absolute;
+}
