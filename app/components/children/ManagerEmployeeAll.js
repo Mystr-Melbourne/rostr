@@ -9,17 +9,24 @@ var ManagerEmployeeAll = React.createClass({
             email: "",
             phone: "",
             phoneType: "",
+            password: "",
             allEmployees: [],
             selectedEmployee: "",
             emp_id: "",
             department: "",
-            departments: []
+            departments: [],
+            empSchedules: []
         };
     },
 
     componentDidMount: function() {
         this.getEmployees();
         this.getAllDepartments();
+        helpers.getEmpSchedules().then(function(response) {
+            if (response !== this.state.empSchedules) {
+              this.setState({ empSchedules: response.data });
+            }
+        }.bind(this));
     },
 
     getAllDepartments: function() {
@@ -45,7 +52,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleAddForm: function(event) {
         event.preventDefault();
-        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
+        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
             helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
@@ -60,12 +67,22 @@ var ManagerEmployeeAll = React.createClass({
 
     handleUpdateForm: function(event) {
         event.preventDefault();
-        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.department).then(function(response) {
+        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
         }.bind(this));
 
         helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
             this.clearStates();
         }.bind(this));
+
+        this.state.empSchedules.map((person, i) => {
+            if(person.emp_id == this.state.selectedEmployee) {
+                person.department = this.state.department;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    var empName = person.firstName + " " + person.lastName + "'s ";
+                    Materialize.toast(empName + "schedule updated", 2000);
+                }.bind(this));;
+            }
+        })
         Materialize.toast("Employee updated", 3000);
         this.clearForm();
         this.getEmployees();
@@ -93,6 +110,7 @@ var ManagerEmployeeAll = React.createClass({
                         email: this.state.allEmployees[i].email,
                         phone: this.state.allEmployees[i].phone,
                         phoneType: this.state.allEmployees[i].phoneType,
+                        password: this.state.allEmployees[i].password,
                         emp_id: this.state.selectedEmployee,
                         department: this.state.allEmployees[i].department
                     });
@@ -120,7 +138,7 @@ var ManagerEmployeeAll = React.createClass({
     },
 
     clearStates: function() {
-        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", selectedEmployee: "", department: ""});
+        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", password: "", selectedEmployee: "", department: ""});
     },
 
     activeButtons: function() {
@@ -197,6 +215,16 @@ var ManagerEmployeeAll = React.createClass({
                                         type="email"
                                         className="validate"
                                         value={this.state.email}
+                                        onChange={this.handleUserChange}
+                                        required />
+                                </div>
+                                <div className="input-field col m12 s12">
+                                    <input
+                                        placeholder="password"
+                                        name="password"
+                                        type="password"
+                                        className="validate"
+                                        value={this.state.password}
                                         onChange={this.handleUserChange}
                                         required />
                                 </div>

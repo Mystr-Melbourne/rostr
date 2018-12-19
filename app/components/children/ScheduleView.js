@@ -74,25 +74,70 @@ var ScheduleView = React.createClass({
                                                         {schedules.firstName} {schedules.lastName}
                                                     </td>
                                                     <td className="schedule">
-                                                        {schedules.monday}
+                                                                <div>
+                                                                    {schedules.monday}<br/>
+                                                                <b>{schedules.monday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.monday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.monday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.monday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+                                    
+                                                        
                                                     </td>
                                                     <td>
-                                                        {schedules.tuesday}
+                                                                <div>
+                                                                    {schedules.tuesday}<br/>
+                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.tuesday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.tuesday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.tuesday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
-                                                        {schedules.wednesday}
+                                                                <div>
+                                                                    {schedules.wednesday}<br/>
+                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.wednesday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.wednesday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.wednesday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
-                                                        {schedules.thursday}
+                                                                <div>
+                                                                    {schedules.thursday}<br/>
+                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.thursday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.thursday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.thursday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
-                                                        {schedules.friday}
+                                                                <div>
+                                                                    {schedules.friday}<br/>
+                                                                <b>{schedules.friday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.friday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.friday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.friday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
                                                     </td>
                                                     <td>
-                                                        {schedules.saturday}
+                                                                <div>
+                                                                    {schedules.saturday}<br/>
+                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.saturday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.saturday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.saturday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
+                                          
                                                     </td>
                                                     <td>
-                                                        {schedules.sunday}
+                                                                <div>
+                                                                    {schedules.sunday}<br/>
+                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <div style={{width: 100 + "px", wordBreak: "break-all"}}><i>{schedules.sunday_des}</i></div>
+                                                                </div>
+                                                                {(schedules.sunday_accept == 1)?<b style={{color: "green"}}>Accepted</b>:(schedules.sunday_accept == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}
+
+
                                                     </td>
                                                     <td>
                                                         {schedules.department}
