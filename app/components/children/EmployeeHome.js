@@ -1,18 +1,25 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-var ScheduleView =  require("./ScheduleView");
+var IndividualView =  require("./IndividualView");
 var AnnouncementsView =  require("./AnnouncementsView");
 
 var EmployeeHome = React.createClass({
     getInitialState: function() {
         return {
             title: "",
-            content: ""
+            content: "",
+            username: ""
         };
     },
 
     componentDidMount: function() {
         this.getAnnouncements();
+        helpers.getCurrentUser().then(function(response) {
+            console.log(response.data)
+            if (response !== this.state.username) {
+              this.setState({ username: response.data.username});
+            }
+          }.bind(this));
     },
 
     // componentDidUpdate: function(prevState) {

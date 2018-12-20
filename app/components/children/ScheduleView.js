@@ -20,7 +20,7 @@ var ScheduleView = React.createClass({
                 this.setState({ empSchedules: response.data });
             }
         }.bind(this));
-     
+
     },
 
     componentWillMount: function() {

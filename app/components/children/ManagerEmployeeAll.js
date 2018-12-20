@@ -16,7 +16,7 @@ var ManagerEmployeeAll = React.createClass({
             emp_id: "",
             department: "",
             departments: [],
-            empSchedules: []
+            empSchedules: [],
         };
     },
 
@@ -250,6 +250,7 @@ var ManagerEmployeeAll = React.createClass({
                                         value={this.state.phone}
                                         onChange={this.handleUserChange}
                                         required />
+                                    <input type="hidden" value={this.state.emp_id} name="_id"/>
                                     <input type="hidden" value={this.state.phone} name="username"/>
                                     <input type="hidden" value="employee" name="userType"/>
                                     <input type="hidden" value="0" name="redirect"/>

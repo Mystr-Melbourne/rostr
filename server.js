@@ -155,6 +155,7 @@
      })
     } else {
       User.register(new User({
+        _id: req.body._id,
         username: req.body.username,
         email: req.body.email,
         userType: req.body.userType,
