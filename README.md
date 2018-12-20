@@ -34,9 +34,9 @@ If you dont want to go through the trouble of creating the API keys, put in dumm
 
 ### Run App
 
-`$ npm run dev`
-
 Use this command to automatically build and run the environment with one command
+
+`$ npm run dev`
 
 ---
 
