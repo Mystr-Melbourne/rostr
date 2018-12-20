@@ -1,6 +1,6 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-
+var Materialze = require
 var IndividualView = React.createClass({
     getInitialState: function() {
         return {
@@ -25,6 +25,31 @@ var IndividualView = React.createClass({
 
     },
 
+    handleAccept: function(day) {
+        this.state.empSchedules.map((person,i) => {
+            // console.log(event.target.value)
+            // console.log(event.value)
+            // console.log(event)
+            if(person.phone == this.state.username){ 
+                person[day + "_accept"] = 1;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    Materialize.toast(day + " schedule updated", 2000);
+                }.bind(this));
+            }
+        });
+    },
+
+    handleDecline: function(day) {
+        this.state.empSchedules.map((person,i) => {
+            if(person.phone == this.state.username){ 
+                person[day + "_accept"] = 2;
+                helpers.updateEmpSchedule(person).then(function(response) {
+                    Materialize.toast(day + " schedule updated", 2000);
+                }.bind(this));
+            }
+        });
+    },
+
     render: function() {
         return(
             <div>
@@ -43,15 +68,13 @@ var IndividualView = React.createClass({
                                             <p>Time: {person[day]}</p>
                                         </div>
                                         <div id="accept-reject-button" className="col s6">
-                                            <button className="accept-button"><span>Accept</span></button>
-                                            <button className="reject-button"><span>Reject</span></button>
+                                            <button className="accept-button" onClick={() => {this.handleAccept(day)}}><span>Accept</span></button>
+                                            <button className="reject-button" onClick={() => {this.handleDecline(day)}}><span>Reject</span></button>
                                         </div>
                                     </div>
                                 </div>
                             );
                             
-                        } else {
-
                         }
                     })
                 }}
