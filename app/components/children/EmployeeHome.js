@@ -15,7 +15,6 @@ var EmployeeHome = React.createClass({
     componentDidMount: function() {
         this.getAnnouncements();
         helpers.getCurrentUser().then(function(response) {
-            console.log(response.data)
             if (response !== this.state.username) {
               this.setState({ username: response.data.username});
             }
