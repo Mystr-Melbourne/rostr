@@ -56,7 +56,7 @@ var ManagerEmployeeAll = React.createClass({
         helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
-            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
+            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone).then(function(response) {
                 this.clearStates();
             }.bind(this));
 
