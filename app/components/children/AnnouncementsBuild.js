@@ -10,7 +10,8 @@ var AnnouncementsBuild = React.createClass({
             sendTo: "all",
             empSchedules: [],
             day: "",
-            time: ""
+            time: "",
+            wordCount: 0
         };
     },
 
@@ -36,6 +37,11 @@ var AnnouncementsBuild = React.createClass({
 
     handleAnnouncementBuild(event) {
        this.setState({ [event.target.id]: event.target.value});
+    },
+
+    wordCount(event) {
+        this.setState({ wordCount: event.target.value.length })
+
     },
 
     handleManagerSelect(event) {
@@ -145,9 +151,10 @@ var AnnouncementsBuild = React.createClass({
                                         type="text"
                                         className="materialize-textarea"
                                         value={this.state.content}
-                                        onChange={this.handleAnnouncementBuild}
+                                        onChange={this.handleAnnouncementBuild} onInput={this.wordCount}
                                         required>
                                     </textarea>
+                                    <p>Word count: {this.state.wordCount}</p>
                                 </div>
                             </div>
                     <div className="row">
