@@ -42,7 +42,7 @@ var ScheduleView = React.createClass({
             <div className="row">
                 <div className="col s12">
                     <div className="section">
-                        <h5>Staff list</h5>
+                        <h5>Edit Staff</h5>
 
                         <select className="browser-default" name="view" onChange={this.handleUserChange}>
                             <option value="all">Filter Accepted</option>
