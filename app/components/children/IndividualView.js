@@ -65,7 +65,7 @@ var IndividualView = React.createClass({
                                         <div className="col s6">
                                             <h5>{person[day + "_title"]}</h5>
                                             <p>{person[day + "_des"]}</p>
-                                            <p>Time: {person[day]}</p>
+                                            <p>Time: {day.charAt(0).toUpperCase() + day.slice(1)}, {person[day]}</p>
                                         </div>
                                         <div id="accept-reject-button" className="col s6">
                                             <button className="accept-button" onClick={() => {this.handleAccept(day)}}><span>Accept</span></button>
