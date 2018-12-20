@@ -40,7 +40,7 @@ var EmployeeHome = React.createClass({
     render: function() {
         return (
             <div>
-                <AnnouncementsView title={this.state.title} content={this.state.content}/>
+                {/* <AnnouncementsView title={this.state.title} content={this.state.content}/> */}
                 <IndividualView />
             </div>
         );
