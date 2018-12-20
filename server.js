@@ -299,6 +299,7 @@ app.post('/sms', function(req, res) {
   // });
   
   http.createServer(app).listen(PORT, () => {
-    console.log('Express server listening on port 8080');
+    console.log('Express server listening on port ' + PORT);
+    console.log('\nOpen up the website on http://localhost:' + PORT +'\n');
   });
 
