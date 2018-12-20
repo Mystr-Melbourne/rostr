@@ -12,7 +12,6 @@ Rostr requires [Node.js](https://nodejs.org/) and [MongoDB](https://docs.mongodb
 ### Installation
 Once mongo is installed, open a new terminal and run 
 
-
 `$ mongod`
 
 Open another terminal window and navigate to project directory and run
@@ -35,24 +34,27 @@ If you dont want to go through the trouble of creating the API keys, put in dumm
 
 ### Run App
 
+Use this command to automatically build and run the environment with one command
+
+`$ npm run dev`
+
+---
+
+otherwise you can manually build with
+
 `$ npm run build`
 
 Wait for webpack to bundle then
 
 `$ npm start`
 
-
 Open a browser and go to [http://localhost:8080](http://localhost:8080)
 
 ## Original Developers of [Schedulr](https://github.com/clsavino/react-shift-scheduler) on which this project is based
-* Andrea Roche [@amr08](https://github.com/amr08)
-* Christi Savino [@clsavino](https://github.com/clsavino)
-* Houston Breedlove [@hcbreedl](https://github.com/hcbreedl)
-* Nicolás Cáceres [@mr-attack](https://github.com/mr-attack)
+* Andrea Roche @amr08
+* Christi Savino @clsavino
+* Houston Breedlove @hcbreedl
+* Nicolás Cáceres @mr-attack
 
 ## Tech
 Built with React, Node, Express, MongoDB, Passport.js
-
-
-
-this is a test
