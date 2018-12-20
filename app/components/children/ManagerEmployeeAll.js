@@ -1,5 +1,6 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
+var phone = require('phone');
 
 var ManagerEmployeeAll = React.createClass({
     getInitialState: function() {
@@ -7,7 +8,7 @@ var ManagerEmployeeAll = React.createClass({
             firstName: "",
             lastName: "",
             email: "",
-            phone: "",
+            phoneNum: "",
             phoneType: "",
             password: "",
             allEmployees: [],
@@ -52,7 +53,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleAddForm: function(event) {
         event.preventDefault();
-        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
+        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phoneNum, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
             this.state.emp_id = response.data._id;
 
             helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
@@ -67,7 +68,7 @@ var ManagerEmployeeAll = React.createClass({
 
     handleUpdateForm: function(event) {
         event.preventDefault();
-        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
+        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phoneNum, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
         }.bind(this));
 
         helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
@@ -108,7 +109,7 @@ var ManagerEmployeeAll = React.createClass({
                         firstName: this.state.allEmployees[i].firstName,
                         lastName: this.state.allEmployees[i].lastName,
                         email: this.state.allEmployees[i].email,
-                        phone: this.state.allEmployees[i].phone,
+                        phoneNum: this.state.allEmployees[i].phoneNum,
                         phoneType: this.state.allEmployees[i].phoneType,
                         password: this.state.allEmployees[i].password,
                         emp_id: this.state.selectedEmployee,
@@ -138,7 +139,7 @@ var ManagerEmployeeAll = React.createClass({
     },
 
     clearStates: function() {
-        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", password: "", selectedEmployee: "", department: ""});
+        this.setState({ firstName: "", lastName: "", email: "", phoneNum: "", phoneType: "", password: "", selectedEmployee: "", department: ""});
     },
 
     activeButtons: function() {
@@ -151,6 +152,19 @@ var ManagerEmployeeAll = React.createClass({
             document.getElementById("addEmployee").className += " disabled";
             document.getElementById("updateEmployee").className = "btn btn-large waves-effect waves-light blue accent-3";
             document.getElementById("removeEmployee").className = "btn btn-large waves-effect waves-light red accent-3";
+        }
+    },
+
+    phoneValidation: function() {
+        const country = 'AUS';
+
+        var tempPhone = phone(this.state.phoneNum.replace(/ +/g, ""), country);
+        console.log(tempPhone);
+
+        if (tempPhone.length === 2) {
+            return true;
+        } else {
+            return false;
         }
     },
 
@@ -233,10 +247,10 @@ var ManagerEmployeeAll = React.createClass({
                                 <div className="input-field col m8 s8">
                                     <input
                                         placeholder="Phone"
-                                        name="phone"
-                                        type="number"
+                                        name="phoneNum"
+                                        type="tel"
                                         className="validate"
-                                        value={this.state.phone}
+                                        value={this.state.phoneNum}
                                         onChange={this.handleUserChange}
                                         required />
                                 </div>
@@ -262,17 +276,20 @@ var ManagerEmployeeAll = React.createClass({
                             </div>
                             <div className="row">
                                 <div className="col s4">
-                                    <button id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit">Add
+                                    <button id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3"
+                                    type="submit" value="Submit" onClick={this.phoneValidation}>Add
                                         <i className="material-icons right">person_add</i>
                                     </button>
                                 </div>
                                 <div className="col s4">
-                                    <a id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.handleUpdateForm}>Update
+                                    <a id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3"
+                                    onClick={this.handleUpdateForm}>Update
                                         <i className="material-icons right">edit</i>
                                     </a>
                                 </div>
                                 <div className="col s4">
-                                    <a id="removeEmployee" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.handleRemoveForm}>Remove
+                                    <a id="removeEmployee" className="btn btn-large waves-effect waves-light red accent-3"
+                                    onClick={this.handleRemoveForm}>Remove
                                         <i className="material-icons right">person_outline</i>
                                     </a>
                                 </div>
