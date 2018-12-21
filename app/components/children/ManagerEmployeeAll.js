@@ -244,7 +244,7 @@ var ManagerEmployeeAll = React.createClass({
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col m8 s8">
+                                <div className="input-field col m12 s12">
                                     <input
                                         placeholder="Phone"
                                         name="phoneNum"
@@ -253,14 +253,6 @@ var ManagerEmployeeAll = React.createClass({
                                         value={this.state.phoneNum}
                                         onChange={this.handleUserChange}
                                         required />
-                                </div>
-                                <div className="input-field col m4 s4">
-                                    <select className="browser-default" name="phoneType" value={this.state.phoneType} onChange={this.handleUserChange} required>
-                                        <option value="" disabled>Phone Type</option>
-                                        <option value="mobile">Mobile</option>
-                                        <option value="work">Work</option>
-                                        <option value="home">Home</option>
-                                    </select>
                                 </div>
                             </div>
                             <div className="row">
