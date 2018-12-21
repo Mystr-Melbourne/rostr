@@ -5,6 +5,9 @@ var EmployeeScheduleSchema = new Schema({
   emp_id: {
     type: String
   },
+  phone: {
+    type: String
+  },
   firstName: {
     type: String
   },

@@ -59,6 +59,7 @@ class Login extends React.Component {
                                     <button className="btn waves-effect waves-light btn-large blue accent-3 loginButtons" type="submit" value="Submit" name="action">Login<i className="material-icons right">send</i></button>
                                 </div>
                             </div>
+                            {/*  
                             <div className="row">
                                 <div className="col s12">
                                     <h6>Or login with</h6>
@@ -73,6 +74,7 @@ class Login extends React.Component {
                                 </div>
                             </div>
                             <div className="divider"></div>
+                            */}
                             <div className="row">
                                 <div className="col s12">
                                     <h6 id="noAccount">Don't have an account?</h6>

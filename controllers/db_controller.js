@@ -50,7 +50,8 @@
       emp_id: req.body.emp_id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      department: req.body.department
+      department: req.body.department,
+      phone: req.body.phone
     }, function(err) {
       if (err) {
         console.log(err);
@@ -65,6 +66,8 @@
   router.put("/updateSchedule/:id", function(req, res) {
     var newSchedule = req.body.employeeSchedule;
     EmployeeSchedule.findOneAndUpdate({ "_id": req.params.id }, {
+        phone: newSchedule.phone,
+
         monday: newSchedule.monday,
         monday_title: newSchedule.monday_title,
         monday_des: newSchedule.monday_des,
