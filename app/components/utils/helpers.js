@@ -31,12 +31,13 @@ var helper = {
     })
   },
 
-  addEmpSchedule:function(emp_id, firstName, lastName, depart) {
+  addEmpSchedule:function(emp_id, firstName, lastName, depart, phone) {
     return axios.post('/addEmpSchedule', {
       emp_id: emp_id,
       firstName: firstName,
       lastName: lastName,
-      department: depart
+      department: depart,
+      phone: phone
     });
   },
 
