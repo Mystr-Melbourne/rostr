@@ -12,7 +12,7 @@ var IndividualView = React.createClass({
         };
     },
 
-    componentDidMount: function() {
+    componentWillMount: function() {
         helpers.getCurrentUser().then(function(response) {
             if (response !== this.state.username) {
               this.setState({ username: response.data.username});
@@ -23,17 +23,19 @@ var IndividualView = React.createClass({
             if (response !== this.state.empSchedules) {
                 this.setState({ empSchedules: response.data });
             }
+            this.state.empSchedules.map((person) => {
+                if(person.phone == this.state.username) {
+                    this.setState({person: person});
+                }
+            })
         }.bind(this));
 
-        this.state.empSchedules.map((person) => {
-            if(person.phone == this.state.username) {
-                this.setState({ person: person });
-            }
-        });
     },
 
     handleAccept: function(day,e) {
-        $(e.target).parent().parent().parent().parent().fadeOut();
+        let newPerson = Object.assign({},this.state.person);
+        newPerson[day + "_accept"] = 1;
+        this.setState({person: newPerson});
         this.state.empSchedules.map((person,i) => {
             if(person.phone == this.state.username){ 
                 person[day + "_accept"] = 1;
@@ -42,10 +44,17 @@ var IndividualView = React.createClass({
                 }.bind(this));
             }
         });
+        if($(e.target).parents().eq(2)[0].className == "row"){
+            $(e.target).parents().eq(3).fadeOut();
+        } else {
+            $(e.target).parents().eq(2).fadeOut();
+        }
     },
 
     handleDecline: function(day,e) {
-        $(e.target).parent().parent().parent().parent().fadeOut();
+        let newPerson = Object.assign({},this.state.person);
+        newPerson[day + "_accept"] = 2;
+        this.setState({person: newPerson});
         this.state.empSchedules.map((person,i) => {
             if(person.phone == this.state.username){ 
                 person[day + "_accept"] = 2;
@@ -54,6 +63,11 @@ var IndividualView = React.createClass({
                 }.bind(this));
             }
         });
+        if($(e.target).parents().eq(2)[0].className == "row"){
+            $(e.target).parents().eq(3).fadeOut();
+        } else {
+            $(e.target).parents().eq(2).fadeOut();
+        }
     },
 
     render: function() {
@@ -109,7 +123,7 @@ var IndividualView = React.createClass({
                                             <td>{person[day+"_des"]}</td>
                                             <td>{day.charAt(0).toUpperCase() + day.slice(1)}</td>
                                             <td>{person[day]}</td>
-                                            <td>{(person[day+"_accept"] == 1)?<b style={{color: "green"}}>Accepted</b>:(person[day+"_accept"] == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}</td>
+                                            <td>{(this.state.person[day+"_accept"] == 1)?<b style={{color: "green"}}>Accepted</b>:(this.state.person[day+"_accept"] == 2) ? <b style={{color: "red"}}>Declined</b> : <b style={{color: "orange"}}>Not Accepted</b>}</td>
                                         </tr>
                                     )
                                 }
