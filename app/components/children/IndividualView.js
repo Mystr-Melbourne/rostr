@@ -78,8 +78,7 @@ var IndividualView = React.createClass({
                
                 if(person.phone == this.state.username) {
                     return this.state.day.map((day) => {
-                        // if(person[day].length > 0 && person[day + "_accept"] == 0) {
-                            if(person[day].length > 0){
+                        if(person[day].length > 0 && person[day + "_accept"] == 0) {
                             return(
                                 <div className="card-panel">
                                     <div className="row">
