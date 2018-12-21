@@ -59,7 +59,7 @@ class Login extends React.Component {
                                     <button className="btn waves-effect waves-light btn-large blue accent-3 loginButtons" type="submit" value="Submit" name="action">Login<i className="material-icons right">send</i></button>
                                 </div>
                             </div>
-                            {/*  
+                            {/*  Linkedin and google logins
                             <div className="row">
                                 <div className="col s12">
                                     <h6>Or login with</h6>
