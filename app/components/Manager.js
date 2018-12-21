@@ -32,7 +32,7 @@ var Manager = React.createClass({
                             <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>
 
                             <li><a className="black-text" href="/manager/employeeAll">Edit Staff<i className="material-icons right">group</i></a></li>
-                            <li><a className="black-text" href="/manager/schedulesCreate">Edit Schedule<i className="material-icons right">access_time</i></a></li>
+                            {/* <li><a className="black-text" href="/manager/schedulesCreate">Edit Schedule<i className="material-icons right">access_time</i></a></li> */}
                             <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture}/></a></li>
                         </ul>
                         <ul id="slide-out" className="side-nav">
@@ -48,7 +48,7 @@ var Manager = React.createClass({
                             </li>
                             <li><a href="/manager" className="black-text"><i className="material-icons">group</i>Home</a></li>
                             <li><a href="/manager/employeeAll" className="black-text"><i className="material-icons">group</i>Edit Staff</a></li>
-                            <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li>
+                            {/* <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li> */}
                             <li><a href="/logout" className="black-text"><i className="material-icons">exit_to_app</i>Logout</a></li>
                         </ul>
                     </div>
