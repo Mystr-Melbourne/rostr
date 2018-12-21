@@ -155,16 +155,20 @@ var ManagerEmployeeAll = React.createClass({
         }
     },
 
-    phoneValidation: function() {
+    phoneValidation: function(event) {
         const country = 'AUS';
 
         var tempPhone = phone(this.state.phoneNum.replace(/ +/g, ""), country);
         console.log(tempPhone);
 
+        // add employee when the phone number is valid
         if (tempPhone.length === 2) {
-            return true;
+            console.log("Submit Success");
+            this.handleAddForm(event);
         } else {
-            return false;
+            console.log("Submit Fail");
+            // prevent form from submitting
+            event.preventDefault();
         }
     },
 
@@ -198,7 +202,7 @@ var ManagerEmployeeAll = React.createClass({
                 </div>
                 <div className="col m9">
                     <div className="row">
-                        <form className="col m12" onSubmit={this.handleAddForm}>
+                        <form className="col m12">
                             <div className="row">
                                 <div className="input-field col m6 s12">
                                     <input
@@ -248,7 +252,7 @@ var ManagerEmployeeAll = React.createClass({
                                     <input
                                         placeholder="Phone"
                                         name="phoneNum"
-                                        type="tel"
+                                        type="number"
                                         className="validate"
                                         value={this.state.phoneNum}
                                         onChange={this.handleUserChange}
