@@ -123,7 +123,7 @@ var AnnouncementsBuild = React.createClass({
             name="sendTo"
             onChange={this.handleManagerSelect}
           >
-            <option value="all">Which Department?</option>
+            <option value="all">All Departments</option>
             {this.state.isLoaded ? (
               this.state.departments.map((each, i) => {
                 return (
