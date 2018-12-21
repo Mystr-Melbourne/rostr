@@ -87,6 +87,7 @@ var AnnouncementsBuild = React.createClass({
         person[this.state.day] = this.state.time;
         person[this.state.day + "_title"] = this.state.title;
         person[this.state.day + "_des"] = this.state.content;
+        person[this.state.day + "_accept"] = 0;
         console.log(person);
         helpers.updateEmpSchedule(person).then(
           function(response) {
@@ -98,6 +99,7 @@ var AnnouncementsBuild = React.createClass({
         person[this.state.day] = this.state.time;
         person[this.state.day + "_title"] = this.state.title;
         person[this.state.day + "_des"] = this.state.content;
+        person[this.state.day + "_accept"] = 0;
         console.log(person);
         helpers.updateEmpSchedule(person).then(
           function(response) {
