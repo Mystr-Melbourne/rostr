@@ -1,4 +1,7 @@
 # ![Icon](https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo-small.png) Rostr
+
+### [Please check out our wiki!](https://github.com/Mystr-Melbourne/Mystr/wiki)
+
 Rostr is an employee management and scheduling app that allows…
 * Managers to manage and schedule employees
 * Employees to view work schedules
