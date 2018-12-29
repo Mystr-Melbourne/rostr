@@ -63,6 +63,21 @@ app.use(express.static(__dirname + "/public"));
 // TWILIO SMS functionality
 // THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
 // use ngrok to host up the service so that it can receive texts
+// Send sms
+var client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
+app.post("/sms-send", function(req,res) {
+  client.messages.create({
+    from: process.env.TWILIO_PHONE_NUMBER,
+    to: req.body.to,
+    body: "There is a shift at " + req.body.title + " during " + req.body.time +
+    ", " + req.body.des + ". Respond yes/no."
+  })
+});
+
 app.post("/sms", function(req, res) {
   console.log(req);
 
