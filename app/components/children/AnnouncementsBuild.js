@@ -4,7 +4,7 @@ var helpers = require("../utils/helpers");
 var AnnouncementsBuild = React.createClass({
   getInitialState: function() {
     return {
-      title: "",
+      location: "",
       content: "",
       departments: [],
       sendTo: "all",
@@ -59,7 +59,7 @@ var AnnouncementsBuild = React.createClass({
 
   addAnnouncements: function(event) {
     event.preventDefault(event);
-    helpers.addAnnouncements(this.state.title, this.state.content).then(
+    helpers.addAnnouncements(this.state.location, this.state.content).then(
       function(response) {
         this.clearStates();
       }.bind(this)
@@ -77,7 +77,7 @@ var AnnouncementsBuild = React.createClass({
   },
 
   clearStates: function() {
-    this.setState({ title: "", content: "" });
+    this.setState({ location: "", content: "" });
   },
 
   handleUpdateEmpSchedule: function(event) {
@@ -85,7 +85,7 @@ var AnnouncementsBuild = React.createClass({
     this.state.empSchedules.map((person, i) => {
       if (this.state.sendTo == "all") {
         person[this.state.day] = this.state.time;
-        person[this.state.day + "_title"] = this.state.title;
+        person[this.state.day + "_location"] = this.state.location;
         person[this.state.day + "_des"] = this.state.content;
         person[this.state.day + "_accept"] = 0;
         console.log(person);
@@ -97,7 +97,7 @@ var AnnouncementsBuild = React.createClass({
         );
       } else if (person.department == this.state.sendTo) {
         person[this.state.day] = this.state.time;
-        person[this.state.day + "_title"] = this.state.title;
+        person[this.state.day + "_location"] = this.state.location;
         person[this.state.day + "_des"] = this.state.content;
         person[this.state.day + "_accept"] = 0;
         console.log(person);
@@ -160,11 +160,11 @@ var AnnouncementsBuild = React.createClass({
           <div className="row">
             <div className="input-field col s12">
               <input
-                placeholder="Job Title"
-                id="title"
+                placeholder="Location"
+                id="location"
                 type="text"
                 className="validate"
-                value={this.state.title}
+                value={this.state.location}
                 onChange={this.handleAnnouncementBuild}
                 required
               />
