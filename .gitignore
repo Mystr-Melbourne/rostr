@@ -2,4 +2,3 @@ node_modules
 public/bundle.js
 *.env
 .env
-package-lock.json
