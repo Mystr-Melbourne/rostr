@@ -10,7 +10,7 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
-
+var helpers = require("./app/components/utils/helpers")
 //twilio
 const http = require("http");
 //const express = require('express');
@@ -84,6 +84,17 @@ app.post("/sms", function(req, res) {
   const twiml = new MessagingResponse();
 
   console.log(req.body.Body);
+  var empList;
+  console.log("ok please")
+  helpers.getEmpSchedules().then(function(response) {
+    empList = response.data;
+    console.log("response:");
+    console.log(empList);
+
+  }, (reject) => {
+    console.log("reject: ")
+    console.log(reject);
+  })
 
   if (req.body.Body == "yes") {
     twiml.message("Alright we have comfirmed your shift");
