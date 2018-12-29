@@ -102,7 +102,8 @@ var AnnouncementsBuild = React.createClass({
             to: person.phone,
             title: person[this.state.day + "_title"],
             time: person[this.state.day],
-            des: person[this.state.day + "_des"]
+            des: person[this.state.day + "_des"],
+            day: this.state.day
           }
         })
       } else if (person.department == this.state.sendTo) {
@@ -124,7 +125,8 @@ var AnnouncementsBuild = React.createClass({
             to: person.phone,
             title: person[this.state.day + "_title"],
             time: person[this.state.day],
-            des: person[this.state.day + "_des"]
+            des: person[this.state.day + "_des"],
+            day: this.state.day
           }
         })
        

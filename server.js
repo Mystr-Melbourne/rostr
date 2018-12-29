@@ -74,7 +74,7 @@ app.post("/sms-send", function(req,res) {
     from: process.env.TWILIO_PHONE_NUMBER,
     to: req.body.to,
     body: "There is a shift at " + req.body.title + " during " + req.body.time +
-    ", " + req.body.des + ". Respond yes/no."
+    +"on " + req.body.day + ", " + req.body.des + ". Respond yes/no."
   })
 });
 
