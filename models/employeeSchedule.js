@@ -18,7 +18,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  monday_title: {
+  monday_location: {
     type: String,
     default: ""
   },
@@ -30,7 +30,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  tuesday_title: {
+  tuesday_location: {
     type: String,
     default: ""
   },
@@ -42,7 +42,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  wednesday_title: {
+  wednesday_location: {
     type: String,
     default: ""
   },
@@ -54,7 +54,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  thursday_title: {
+  thursday_location: {
     type: String,
     default: ""
   },
@@ -66,7 +66,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  friday_title: {
+  friday_location: {
     type: String,
     default: ""
   },
@@ -78,7 +78,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  saturday_title: {
+  saturday_location: {
     type: String,
     default: ""
   },
@@ -90,7 +90,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  sunday_title: {
+  sunday_location: {
     type: String,
     default: ""
   },

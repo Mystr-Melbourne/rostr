@@ -83,7 +83,7 @@ var IndividualView = React.createClass({
                                 <div className="card-panel">
                                     <div className="row">
                                         <div className="col s6">
-                                            <h5>{person[day + "_title"]}</h5>
+                                            <h5>{person[day + "_location"]}</h5>
                                             <p>{person[day + "_des"]}</p>
                                             <p>Time: {day.charAt(0).toUpperCase() + day.slice(1)}, {person[day]}</p>
                                         </div>
@@ -103,7 +103,7 @@ var IndividualView = React.createClass({
                 <thead>
                     <tr>
                         <th>Department</th>
-                        <th>Job Title</th>
+                        <th>Job location</th>
                         <th>Job Description</th>
                         <th>Day</th>
                         <th>Time</th>
@@ -118,7 +118,7 @@ var IndividualView = React.createClass({
                                     return(
                                         <tr>
                                             <td>{person.department}</td>
-                                            <td>{person[day+"_title"]}</td>
+                                            <td>{person[day+"_location"]}</td>
                                             <td>{person[day+"_des"]}</td>
                                             <td>{day.charAt(0).toUpperCase() + day.slice(1)}</td>
                                             <td>{person[day]}</td>

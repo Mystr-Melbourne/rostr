@@ -85,7 +85,7 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         <div>
                                                             {schedules.monday}<br />
-                                                            <b>{schedules.monday_title}</b><br />
+                                                            <b>{schedules.monday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                         </div>
                                                         {(schedules.monday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.monday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.monday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -95,7 +95,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.tuesday}<br />
-                                                            <b>{schedules.tuesday_title}</b><br />
+                                                            <b>{schedules.tuesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                         </div>
                                                         {(schedules.tuesday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.tuesday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.tuesday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -104,7 +104,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.wednesday}<br />
-                                                            <b>{schedules.wednesday_title}</b><br />
+                                                            <b>{schedules.wednesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                         </div>
                                                         {(schedules.wednesday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.wednesday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.wednesday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -113,7 +113,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.thursday}<br />
-                                                            <b>{schedules.thursday_title}</b><br />
+                                                            <b>{schedules.thursday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                         </div>
                                                         {(schedules.thursday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.thursday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.thursday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -122,7 +122,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.friday}<br />
-                                                            <b>{schedules.friday_title}</b><br />
+                                                            <b>{schedules.friday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                         </div>
                                                         {(schedules.friday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.friday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.friday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -131,7 +131,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.saturday}<br />
-                                                            <b>{schedules.saturday_title}</b><br />
+                                                            <b>{schedules.saturday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                         </div>
                                                         {(schedules.saturday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.saturday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.saturday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -141,7 +141,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         <div>
                                                             {schedules.sunday}<br />
-                                                            <b>{schedules.sunday_title}</b><br />
+                                                            <b>{schedules.sunday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                         </div>
                                                         {(schedules.sunday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.sunday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.sunday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -162,7 +162,7 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         {(schedules.monday_accept == 1) ? <div>
                                                             {schedules.monday}<br />
-                                                            <b>{schedules.monday_title}</b><br />
+                                                            <b>{schedules.monday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -172,7 +172,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.tuesday_accept == 1) ? <div>
                                                             {schedules.tuesday}<br />
-                                                            <b>{schedules.tuesday_title}</b><br />
+                                                            <b>{schedules.tuesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -180,7 +180,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.wednesday_accept == 1) ? <div>
                                                             {schedules.wednesday}<br />
-                                                            <b>{schedules.wednesday_title}</b><br />
+                                                            <b>{schedules.wednesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -188,7 +188,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.thursday_accept == 1) ? <div>
                                                             {schedules.thursday}<br />
-                                                            <b>{schedules.thursday_title}</b><br />
+                                                            <b>{schedules.thursday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -196,14 +196,14 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.friday_accept == 1) ? <div>
                                                             {schedules.friday}<br />
-                                                            <b>{schedules.friday_title}</b><br />
+                                                            <b>{schedules.friday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
                                                     </td>
                                                     <td>
                                                         {(schedules.saturday_accept == 1) ? <div>
                                                             {schedules.saturday}<br />
-                                                            <b>{schedules.saturday_title}</b><br />
+                                                            <b>{schedules.saturday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -212,7 +212,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.sunday_accept == 1) ? <div>
                                                             {schedules.sunday}<br />
-                                                            <b>{schedules.sunday_title}</b><br />
+                                                            <b>{schedules.sunday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -233,7 +233,7 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         {(schedules.monday_accept == 1) ? <div>
                                                             {schedules.monday}<br />
-                                                            <b>{schedules.monday_title}</b><br />
+                                                            <b>{schedules.monday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -243,7 +243,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.tuesday_accept == 1) ? <div>
                                                             {schedules.tuesday}<br />
-                                                            <b>{schedules.tuesday_title}</b><br />
+                                                            <b>{schedules.tuesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -251,7 +251,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.wednesday_accept == 1) ? <div>
                                                             {schedules.wednesday}<br />
-                                                            <b>{schedules.wednesday_title}</b><br />
+                                                            <b>{schedules.wednesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -259,7 +259,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.thursday_accept == 1) ? <div>
                                                             {schedules.thursday}<br />
-                                                            <b>{schedules.thursday_title}</b><br />
+                                                            <b>{schedules.thursday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -267,14 +267,14 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.friday_accept == 1) ? <div>
                                                             {schedules.friday}<br />
-                                                            <b>{schedules.friday_title}</b><br />
+                                                            <b>{schedules.friday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
                                                     </td>
                                                     <td>
                                                         {(schedules.saturday_accept == 1) ? <div>
                                                             {schedules.saturday}<br />
-                                                            <b>{schedules.saturday_title}</b><br />
+                                                            <b>{schedules.saturday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -283,7 +283,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.sunday_accept == 1) ? <div>
                                                             {schedules.sunday}<br />
-                                                            <b>{schedules.sunday_title}</b><br />
+                                                            <b>{schedules.sunday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                             <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -304,7 +304,7 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         {(schedules.monday_accept == 2) ? <div>
                                                             {schedules.monday}<br />
-                                                            <b>{schedules.monday_title}</b><br />
+                                                            <b>{schedules.monday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -314,7 +314,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.tuesday_accept == 2) ? <div>
                                                             {schedules.tuesday}<br />
-                                                            <b>{schedules.tuesday_title}</b><br />
+                                                            <b>{schedules.tuesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -322,7 +322,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.wednesday_accept == 2) ? <div>
                                                             {schedules.wednesday}<br />
-                                                            <b>{schedules.wednesday_title}</b><br />
+                                                            <b>{schedules.wednesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -330,7 +330,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.thursday_accept == 2) ? <div>
                                                             {schedules.thursday}<br />
-                                                            <b>{schedules.thursday_title}</b><br />
+                                                            <b>{schedules.thursday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -338,14 +338,14 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.friday_accept == 2) ? <div>
                                                             {schedules.friday}<br />
-                                                            <b>{schedules.friday_title}</b><br />
+                                                            <b>{schedules.friday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
                                                     </td>
                                                     <td>
                                                         {(schedules.saturday_accept == 2) ? <div>
                                                             {schedules.saturday}<br />
-                                                            <b>{schedules.saturday_title}</b><br />
+                                                            <b>{schedules.saturday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -354,7 +354,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.sunday_accept == 2) ? <div>
                                                             {schedules.sunday}<br />
-                                                            <b>{schedules.sunday_title}</b><br />
+                                                            <b>{schedules.sunday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                             <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -375,7 +375,7 @@ var ScheduleView = React.createClass({
                                                     <td className="schedule">
                                                         {(schedules.monday_accept == 0 && schedules.monday.length > 0) ? <div>
                                                             {schedules.monday}<br />
-                                                            <b>{schedules.monday_title}</b><br />
+                                                            <b>{schedules.monday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -385,7 +385,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.tuesday_accept == 0 && schedules.tuesday.length > 0) ? <div>
                                                             {schedules.tuesday}<br />
-                                                            <b>{schedules.tuesday_title}</b><br />
+                                                            <b>{schedules.tuesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -393,7 +393,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.wednesday_accept == 0 && schedules.wednesday.length > 0) ? <div>
                                                             {schedules.wednesday}<br />
-                                                            <b>{schedules.wednesday_title}</b><br />
+                                                            <b>{schedules.wednesday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -401,7 +401,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.thursday_accept == 0 && schedules.thursday.length > 0) ? <div>
                                                             {schedules.thursday}<br />
-                                                            <b>{schedules.thursday_title}</b><br />
+                                                            <b>{schedules.thursday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -409,14 +409,14 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.friday_accept == 0 && schedules.friday.length > 0) ? <div>
                                                             {schedules.friday}<br />
-                                                            <b>{schedules.friday_title}</b><br />
+                                                            <b>{schedules.friday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
                                                     </td>
                                                     <td>
                                                         {(schedules.saturday_accept == 0 && schedules.saturday.length > 0) ? <div>
                                                             {schedules.saturday}<br />
-                                                            <b>{schedules.saturday_title}</b><br />
+                                                            <b>{schedules.saturday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -425,7 +425,7 @@ var ScheduleView = React.createClass({
                                                     <td>
                                                         {(schedules.sunday_accept == 0 && schedules.sunday.length > 0) ? <div>
                                                             {schedules.sunday}<br />
-                                                            <b>{schedules.sunday_title}</b><br />
+                                                            <b>{schedules.sunday_location}</b><br />
                                                             <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                             <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -448,7 +448,7 @@ var ScheduleView = React.createClass({
                                                         <td className="schedule">
                                                             <div>
                                                                 {schedules.monday}<br />
-                                                                <b>{schedules.monday_title}</b><br />
+                                                                <b>{schedules.monday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                             </div>
                                                             {(schedules.monday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.monday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.monday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -458,7 +458,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.tuesday}<br />
-                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <b>{schedules.tuesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                             </div>
                                                             {(schedules.tuesday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.tuesday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.tuesday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -467,7 +467,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.wednesday}<br />
-                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <b>{schedules.wednesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                             </div>
                                                             {(schedules.wednesday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.wednesday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.wednesday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -476,7 +476,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.thursday}<br />
-                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <b>{schedules.thursday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                             </div>
                                                             {(schedules.thursday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.thursday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.thursday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -485,7 +485,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.friday}<br />
-                                                                <b>{schedules.friday_title}</b><br />
+                                                                <b>{schedules.friday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                             </div>
                                                             {(schedules.friday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.friday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.friday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -494,7 +494,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.saturday}<br />
-                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <b>{schedules.saturday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                             </div>
                                                             {(schedules.saturday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.saturday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.saturday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -504,7 +504,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             <div>
                                                                 {schedules.sunday}<br />
-                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <b>{schedules.sunday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                             </div>
                                                             {(schedules.sunday_accept == 1) ? <b style={{ color: "green" }}>Accepted</b> : (schedules.sunday_accept == 2) ? <b style={{ color: "red" }}>Declined</b> : (schedules.sunday.length > 0) ? <b style={{ color: "orange" }}>Not Accepted</b> : null}
@@ -525,7 +525,7 @@ var ScheduleView = React.createClass({
                                                         <td className="schedule">
                                                             {(schedules.monday_accept == 1) ? <div>
                                                                 {schedules.monday}<br />
-                                                                <b>{schedules.monday_title}</b><br />
+                                                                <b>{schedules.monday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -535,7 +535,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.tuesday_accept == 1) ? <div>
                                                                 {schedules.tuesday}<br />
-                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <b>{schedules.tuesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -543,7 +543,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.wednesday_accept == 1) ? <div>
                                                                 {schedules.wednesday}<br />
-                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <b>{schedules.wednesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -551,7 +551,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.thursday_accept == 1) ? <div>
                                                                 {schedules.thursday}<br />
-                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <b>{schedules.thursday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -559,14 +559,14 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.friday_accept == 1) ? <div>
                                                                 {schedules.friday}<br />
-                                                                <b>{schedules.friday_title}</b><br />
+                                                                <b>{schedules.friday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
                                                         </td>
                                                         <td>
                                                             {(schedules.saturday_accept == 1) ? <div>
                                                                 {schedules.saturday}<br />
-                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <b>{schedules.saturday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -575,7 +575,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.sunday_accept == 1) ? <div>
                                                                 {schedules.sunday}<br />
-                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <b>{schedules.sunday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -596,7 +596,7 @@ var ScheduleView = React.createClass({
                                                         <td className="schedule">
                                                             {(schedules.monday_accept == 1) ? <div>
                                                                 {schedules.monday}<br />
-                                                                <b>{schedules.monday_title}</b><br />
+                                                                <b>{schedules.monday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -606,7 +606,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.tuesday_accept == 1) ? <div>
                                                                 {schedules.tuesday}<br />
-                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <b>{schedules.tuesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -614,7 +614,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.wednesday_accept == 1) ? <div>
                                                                 {schedules.wednesday}<br />
-                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <b>{schedules.wednesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -622,7 +622,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.thursday_accept == 1) ? <div>
                                                                 {schedules.thursday}<br />
-                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <b>{schedules.thursday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -630,14 +630,14 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.friday_accept == 1) ? <div>
                                                                 {schedules.friday}<br />
-                                                                <b>{schedules.friday_title}</b><br />
+                                                                <b>{schedules.friday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
                                                         </td>
                                                         <td>
                                                             {(schedules.saturday_accept == 1) ? <div>
                                                                 {schedules.saturday}<br />
-                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <b>{schedules.saturday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -646,7 +646,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.sunday_accept == 1) ? <div>
                                                                 {schedules.sunday}<br />
-                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <b>{schedules.sunday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                                 <b style={{ color: "green" }}>Accepted</b> </div> : null}
 
@@ -667,7 +667,7 @@ var ScheduleView = React.createClass({
                                                         <td className="schedule">
                                                             {(schedules.monday_accept == 2) ? <div>
                                                                 {schedules.monday}<br />
-                                                                <b>{schedules.monday_title}</b><br />
+                                                                <b>{schedules.monday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -677,7 +677,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.tuesday_accept == 2) ? <div>
                                                                 {schedules.tuesday}<br />
-                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <b>{schedules.tuesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -685,7 +685,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.wednesday_accept == 2) ? <div>
                                                                 {schedules.wednesday}<br />
-                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <b>{schedules.wednesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -693,7 +693,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.thursday_accept == 2) ? <div>
                                                                 {schedules.thursday}<br />
-                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <b>{schedules.thursday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -701,14 +701,14 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.friday_accept == 2) ? <div>
                                                                 {schedules.friday}<br />
-                                                                <b>{schedules.friday_title}</b><br />
+                                                                <b>{schedules.friday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
                                                         </td>
                                                         <td>
                                                             {(schedules.saturday_accept == 2) ? <div>
                                                                 {schedules.saturday}<br />
-                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <b>{schedules.saturday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -717,7 +717,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.sunday_accept == 2) ? <div>
                                                                 {schedules.sunday}<br />
-                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <b>{schedules.sunday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                                 <b style={{ color: "red" }}>Declined</b> </div> : null}
 
@@ -738,7 +738,7 @@ var ScheduleView = React.createClass({
                                                         <td className="schedule">
                                                             {(schedules.monday_accept == 0 && schedules.monday.length > 0) ? <div>
                                                                 {schedules.monday}<br />
-                                                                <b>{schedules.monday_title}</b><br />
+                                                                <b>{schedules.monday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.monday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -748,7 +748,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.tuesday_accept == 0 && schedules.tuesday.length > 0) ? <div>
                                                                 {schedules.tuesday}<br />
-                                                                <b>{schedules.tuesday_title}</b><br />
+                                                                <b>{schedules.tuesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.tuesday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -756,7 +756,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.wednesday_accept == 0 && schedules.wednesday.length > 0) ? <div>
                                                                 {schedules.wednesday}<br />
-                                                                <b>{schedules.wednesday_title}</b><br />
+                                                                <b>{schedules.wednesday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.wednesday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -764,7 +764,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.thursday_accept == 0 && schedules.thursday.length > 0) ? <div>
                                                                 {schedules.thursday}<br />
-                                                                <b>{schedules.thursday_title}</b><br />
+                                                                <b>{schedules.thursday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.thursday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -772,14 +772,14 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.friday_accept == 0 && schedules.friday.length > 0) ? <div>
                                                                 {schedules.friday}<br />
-                                                                <b>{schedules.friday_title}</b><br />
+                                                                <b>{schedules.friday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.friday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
                                                         </td>
                                                         <td>
                                                             {(schedules.saturday_accept == 0 && schedules.saturday.length > 0) ? <div>
                                                                 {schedules.saturday}<br />
-                                                                <b>{schedules.saturday_title}</b><br />
+                                                                <b>{schedules.saturday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.saturday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 
@@ -788,7 +788,7 @@ var ScheduleView = React.createClass({
                                                         <td>
                                                             {(schedules.sunday_accept == 0 && schedules.sunday.length > 0) ? <div>
                                                                 {schedules.sunday}<br />
-                                                                <b>{schedules.sunday_title}</b><br />
+                                                                <b>{schedules.sunday_location}</b><br />
                                                                 <div style={{ width: 100 + "px", wordBreak: "break-all" }}><i>{schedules.sunday_des}</i></div>
                                                                 <b style={{ color: "orange" }}>Not Accepted</b> </div> : null}
 

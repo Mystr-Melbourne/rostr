@@ -69,37 +69,37 @@
         phone: newSchedule.phone,
 
         monday: newSchedule.monday,
-        monday_title: newSchedule.monday_title,
+        monday_location: newSchedule.monday_location,
         monday_des: newSchedule.monday_des,
         monday_accept: newSchedule.monday_accept,
 
         tuesday: newSchedule.tuesday,
-        tuesday_title: newSchedule.tuesday_title,
+        tuesday_location: newSchedule.tuesday_location,
         tuesday_des: newSchedule.tuesday_des,
         tuesday_accept: newSchedule.tuesday_accept,
 
         wednesday: newSchedule.wednesday,
-        wednesday_title: newSchedule.wednesday_title,
+        wednesday_location: newSchedule.wednesday_location,
         wednesday_des: newSchedule.wednesday_des,
         wednesday_accept: newSchedule.wednesday_accept,
 
         thursday: newSchedule.thursday,
-        thursday_title: newSchedule.thursday_title,
+        thursday_location: newSchedule.thursday_location,
         thursday_des: newSchedule.thursday_des,
         thursday_accept: newSchedule.thursday_accept,
 
         friday: newSchedule.friday,
-        friday_title: newSchedule.friday_title,
+        friday_location: newSchedule.friday_location,
         friday_des: newSchedule.friday_des,
         friday_accept: newSchedule.friday_accept,
 
         saturday: newSchedule.saturday,
-        saturday_title: newSchedule.saturday_title,
+        saturday_location: newSchedule.saturday_location,
         saturday_des: newSchedule.saturday_des,
         saturday_accept: newSchedule.saturday_accept,
 
         sunday: newSchedule.sunday,
-        sunday_title: newSchedule.sunday_title,
+        sunday_location: newSchedule.sunday_location,
         sunday_des: newSchedule.sunday_des,
         sunday_accept: newSchedule.sunday_accept,
         
@@ -205,7 +205,7 @@
 //Put announcements to database
     router.post("/addAnnouncements", function(req, res) {
       announcements.create({
-        title: req.body.title,
+        location: req.body.location,
         content: req.body.content
       }, function(err, doc) {
         if (err) {

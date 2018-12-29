@@ -7,7 +7,7 @@ var AnnouncementsView = require("./AnnouncementsView");
 var ManagerHome = React.createClass({
   getInitialState: function() {
     return {
-      title: "",
+      location: "",
       content: "",
       department: ""
     };
@@ -19,7 +19,7 @@ var ManagerHome = React.createClass({
   },
 
   // componentDidUpdate: function(prevState) {
-  //     if (prevState.title !== this.state.title || prevState.content !== this.state.content) {
+  //     if (prevState.location !== this.state.location || prevState.content !== this.state.content) {
   //         this.getAnnouncements();
   //     }
   // },
@@ -36,7 +36,7 @@ var ManagerHome = React.createClass({
     helpers.getAnnouncements().then(
       function(response) {
         this.setState({
-          title: response.data[response.data.length - 1].title,
+          location: response.data[response.data.length - 1].location,
           content: response.data[response.data.length - 1].content
         });
       }.bind(this)
