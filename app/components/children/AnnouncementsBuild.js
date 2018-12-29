@@ -1,5 +1,11 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
+var dotenv = require("dotenv").config();
+
+var client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 var AnnouncementsBuild = React.createClass({
   getInitialState: function() {
@@ -95,6 +101,14 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+        client.messages
+          .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: person.phone,
+            body: "There is a shift at" + person[this.state.day + "_title"] + " during " 
+            + person[this.state.day] + ", " + person[this.state.day + "_des"] + ". Respond yes/no"
+          })
+          .then(message => console.log(message.sid));
       } else if (person.department == this.state.sendTo) {
         person[this.state.day] = this.state.time;
         person[this.state.day + "_title"] = this.state.title;
@@ -107,8 +121,19 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+
+        client.messages
+          .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: person.phone,
+            body: "There is a shift at" + person[this.state.day + "_title"] + " during " 
+            + person[this.state.day] + ", " + person[this.state.day + "_des"] + ". Respond yes/no"
+          })
+          .then(message => console.log(message.sid));
       }
+
     });
+    
   },
 
   render: function() {
