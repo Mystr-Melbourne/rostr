@@ -14,6 +14,11 @@ var EmployeeSchema = new Schema({
     phone: {
         type: String
     },
+    phoneCode: {
+        type: String
+    },
+
+
     phoneType: {
         type: String
     },

@@ -1,14 +1,16 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
 // var User = require('../../../models/user');
+var phone = require('phone'); // phone validation dependency
 
 var ManagerEmployeeAll = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             firstName: "",
             lastName: "",
             email: "",
             phone: "",
+            phoneCode: "",
             phoneType: "",
             password: "",
             allEmployees: [],
@@ -20,26 +22,26 @@ var ManagerEmployeeAll = React.createClass({
         };
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.getEmployees();
         this.getAllDepartments();
-        helpers.getEmpSchedules().then(function(response) {
+        helpers.getEmpSchedules().then(function (response) {
             if (response !== this.state.empSchedules) {
-              this.setState({ empSchedules: response.data });
+                this.setState({ empSchedules: response.data });
             }
         }.bind(this));
     },
 
-    getAllDepartments: function() {
-        helpers.getAllDepartments().then(function(response){
+    getAllDepartments: function () {
+        helpers.getAllDepartments().then(function (response) {
             this.setState({
                 departments: response.data.department
             });
         }.bind(this));
     },
 
-    getEmployees: function() {
-        helpers.getAllEmployees().then(function(response) {
+    getEmployees: function () {
+        helpers.getAllEmployees().then(function (response) {
             if (response !== this.state.allEmployees) {
                 this.setState({ allEmployees: response.data });
                 this.activeButtons();
@@ -48,47 +50,47 @@ var ManagerEmployeeAll = React.createClass({
     },
 
     handleUserChange(event) {
-       this.setState({ [event.target.name]: event.target.value});
+        this.setState({ [event.target.name]: event.target.value });
     },
 
-    handleAddForm: function(event) {
+    handleAddForm: function (event) {
         event.preventDefault();
-        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
+        helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneCode, this.state.phoneType, this.state.password, this.state.department).then(function (response) {
             this.state.emp_id = response.data._id;
 
-            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone).then(function(response) {
+            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone).then(function (response) {
                 this.clearStates();
             }.bind(this));
 
         }.bind(this));
         Materialize.toast('Employee added', 3000);
         $.ajax({
-            url:'/register',
-            type:'post',
-            data:$('#addNew').serialize(),
-            success:function(){
+            url: '/register',
+            type: 'post',
+            data: $('#addNew').serialize(),
+            success: function () {
                 alert("worked");
             }
         });
         this.clearForm();
         this.getEmployees();
-       
+
         // document.querySelector("#addNew").submit();
     },
 
-    handleUpdateForm: function(event) {
+    handleUpdateForm: function (event) {
         event.preventDefault();
-        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneType, this.state.password, this.state.department).then(function(response) {
+        helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneCode, this.state.phoneType, this.state.password, this.state.department).then(function (response) {
         }.bind(this));
 
-        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function(response) {
+        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function (response) {
             this.clearStates();
         }.bind(this));
 
         this.state.empSchedules.map((person, i) => {
-            if(person.emp_id == this.state.selectedEmployee) {
+            if (person.emp_id == this.state.selectedEmployee) {
                 person.department = this.state.department;
-                helpers.updateEmpSchedule(person).then(function(response) {
+                helpers.updateEmpSchedule(person).then(function (response) {
                     var empName = person.firstName + " " + person.lastName + "'s ";
                     Materialize.toast(empName + "schedule updated", 2000);
                 }.bind(this));;
@@ -97,13 +99,13 @@ var ManagerEmployeeAll = React.createClass({
         Materialize.toast("Employee updated", 3000);
         this.clearForm();
         this.getEmployees();
-   },
+    },
 
-    handleRemoveForm: function(event) {
+    handleRemoveForm: function (event) {
         event.preventDefault();
-        helpers.removeEmployee(this.state.selectedEmployee).then(function(response) {
+        helpers.removeEmployee(this.state.selectedEmployee).then(function (response) {
         }.bind(this));
-        helpers.removeEmpSchedule(this.state.emp_id).then(function(response) {
+        helpers.removeEmpSchedule(this.state.emp_id).then(function (response) {
             this.clearStates();
         }.bind(this));
         Materialize.toast("Employee removed", 3000);
@@ -111,8 +113,8 @@ var ManagerEmployeeAll = React.createClass({
         this.getEmployees();
     },
 
-    clickEmployee: function(event) {
-        this.setState({selectedEmployee: event.target.id}, function() {
+    clickEmployee: function (event) {
+        this.setState({ selectedEmployee: event.target.id }, function () {
             for (var i = 0; i < this.state.allEmployees.length; i++) {
                 if (this.state.allEmployees[i]._id == this.state.selectedEmployee) {
                     this.setState({
@@ -120,6 +122,10 @@ var ManagerEmployeeAll = React.createClass({
                         lastName: this.state.allEmployees[i].lastName,
                         email: this.state.allEmployees[i].email,
                         phone: this.state.allEmployees[i].phone,
+
+                        // Prepare the number for validation
+                        phoneCode: this.state.allEmployees[i].phoneCode,
+
                         phoneType: this.state.allEmployees[i].phoneType,
                         password: this.state.allEmployees[i].password,
                         emp_id: this.state.selectedEmployee,
@@ -131,15 +137,15 @@ var ManagerEmployeeAll = React.createClass({
         });
     },
 
-    newEmployee: function() {
+    newEmployee: function () {
         this.clearForm();
         this.clearStates();
         this.activeButtons();
     },
 
-    clearForm: function() {
+    clearForm: function () {
         var elements = document.getElementsByTagName("input");
-        for (var i=0; i < elements.length; i++) {
+        for (var i = 0; i < elements.length; i++) {
             if ((elements[i].type == "text") || (elements[i].type == "number") || (elements[i].type == "email")) {
                 elements[i].value = "";
                 elements[i].classList.remove("valid");
@@ -148,11 +154,11 @@ var ManagerEmployeeAll = React.createClass({
         this.getEmployees();
     },
 
-    clearStates: function() {
-        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneType: "", password: "", selectedEmployee: "", department: ""});
+    clearStates: function () {
+        this.setState({ firstName: "", lastName: "", email: "", phone: "", phoneCode: "", phoneType: "", password: "", selectedEmployee: "", department: "" });
     },
 
-    activeButtons: function() {
+    activeButtons: function () {
         // don't allow updating or removing on empty form
         if (this.state.selectedEmployee == "") {
             document.getElementById("addEmployee").className = "btn btn-large waves-effect waves-light green accent-3";
@@ -165,7 +171,47 @@ var ManagerEmployeeAll = React.createClass({
         }
     },
 
-    render: function() {
+    validateEntries: function (event) {
+        const country = 'AUS';
+
+        var numbNoWhiteSpace = this.state.phone.replace(/\s/g, "");
+
+        console.log(numbNoWhiteSpace);
+
+        var tempPhone = phone(numbNoWhiteSpace, country);
+        console.log(tempPhone);
+
+        // department validation code
+        if (this.state.department === "") {
+            Materialize.toast('Please choose a department', 3000);
+            // prevent form from submitting
+            event.preventDefault();
+        }
+
+        // phone validation code
+        // TODO ensure the phone number does not exist in database
+        else {
+            // add employee when the phone number is valid
+            if (tempPhone.length === 2) {
+                console.log("Submit Success");
+
+                this.state.phoneCode = tempPhone[0];
+                console.log(this.state.phoneCode);
+
+
+                this.handleAddForm(event);
+            } else {
+                console.log("Submit Fail");
+                Materialize.toast('Please enter a valid australian number', 3000);
+
+                // prevent form from submitting
+                event.preventDefault();
+            }
+        }
+
+    },
+
+    render: function () {
         return (
             <div className="row">
                 <div className="col m3">
@@ -181,7 +227,7 @@ var ManagerEmployeeAll = React.createClass({
                                     <strong>New Employee<i className="material-icons right">add</i></strong>
                                 </td>
                             </tr>
-                            {this.state.allEmployees.map(function(ManagerEmployeeAll, i) {
+                            {this.state.allEmployees.map(function (ManagerEmployeeAll, i) {
                                 return (
                                     <tr key={i}>
                                         <td onClick={this.clickEmployee} id={this.state.allEmployees[i]._id}>
@@ -219,7 +265,7 @@ var ManagerEmployeeAll = React.createClass({
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col m12 s12">
+                                {/* <div className="input-field col m12 s12">
                                     <input
                                         placeholder="Email"
                                         name="email"
@@ -228,7 +274,7 @@ var ManagerEmployeeAll = React.createClass({
                                         value={this.state.email}
                                         onChange={this.handleUserChange}
                                         required />
-                                </div>
+                                </div> */}
                                 <div className="input-field col m12 s12">
                                     <input
                                         placeholder="password"
@@ -250,34 +296,34 @@ var ManagerEmployeeAll = React.createClass({
                                         value={this.state.phone}
                                         onChange={this.handleUserChange}
                                         required />
-                                    <input type="hidden" value={this.state.emp_id} name="_id"/>
-                                    <input type="hidden" value={this.state.phone} name="username"/>
-                                    <input type="hidden" value="employee" name="userType"/>
-                                    <input type="hidden" value="0" name="redirect"/>
+                                    <input type="hidden" value={this.state.emp_id} name="_id" />
+                                    <input type="hidden" value={this.state.phone} name="username" />
+                                    <input type="hidden" value="employee" name="userType" />
+                                    <input type="hidden" value="0" name="redirect" />
                                 </div>
-                                <div className="input-field col m4 s4">
+                                {/* <div className="input-field col m4 s4">
                                     <select className="browser-default" name="phoneType" value={this.state.phoneType} onChange={this.handleUserChange} required>
                                         <option value="" disabled>Phone Type</option>
                                         <option value="mobile">Mobile</option>
                                         <option value="work">Work</option>
                                         <option value="home">Home</option>
                                     </select>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="row">
                                 <div className="input-field col m4 s4">
                                     <select className="browser-default" name="department" value={this.state.department} onChange={this.handleUserChange} required>
                                         <option value="" disabled>Department</option>
                                         {this.state.departments.map((each, i) => {
-                                            return(<option key={i} value={each}>{each}</option>);
+                                            return (<option key={i} value={each}>{each}</option>);
                                         })
-                                    }
+                                        }
                                     </select>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col s4">
-                                    <button id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit" form="addNew">Add
+                                    <button onClick={this.validateEntries} id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit" form="addNew">Add
                                         <i className="material-icons right">person_add</i>
                                     </button>
                                 </div>

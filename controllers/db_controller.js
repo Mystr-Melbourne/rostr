@@ -120,6 +120,8 @@
       lastName: req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
+      phoneCode: req.body.phoneCode,
+
       phoneType: req.body.phoneType,
       password: req.body.password,
       department: req.body.department
@@ -140,6 +142,8 @@
          lastName: req.body.lastName,
          email: req.body.email,
          phone: req.body.phone,
+         phoneCode: req.body.phoneCode,
+
          phoneType: req.body.phoneType,
          password: req.body.password,
          department: req.body.department
