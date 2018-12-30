@@ -89,9 +89,9 @@ var helper = {
     return axios.get("/getAnnouncements");
   },
 
-  addAnnouncements: function(title, content) {
+  addAnnouncements: function(location, content) {
     return axios.post("/addAnnouncements", {
-        title: title,
+        location: location,
         content: content });
   }
 };

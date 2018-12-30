@@ -10,6 +10,6 @@ client.messages
   .create({
     from: process.env.TWILIO_PHONE_NUMBER,
     to: process.env.CELL_PHONE_NUMBER,
-    body: "There is a shift at {Title} during {Time}, {message}, Respond yes/no"
+    body: "There is a shift at {Location} during {Time}, {message}, Respond yes/no"
   })
   .then(message => console.log(message.sid));
