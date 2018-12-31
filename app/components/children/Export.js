@@ -5,15 +5,44 @@ var Export = React.createClass({
 
     getInitialState: function () {
         return {
-            username: "",
-            picture: ""
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            phoneType: "",
+            password: "",
+            allEmployees: [],
+            selectedEmployee: "",
+            emp_id: "",
+            department: "",
+            departments: [],
+            empSchedules: [],
         };
     },
 
-    componentDidMount: function () {
-        helpers.getCurrentUser().then(function (response) {
-            if (response !== this.state.username) {
-                this.setState({ picture: response.data.picture, username: response.data.username });
+    componentDidMount: function() {
+        this.getEmployees();
+        this.getAllDepartments();
+        helpers.getEmpSchedules().then(function(response) {
+            if (response !== this.state.empSchedules) {
+              this.setState({ empSchedules: response.data });
+            }
+        }.bind(this));
+    },
+
+    getAllDepartments: function() {
+        helpers.getAllDepartments().then(function(response){
+            this.setState({
+                departments: response.data.department
+            });
+        }.bind(this));
+    },
+
+    getEmployees: function() {
+        helpers.getAllEmployees().then(function(response) {
+            if (response !== this.state.allEmployees) {
+                this.setState({ allEmployees: response.data });
+                this.activeButtons();
             }
         }.bind(this));
     },
