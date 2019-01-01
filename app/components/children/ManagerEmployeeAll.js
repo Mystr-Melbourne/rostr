@@ -55,10 +55,13 @@ var ManagerEmployeeAll = React.createClass({
 
     handleAddForm: function (event) {
         event.preventDefault();
+
+        this.validateEntries();
+
         helpers.addEmployee(this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneCode, this.state.phoneType, this.state.password, this.state.department).then(function (response) {
             this.state.emp_id = response.data._id;
 
-            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone).then(function (response) {
+            helpers.addEmpSchedule(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone, this.state.phoneCode).then(function (response) {
                 this.clearStates();
             }.bind(this));
 
@@ -69,7 +72,7 @@ var ManagerEmployeeAll = React.createClass({
             type: 'post',
             data: $('#addNew').serialize(),
             success: function () {
-                alert("worked");
+                //alert("worked");
             }
         });
         this.clearForm();
@@ -80,10 +83,13 @@ var ManagerEmployeeAll = React.createClass({
 
     handleUpdateForm: function (event) {
         event.preventDefault();
+
+        this.validateEntries();
+
         helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneCode, this.state.phoneType, this.state.password, this.state.department).then(function (response) {
         }.bind(this));
 
-        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department).then(function (response) {
+        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department,  this.state.phone, this.state.phoneCode).then(function (response) {
             this.clearStates();
         }.bind(this));
 
@@ -174,12 +180,10 @@ var ManagerEmployeeAll = React.createClass({
     validateEntries: function (event) {
         const country = 'AUS';
 
-        var numbNoWhiteSpace = this.state.phone.replace(/\s/g, "");
+        var numbNoSpace = this.state.phone.replace(/\s/g, "");
 
-        console.log(numbNoWhiteSpace);
 
-        var tempPhone = phone(numbNoWhiteSpace, country);
-        console.log(tempPhone);
+        var tempPhone = phone(numbNoSpace, country);
 
         // department validation code
         if (this.state.department === "") {
@@ -189,26 +193,18 @@ var ManagerEmployeeAll = React.createClass({
         }
 
         // phone validation code
-        // TODO ensure the phone number does not exist in database
         else {
             // add employee when the phone number is valid
             if (tempPhone.length === 2) {
                 console.log("Submit Success");
-
                 this.state.phoneCode = tempPhone[0];
-                console.log(this.state.phoneCode);
-
-
-                this.handleAddForm(event);
             } else {
                 console.log("Submit Fail");
                 Materialize.toast('Please enter a valid australian number', 3000);
-
                 // prevent form from submitting
                 event.preventDefault();
             }
         }
-
     },
 
     render: function () {
@@ -323,12 +319,12 @@ var ManagerEmployeeAll = React.createClass({
                             </div>
                             <div className="row">
                                 <div className="col s4">
-                                    <button onClick={this.validateEntries} id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit" form="addNew">Add
+                                    <button onClick={this.handleAddForm} id="addEmployee" className="btn btn-large waves-effect waves-light green accent-3" type="submit" value="Submit" form="addNew">Add
                                         <i className="material-icons right">person_add</i>
                                     </button>
                                 </div>
                                 <div className="col s4">
-                                    <a id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.handleUpdateForm}>Update
+                                    <a  id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.handleUpdateForm}>Update
                                         <i className="material-icons right">edit</i>
                                     </a>
                                 </div>

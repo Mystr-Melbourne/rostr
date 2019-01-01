@@ -51,7 +51,9 @@
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       department: req.body.department,
-      phone: req.body.phone
+      phone: req.body.phone,
+      phoneCode: req.body.phoneCode
+
     }, function(err) {
       if (err) {
         console.log(err);
@@ -161,6 +163,8 @@
     EmployeeSchedule.findOneAndUpdate({"emp_id":req.params.emp_id}, {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      phone: req.body.phone,
+      phoneCode: req.body.phoneCode,
     }, function(err) {
        if (err) {
            console.log(err);
