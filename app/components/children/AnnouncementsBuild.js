@@ -100,10 +100,7 @@ var AnnouncementsBuild = React.createClass({
           type: "post",
           data: {
             to: person.phone,
-            title: person[this.state.day + "_title"],
-            time: person[this.state.day],
-            des: person[this.state.day + "_des"],
-            day: this.state.day
+            des: person[this.state.day + "_des"]
           }
         })
       } else if (person.department == this.state.sendTo) {
@@ -122,11 +119,8 @@ var AnnouncementsBuild = React.createClass({
           url: "/sms-send",
           type: "post",
           data: {
-            to: person.phone,
-            title: person[this.state.day + "_title"],
-            time: person[this.state.day],
-            des: person[this.state.day + "_des"],
-            day: this.state.day
+            to: person.phone,       
+            des: person[this.state.day + "_des"]
           }
         })
        

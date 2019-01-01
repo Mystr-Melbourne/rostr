@@ -73,12 +73,12 @@ var client = require("twilio")(
   process.env.TWILIO_AUTH_TOKEN
 );
 
-app.post("/sms-send", function(req,res) {
+app.post("/sms-send", function (req, res) {
+  console.log("sending to number " + req.body.to);
   client.messages.create({
     from: process.env.TWILIO_PHONE_NUMBER,
     to: req.body.to,
-    body: "There is a shift at " + req.body.title + " during " + req.body.time +
-    +"on " + req.body.day + ", " + req.body.des + ". Respond yes/no."
+    body: req.body.des
   })
 });
 
