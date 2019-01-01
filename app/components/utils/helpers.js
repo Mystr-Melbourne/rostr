@@ -31,13 +31,14 @@ var helper = {
     })
   },
 
-  addEmpSchedule:function(emp_id, firstName, lastName, depart, phone) {
+  addEmpSchedule:function(emp_id, firstName, lastName, depart, phone, phoneCode) {
     return axios.post('/addEmpSchedule', {
       emp_id: emp_id,
       firstName: firstName,
       lastName: lastName,
       department: depart,
-      phone: phone
+      phone: phone,
+      phoneCode: phoneCode
     });
   },
 
@@ -47,33 +48,37 @@ var helper = {
     });
   },
 
-  addEmployee: function(firstName, lastName, email, phone, phoneType, password, department) {
+  addEmployee: function(firstName, lastName, email, phone, phoneCode, phoneType, password, department) {
     return axios.post("/addEmployee", {
         firstName: firstName,
         lastName: lastName,
         email: email,
         phone: phone,
+        phoneCode: phoneCode,
         phoneType: phoneType,
         password: password,
         department: department });
   },
 
-  updateEmployee: function(id, firstName, lastName, email, phone, phoneType, password, department) {
+  updateEmployee: function(id, firstName, lastName, email, phone, phoneCode, phoneType, password, department) {
        return axios.put("/updateEmployee/" + id, {
            firstName: firstName,
            lastName: lastName,
            email: email,
            phone: phone,
+           phoneCode: phoneCode,
            phoneType: phoneType,
            password: password,
            department: department
        });
   },
 
-  updateEmpName: function(emp_id, firstName, lastName)  {
+  updateEmpName: function(emp_id, firstName, lastName, department, phone, phoneCode)  {
     return axios.put("/updateEmpName/" + emp_id, {
         firstName: firstName,
-        lastName: lastName
+        lastName: lastName,
+        phone: phone,
+        phoneCode: phoneCode
        });
   },
 
