@@ -10,7 +10,8 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
-var helpers = require("./app/components/utils/helpers")
+var router = express.Router();
+var EmployeeSchedule = require("./models/employeeSchedule");
 //twilio
 const http = require("http");
 //const express = require('express');
@@ -84,16 +85,19 @@ app.post("/sms", function(req, res) {
   const twiml = new MessagingResponse();
 
   console.log(req.body.Body);
+  // req.body.From - get user phoen number.
+  // use findOneAndUpdate({"phoneCode"}) -- need phoneCode
   var empList;
   console.log("ok please")
-  helpers.getEmpSchedules().then(function(response) {
-    empList = response.data;
-    console.log("response:");
-    console.log(empList);
-
-  }, (reject) => {
-    console.log("reject: ")
-    console.log(reject);
+    
+  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
+    if(err) {
+      console.log("error:")
+      // console.log(err);
+    } else {
+      console.log("respond: ")
+      // console.log(docs);
+    }
   })
 
   if (req.body.Body == "yes") {
