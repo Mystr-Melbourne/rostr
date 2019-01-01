@@ -51,7 +51,9 @@
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       department: req.body.department,
-      phone: req.body.phone
+      phone: req.body.phone,
+      phoneCode: req.body.phoneCode
+
     }, function(err) {
       if (err) {
         console.log(err);
@@ -120,6 +122,8 @@
       lastName: req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
+      phoneCode: req.body.phoneCode,
+
       phoneType: req.body.phoneType,
       password: req.body.password,
       department: req.body.department
@@ -140,6 +144,8 @@
          lastName: req.body.lastName,
          email: req.body.email,
          phone: req.body.phone,
+         phoneCode: req.body.phoneCode,
+
          phoneType: req.body.phoneType,
          password: req.body.password,
          department: req.body.department
@@ -157,6 +163,8 @@
     EmployeeSchedule.findOneAndUpdate({"emp_id":req.params.emp_id}, {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      phone: req.body.phone,
+      phoneCode: req.body.phoneCode,
     }, function(err) {
        if (err) {
            console.log(err);

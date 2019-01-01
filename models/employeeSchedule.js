@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var EmployeeScheduleSchema = new Schema({
@@ -8,12 +8,25 @@ var EmployeeScheduleSchema = new Schema({
   phone: {
     type: String
   },
+  phoneCode: {
+    type: String
+  },
   firstName: {
     type: String
   },
   lastName: {
     type: String
   },
+  department: {
+    type: String,
+    default: ""
+  },
+  active: {
+    type: Number,
+    default: 1
+  },
+
+  // needs refactoring
   monday: {
     type: String,
     default: ""
@@ -74,7 +87,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  saturday:{
+  saturday: {
     type: String,
     default: ""
   },
@@ -98,14 +111,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  department:{
-    type: String,
-    default: ""
-  },
-  active: {
-    type: Number,
-    default: 1,
-  },
+
   monday_accept: {
     type: Number,
     default: 0 // 0 is not accepted, 1 accepted, 2 declined.
@@ -136,5 +142,8 @@ var EmployeeScheduleSchema = new Schema({
   }
 });
 
-var EmployeeSchedule = mongoose.model('EmployeeSchedule', EmployeeScheduleSchema);
+var EmployeeSchedule = mongoose.model(
+  "EmployeeSchedule",
+  EmployeeScheduleSchema
+);
 module.exports = EmployeeSchedule;

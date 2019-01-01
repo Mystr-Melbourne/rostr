@@ -10,6 +10,9 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
+
+var helpers = require("./app/components/utils/helpers")
+
 var router = express.Router();
 var EmployeeSchedule = require("./models/employeeSchedule");
 //twilio
@@ -99,6 +102,30 @@ app.post("/sms", function(req, res) {
       // console.log(docs);
     }
   })
+
+  console.log(req.body.From);
+
+  var empList;
+  console.log("ok please")
+  
+  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
+    if(err) {
+      console.log("error:")
+      console.log(err);
+    } else {
+      console.log("respond: ")
+      console.log(docs);
+    }
+  })
+  // helpers.getEmpSchedules().then(function(response) {
+  //   empList = response.data;
+  //   console.log("response:");
+  //   console.log(empList);
+
+  // }, (reject) => {
+  //   console.log("reject: ")
+  //   console.log(reject);
+  // })
 
   if (req.body.Body == "yes") {
     twiml.message("Alright we have comfirmed your shift");
