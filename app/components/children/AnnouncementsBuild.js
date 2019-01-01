@@ -100,7 +100,7 @@ var AnnouncementsBuild = React.createClass({
           type: "post",
           data: {
             to: person.phone,
-            title: person[this.state.day + "_title"],
+            title: person[this.state.day + "_location"],
             time: person[this.state.day],
             des: person[this.state.day + "_des"],
             day: this.state.day
@@ -123,7 +123,7 @@ var AnnouncementsBuild = React.createClass({
           type: "post",
           data: {
             to: person.phone,
-            title: person[this.state.day + "_title"],
+            title: person[this.state.day + "_location"],
             time: person[this.state.day],
             des: person[this.state.day + "_des"],
             day: this.state.day
