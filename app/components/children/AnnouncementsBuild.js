@@ -95,6 +95,17 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+        $.ajax({
+          url: "/sms-send",
+          type: "post",
+          data: {
+            to: person.phone,
+            title: person[this.state.day + "_title"],
+            time: person[this.state.day],
+            des: person[this.state.day + "_des"],
+            day: this.state.day
+          }
+        })
       } else if (person.department == this.state.sendTo) {
         person[this.state.day] = this.state.time;
         person[this.state.day + "_location"] = this.state.location;
@@ -107,8 +118,22 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+        $.ajax({
+          url: "/sms-send",
+          type: "post",
+          data: {
+            to: person.phone,
+            title: person[this.state.day + "_title"],
+            time: person[this.state.day],
+            des: person[this.state.day + "_des"],
+            day: this.state.day
+          }
+        })
+       
       }
+
     });
+    
   },
 
   render: function() {
