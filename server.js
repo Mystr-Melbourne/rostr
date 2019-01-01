@@ -10,7 +10,8 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
-
+var router = express.Router();
+var EmployeeSchedule = require("./models/employeeSchedule");
 //twilio
 const http = require("http");
 //const express = require('express');
@@ -63,12 +64,41 @@ app.use(express.static(__dirname + "/public"));
 // TWILIO SMS functionality
 // THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
 // use ngrok to host up the service so that it can receive texts
+// Send sms
+var client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
+app.post("/sms-send", function(req,res) {
+  client.messages.create({
+    from: process.env.TWILIO_PHONE_NUMBER,
+    to: req.body.to,
+    body: "There is a shift at " + req.body.title + " during " + req.body.time +
+    +"on " + req.body.day + ", " + req.body.des + ". Respond yes/no."
+  })
+});
+
 app.post("/sms", function(req, res) {
   console.log(req);
 
   const twiml = new MessagingResponse();
 
   console.log(req.body.Body);
+  // req.body.From - get user phoen number.
+  // use findOneAndUpdate({"phoneCode"}) -- need phoneCode
+  var empList;
+  console.log("ok please")
+    
+  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
+    if(err) {
+      console.log("error:")
+      // console.log(err);
+    } else {
+      console.log("respond: ")
+      // console.log(docs);
+    }
+  })
 
   if (req.body.Body == "yes") {
     twiml.message("Alright we have comfirmed your shift");

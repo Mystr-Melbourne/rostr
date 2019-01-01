@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AnnouncementSchema = new Schema({
-  title: {
+  location: {
     type: String
   },
   content: {

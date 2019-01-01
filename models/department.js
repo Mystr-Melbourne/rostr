@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var departmentSchema = new Schema({
-    //department: ["Cleaning", "Catering"]
+    // this holds the department type e.g. department: ["Cleaning", "Catering"]
     department: {
         type: []
     }
