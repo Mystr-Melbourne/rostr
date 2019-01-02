@@ -103,11 +103,25 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+// <<<<<<< sms-test
+        $.ajax({
+          url: "/sms-send",
+          type: "post",
+          data: {
+            to: person.phone,
+            title: person[this.state.day + "_location"],
+            time: person[this.state.day],
+            des: person[this.state.day + "_des"],
+            day: this.state.day
+          }
+        })
+// =======
 
-        // add number to array
-        toArray.push(person.phoneCode);
+//         // add number to array
+//         toArray.push(person.phoneCode);
 
-        // filter applied
+//         // filter applied
+// >>>>>>> sms
       } else if (person.department == this.state.sendTo) {
         //create person
         person[this.state.day] = this.state.time;
@@ -123,26 +137,46 @@ var AnnouncementsBuild = React.createClass({
             Materialize.toast(empName + "schedule updated", 2000);
           }.bind(this)
         );
+// <<<<<<< sms-test
+        $.ajax({
+          url: "/sms-send",
+          type: "post",
+          data: {
+            to: person.phone,
+            title: person[this.state.day + "_location"],
+            time: person[this.state.day],
+            des: person[this.state.day + "_des"],
+            day: this.state.day
+          }
+        })
+       
+// =======
 
-        // add number to array
-        toArray.push(person.phoneCode);
+//         // add number to array
+//         toArray.push(person.phoneCode);
+// >>>>>>> sms
       }
+
     });
+// <<<<<<< sms-test
+    
+// =======
 
-    // send out the text blast
-    this.prepareSMS(body, toArray);
-  },
+//     // send out the text blast
+//     this.prepareSMS(body, toArray);
+//   },
 
-  // send a sms text message with a populated array of numbers
-  prepareSMS: function (body, toArray) {
-    $.ajax({
-      url: "/sms-send",
-      type: "post",
-      data: {
-        to: toArray,
-        des: body
-      }
-    })
+//   // send a sms text message with a populated array of numbers
+//   prepareSMS: function (body, toArray) {
+//     $.ajax({
+//       url: "/sms-send",
+//       type: "post",
+//       data: {
+//         to: toArray,
+//         des: body
+//       }
+//     })
+// >>>>>>> sms
   },
 
   render: function() {
