@@ -1,3 +1,41 @@
+.mainview td {
+	border-right: 1px solid #ccc;
+	min-width: 155px;
+	height: 119px;
+}
+
+.mainview td div div{
+	width: 100%;
+    overflow-y: auto;
+    max-height: 5em;
+}
+
+.mainview{
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.filter-option{
+	position: sticky;
+    overflow: hidden;
+    top: 0;
+    background: #ffffffd9;
+    padding: .1em;
+}
+
+.filter-option select {
+	width: 200px;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.filter-option .right-hand{
+	float:right;
+}
+
+.filter-option .left-hand{
+	float: left;
+}
 .brand-logo {
 	margin-left: 20px;
 }

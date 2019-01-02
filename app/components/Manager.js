@@ -53,7 +53,7 @@ var Manager = React.createClass({
                         </ul>
                     </div>
                 </nav>
-                <div className="container">
+                <div className="container-fluid">
                     {this.props.children}
                 </div>
             </div>

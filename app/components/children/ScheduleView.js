@@ -44,38 +44,43 @@ var ScheduleView = React.createClass({
       <div className="row">
         <div className="col s12">
           <div className="section">
-            <h5>Edit Staff</h5>
+           <div className="filter-option">
+                <div className="left-hand">
+                  <h5>Edit Staff</h5>
+                </div>
+                <div className="right-hand">
+                    <select
+                        className="browser-default"
+                        name="view"
+                        onChange={this.handleUserChange}
+                      >
+                        <option value="all">Filter Accepted</option>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Declined">Declined</option>
+                        <option value="NotAccepted">Not Accepted</option>
+                      </select>
 
-            <select
-              className="browser-default"
-              name="view"
-              onChange={this.handleUserChange}
-            >
-              <option value="all">Filter Accepted</option>
-              <option value="Accepted">Accepted</option>
-              <option value="Declined">Declined</option>
-              <option value="NotAccepted">Not Accepted</option>
-            </select>
-
-            <select
-              className="browser-default"
-              name="filter"
-              onChange={this.handleUserChange}
-            >
-              <option value="all">Filter Departments</option>
-              {this.state.isLoaded ? (
-                this.state.departments.map((each, i) => {
-                  return (
-                    <option key={i} value={each}>
-                      {each}
-                    </option>
-                  );
-                })
-              ) : (
-                <option>Nothing</option>
-              )}
-            </select>
-            <table className="bordered highlight">
+                      <select
+                        className="browser-default"
+                        name="filter"
+                        onChange={this.handleUserChange}
+                      >
+                        <option value="all">Filter Departments</option>
+                        {this.state.isLoaded ? (
+                          this.state.departments.map((each, i) => {
+                            return (
+                              <option key={i} value={each}>
+                                {each}
+                              </option>
+                            );
+                          })
+                        ) : (
+                          <option>Nothing</option>
+                        )}
+                      </select>
+                </div>
+           </div>
+            <table className="bordered highlight mainview">
               <thead>
                 <tr>
                   <th data-field="name">Name</th>
@@ -104,12 +109,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.monday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.monday_des}</i>
                               </div>
                             </div>
@@ -127,12 +127,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.tuesday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.tuesday_des}</i>
                               </div>
                             </div>
@@ -150,12 +145,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.wednesday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.wednesday_des}</i>
                               </div>
                             </div>
@@ -173,12 +163,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.thursday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.thursday_des}</i>
                               </div>
                             </div>
@@ -196,12 +181,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.friday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.friday_des}</i>
                               </div>
                             </div>
@@ -219,12 +199,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.saturday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.saturday_des}</i>
                               </div>
                             </div>
@@ -242,12 +217,7 @@ var ScheduleView = React.createClass({
                               <br />
                               <b>{schedules.sunday_location}</b>
                               <br />
-                              <div
-                                style={{
-                                  width: 100 + "px",
-                                  wordBreak: "break-all"
-                                }}
-                              >
+                              <div>
                                 <i>{schedules.sunday_des}</i>
                               </div>
                             </div>
@@ -275,12 +245,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.monday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -294,12 +259,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -313,12 +273,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -332,12 +287,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.thursday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -351,12 +301,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.friday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -370,12 +315,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.saturday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -389,12 +329,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.sunday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -417,12 +352,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.monday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -436,12 +366,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -455,12 +380,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -474,12 +394,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.thursday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -493,12 +408,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.friday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -512,12 +422,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.saturday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -531,12 +436,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.sunday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
                                 <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -559,12 +459,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.monday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -578,12 +473,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -597,12 +487,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -616,12 +501,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.thursday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -635,12 +515,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.friday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -654,12 +529,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.saturday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -673,12 +543,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.sunday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
                                 <b style={{ color: "red" }}>Declined</b>{" "}
@@ -702,12 +567,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.monday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -722,12 +582,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -742,12 +597,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -762,12 +612,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.thursday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -782,12 +627,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.friday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -802,12 +642,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.saturday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -822,12 +657,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.sunday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
                                 <b style={{ color: "orange" }}>Not Accepted</b>{" "}
@@ -852,12 +682,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.monday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
                               </div>
@@ -875,12 +700,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
                               </div>
@@ -898,12 +718,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
                               </div>
@@ -921,12 +736,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.thursday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
                               </div>
@@ -944,12 +754,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.friday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
                               </div>
@@ -967,12 +772,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.saturday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
                               </div>
@@ -990,12 +790,7 @@ var ScheduleView = React.createClass({
                                 <br />
                                 <b>{schedules.sunday_location}</b>
                                 <br />
-                                <div
-                                  style={{
-                                    width: 100 + "px",
-                                    wordBreak: "break-all"
-                                  }}
-                                >
+                                <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
                               </div>
@@ -1023,12 +818,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.monday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.monday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1042,12 +832,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.tuesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.tuesday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1061,12 +846,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.wednesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.wednesday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1080,12 +860,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.thursday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.thursday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1099,12 +874,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.friday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.friday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1118,12 +888,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.saturday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.saturday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1137,12 +902,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.sunday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.sunday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1165,12 +925,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.monday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.monday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1184,12 +939,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.tuesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.tuesday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1203,12 +953,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.wednesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.wednesday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1222,12 +967,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.thursday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.thursday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1241,12 +981,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.friday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.friday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1260,12 +995,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.saturday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.saturday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1279,12 +1009,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.sunday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.sunday_des}</i>
                                   </div>
                                   <b style={{ color: "green" }}>Accepted</b>{" "}
@@ -1307,12 +1032,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.monday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.monday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1326,12 +1046,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.tuesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.tuesday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1345,12 +1060,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.wednesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.wednesday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1364,12 +1074,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.thursday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.thursday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1383,12 +1088,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.friday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.friday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1402,12 +1102,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.saturday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.saturday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1421,12 +1116,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.sunday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.sunday_des}</i>
                                   </div>
                                   <b style={{ color: "red" }}>Declined</b>{" "}
@@ -1450,12 +1140,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.monday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.monday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1472,12 +1157,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.tuesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.tuesday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1494,12 +1174,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.wednesday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.wednesday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1516,12 +1191,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.thursday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.thursday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1538,12 +1208,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.friday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.friday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1560,12 +1225,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.saturday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.saturday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
@@ -1582,12 +1242,7 @@ var ScheduleView = React.createClass({
                                   <br />
                                   <b>{schedules.sunday_location}</b>
                                   <br />
-                                  <div
-                                    style={{
-                                      width: 100 + "px",
-                                      wordBreak: "break-all"
-                                    }}
-                                  >
+                                  <div>
                                     <i>{schedules.sunday_des}</i>
                                   </div>
                                   <b style={{ color: "orange" }}>
