@@ -1,10 +1,10 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-var IndividualView =  require("./IndividualView");
-var AnnouncementsView =  require("./AnnouncementsView");
+var IndividualView = require("./IndividualView");
+var AnnouncementsView = require("./AnnouncementsView");
 
 var EmployeeHome = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             location: "",
             content: "",
@@ -12,13 +12,13 @@ var EmployeeHome = React.createClass({
         };
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.getAnnouncements();
-        helpers.getCurrentUser().then(function(response) {
+        helpers.getCurrentUser().then(function (response) {
             if (response !== this.state.username) {
-              this.setState({ username: response.data.username});
+                this.setState({ username: response.data.username });
             }
-          }.bind(this));
+        }.bind(this));
     },
 
     // componentDidUpdate: function(prevState) {
@@ -27,16 +27,16 @@ var EmployeeHome = React.createClass({
     //     }
     // },
 
-    getAnnouncements: function() {
-        helpers.getAnnouncements().then(function(response) {
-          this.setState({
-            location: response.data[response.data.length -1].location,
-            content: response.data[response.data.length -1].content
-          });
+    getAnnouncements: function () {
+        helpers.getAnnouncements().then(function (response) {
+            this.setState({
+                location: response.data[response.data.length - 1].location,
+                content: response.data[response.data.length - 1].content
+            });
         }.bind(this));
     },
 
-    render: function() {
+    render: function () {
         return (
             <div>
                 {/* <AnnouncementsView location={this.state.location} content={this.state.content}/> */}
