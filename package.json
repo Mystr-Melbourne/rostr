@@ -30,6 +30,7 @@
     "express-session": "^1.14.2",
     "fast-csv": "^2.4.1",
     "fs": "0.0.1-security",
+    "js-file-download": "^0.4.4",
     "json2csv": "^4.3.2",
     "mongo-to-csv": "^1.0.1",
     "mongoexport-wrapper": "^1.0.1",

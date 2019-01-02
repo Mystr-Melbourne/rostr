@@ -10,6 +10,12 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
+const json2csv = require('json2csv').parse;
+var fs = require('fs');
+var axios = require("axios");
+
+
+
 
 //twilio
 const http = require("http");
@@ -60,36 +66,21 @@ app.get("/", autoRedirect, function (req, res) {
 //Public files <this needs to stay right below app.get("/")!!!!
 app.use(express.static(__dirname + "/public"));
 
-//this is for exporting csv
+//this is an attmept to export CSV properly with an express endpoint....
 
-app.post("/getCSV", function (req, res) {
-  // req.body.csv 
-  res.setHeader('Content-disposition', 'attachment; filename=schedules.csv');
-  res.set('Content-Type', 'text/csv');
-  res.status(200).send(req.body.csv);
+app.get('/getCSV', function(req, res){
+
+  var fields = ['emp_id', 'firstName', 'lastName', 'day'];
+
+   var EmployeeSchedule = axios.get('/getEmpSchedules')
+  .then(function(response){
+      return response;
+  })
+  
+  var csv = json2csv({ data: EmployeeSchedule, fields: fields });
+  res.download(req.body.csv); 
+
 });
-
-app.get('/exportCSV', function (req, res) {
-
-  var field_headers = ['emp_id', 'firstName', 'lastName', 'sunday'];
-
-  var schedule;
-
-  helpers.getEmpSchedules().then(function (response) {
-    if (response !== schedule) {
-      this.setState({ empSchedules: response.data });
-    }
-  }.bind(this));
-
-
-  var csv = json2csv({ data: schedule, fields: field_headers });
-
-  res.setHeader('Content-Length', stat.size);
-  res.setHeader('Content-Type', 'text/csv');
-  res.setHeader('Content-Disposition', 'attachment; filename=Schedules.csv');
-  csv.pipe(res);
-}
-);
 
 // TWILIO SMS functionality
 // THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG

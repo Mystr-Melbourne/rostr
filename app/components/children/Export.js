@@ -2,14 +2,17 @@ var React = require("react");
 var helpers = require("../utils/helpers");
 //required for csv export
 const fs = require('fs');
-const json2csv = require('json2csv').parse;
+const Json2csvParser = require('json2csv').Parser;
 const mongoose = require('mongoose');
+var fileDownload = require('js-file-download');
 
 var Export = React.createClass({
 
     getInitialState: function () {
         return {
             empSchedules: [],
+            result: "",
+            allEmployees: []
         };
     },
 
@@ -39,33 +42,52 @@ var Export = React.createClass({
         }.bind(this));
     },
 
-    ExportData: function () {
+    ExportEmployeeData: function () {
 
-        var fields = ['car.make', 'car.model', 'price', 'color'];
-        
-        var EmployeeSchedule = this.state.empSchedules;
+        const fields = [
+            "_id",
+            "firstName",
+            "lastName",
+            "email",
+            "phone",
+            "phoneType",
+            "department",
+            "active"
+        ];
 
-        var csv = json2csv({ data: EmployeeSchedule, fields: fields });
+        const json2csvParser2 = new Json2csvParser({ fields });
+        const csv2 = json2csvParser2.parse(this.state.empSchedules);
 
-        // fs.writeFile('file.csv', csv, function (err) {
-        //     if (err) throw err;
-        //     console.log('file saved');
-        // });
-        $.ajax({
-            url: '/getCSV',
-            type: 'post',
-            data: ({
-                csv: csv,
-            })
-        })
+        console.log(csv2);
+
+        fileDownload(csv2, 'employeelist.csv');
+
+
+    },
+
+
+    ExportScheduleData: function () {
+
+        const fields = [
+            'emp_id',
+            'firstName',
+            'lastName',
+            'department',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday'
+        ];
+
+        const json2csvParser = new Json2csvParser({ fields });
+        const csv = json2csvParser.parse(this.state.empSchedules);
+
         console.log(csv);
 
-
-        // res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
-        // res.set('Content-Type', 'text/csv');
-        // res.status(200).send(csv)
-
-
+        fileDownload(csv, 'empschedules.csv');
     },
 
     render: function () {
@@ -74,17 +96,22 @@ var Export = React.createClass({
                 <br></br>
                 <div className="row">
                     <div className="col s4">
-                        <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3" onClick="window.location.href='/exportCSV'">Export Excel File
+                        <a href="/getCSV">
+
+                            <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3">ExpressEndpoint
                                         <i className="material-icons right">insert_drive_file</i>
-                        </button>
+                            </button>
+
+                        </a>
+
                     </div>
                     <div className="col s4">
-                        <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportData}>Export Google Sheets
+                        <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
                                         <i className="material-icons right">insert_drive_file</i>
                         </a>
                     </div>
                     <div className="col s4">
-                        <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportData}>Export CSV Text File
+                        <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportEmployeeData}>Export Employee List
                                         <i className="material-icons right">insert_drive_file</i>
                         </a>
                     </div>
