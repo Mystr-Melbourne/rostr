@@ -27,6 +27,7 @@
     "express": "^4.16.4",
     "express-session": "^1.14.2",
     "mongo-to-csv": "^1.0.1",
+    "mongoexport-wrapper": "^1.0.1",
     "mongoose": "^4.13.17",
     "mongoose-to-csv": "^0.1.1",
     "morgan": "^1.9.1",

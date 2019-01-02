@@ -1,6 +1,6 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-const mongotocsv = require('mongo-to-csv');
+var mongoexport = require('mongoexport-wrapper');
 
 var Export = React.createClass({
 
@@ -38,16 +38,21 @@ var Export = React.createClass({
 
     ExportData: function() {
 
-        let options = {
-            database: 'users', // required
-            collection: 'pets', // required
-            fields: ['name','cost'], // required
-            output: './output/pets.csv', // required
-            allValidOptions: '-q \'{ "name": "cat" }\'' // optional
-        };
-        mongotocsv.export(options, function (err, success) {
-            console.log(err);
-            console.log(success);
+ 
+        var opt = {
+            host : '127.0.0.1:8080', //<hostname><:port>  Default: localhost:27017
+            db : 'test',
+            collection :'user',
+            fields : "user,email,contact",
+            out : 'users.csv',
+            type : 'csv'
+        }
+        //mongoexport command should be in path variable
+        //all options for mongoexport command can be used
+         
+        mongoexport(opt,(err,result)=>{
+            if(err) console.log(err);
+            else console.log(result);
         });
     },
 
