@@ -10,20 +10,12 @@ var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var db = require("./db/db.js");
 var User = require("./models/user");
-<<<<<<< HEAD
+//exportCSV
 const json2csv = require('json2csv').parse;
 var fs = require('fs');
 var axios = require("axios");
-
-
-
-
-//twilio
-=======
-var helpers = require("./app/components/utils/helpers");
 var router = express.Router();
-var EmployeeSchedule = require("./models/employeeSchedule");
->>>>>>> dev_branch
+//twilio
 const http = require("http");
 const MessagingResponse = require("twilio").twiml.MessagingResponse;
 const app = express();
