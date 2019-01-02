@@ -46,10 +46,10 @@ var Manager = React.createClass({
                                     <a><span className="white-text name">{this.state.username}</span></a>
                                 </div>
                             </li>
-                            <li><a href="/manager" className="black-text"><i className="material-icons">group</i>Home</a></li>
-                            <li><a href="/manager/employeeAll" className="black-text"><i className="material-icons">group</i>Edit Staff</a></li>
+                            <li><a href="/manager" className=""><i className="material-icons">group</i>Home</a></li>
+                            <li><a href="/manager/employeeAll" className=""><i className="material-icons">group</i>Edit Staff</a></li>
                             {/* <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li> */}
-                            <li><a href="/logout" className="black-text"><i className="material-icons">exit_to_app</i>Logout</a></li>
+                            <li><a href="/logout" className=""><i className="material-icons">exit_to_app</i>Logout</a></li>
                         </ul>
                     </div>
                 </nav>

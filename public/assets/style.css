@@ -3,6 +3,9 @@
 	color: white;
 	padding: 0 3em;
 }
+ul.slideout li a.black-text{
+	color: black!important;
+}
 a.black-text{
 	color: white!important;
 }
