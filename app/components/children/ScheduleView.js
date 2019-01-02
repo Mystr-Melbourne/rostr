@@ -112,14 +112,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.monday_des}</i>
                               </div>
-                            </div>
-                            {schedules.monday_accept == 1 ? (
+                              {schedules.monday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.monday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.monday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -130,14 +131,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.tuesday_des}</i>
                               </div>
-                            </div>
-                            {schedules.tuesday_accept == 1 ? (
+                              {schedules.tuesday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.tuesday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.tuesday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -148,14 +150,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.wednesday_des}</i>
                               </div>
-                            </div>
-                            {schedules.wednesday_accept == 1 ? (
+                              {schedules.wednesday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.wednesday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.wednesday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -166,14 +169,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.thursday_des}</i>
                               </div>
-                            </div>
-                            {schedules.thursday_accept == 1 ? (
+                              {schedules.thursday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.thursday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.thursday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -184,14 +188,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.friday_des}</i>
                               </div>
-                            </div>
-                            {schedules.friday_accept == 1 ? (
+                              {schedules.friday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.friday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.friday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -202,14 +207,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.saturday_des}</i>
                               </div>
-                            </div>
-                            {schedules.saturday_accept == 1 ? (
+                              {schedules.saturday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.saturday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.saturday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>
                             <div>
@@ -220,14 +226,15 @@ var ScheduleView = React.createClass({
                               <div>
                                 <i>{schedules.sunday_des}</i>
                               </div>
-                            </div>
-                            {schedules.sunday_accept == 1 ? (
+                              {schedules.sunday_accept == 1 ? (
                               <b style={{ color: "green" }}>Accepted</b>
                             ) : schedules.sunday_accept == 2 ? (
                               <b style={{ color: "red" }}>Declined</b>
                             ) : schedules.sunday.length > 0 ? (
                               <b style={{ color: "orange" }}>Not Accepted</b>
                             ) : null}
+                            </div>
+                            
                           </td>
                           <td>{schedules.department}</td>
                         </tr>
@@ -685,14 +692,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.monday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.monday_accept == 1 ? (
+                                {schedules.monday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.monday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.monday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                         
                             </td>
                             <td>
                               <div>
@@ -703,14 +711,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.tuesday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.tuesday_accept == 1 ? (
+                                {schedules.tuesday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.tuesday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.tuesday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                            
                             </td>
                             <td>
                               <div>
@@ -721,14 +730,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.wednesday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.wednesday_accept == 1 ? (
+                                {schedules.wednesday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.wednesday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.wednesday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                              
                             </td>
                             <td>
                               <div>
@@ -739,14 +749,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.thursday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.thursday_accept == 1 ? (
+                                {schedules.thursday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.thursday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.thursday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                             
                             </td>
                             <td>
                               <div>
@@ -757,14 +768,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.friday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.friday_accept == 1 ? (
+                                {schedules.friday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.friday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.friday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                              
                             </td>
                             <td>
                               <div>
@@ -775,14 +787,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.saturday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.saturday_accept == 1 ? (
+                                {schedules.saturday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.saturday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.saturday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                              
                             </td>
                             <td>
                               <div>
@@ -793,14 +806,15 @@ var ScheduleView = React.createClass({
                                 <div>
                                   <i>{schedules.sunday_des}</i>
                                 </div>
-                              </div>
-                              {schedules.sunday_accept == 1 ? (
+                                {schedules.sunday_accept == 1 ? (
                                 <b style={{ color: "green" }}>Accepted</b>
                               ) : schedules.sunday_accept == 2 ? (
                                 <b style={{ color: "red" }}>Declined</b>
                               ) : schedules.sunday.length > 0 ? (
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
+                              </div>
+                             
                             </td>
                             <td>{schedules.department}</td>
                           </tr>
