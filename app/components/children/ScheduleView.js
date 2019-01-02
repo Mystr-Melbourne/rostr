@@ -683,7 +683,7 @@ var ScheduleView = React.createClass({
                               {schedules.firstName} {schedules.lastName}
                             </td>
                             <td className="schedule">
-                              <div>
+                            <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : (schedules.monday.length > 0) ? "not-accept" : ""}>
                                 {schedules.monday}
                                 <br />
                                 <b>{schedules.monday_location}</b>
@@ -702,7 +702,7 @@ var ScheduleView = React.createClass({
                          
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.tuesday_accept == 1) ? "accept" : (schedules.tuesday_accept == 2) ? "decline" : (schedules.tuesday.length > 0) ? "not-accept" : ""}>
                                 {schedules.tuesday}
                                 <br />
                                 <b>{schedules.tuesday_location}</b>
@@ -721,7 +721,7 @@ var ScheduleView = React.createClass({
                             
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.wednesday_accept == 1) ? "accept" : (schedules.wednesday_accept == 2) ? "decline" : (schedules.wednesday.length > 0) ? "not-accept" : ""}>
                                 {schedules.wednesday}
                                 <br />
                                 <b>{schedules.wednesday_location}</b>
@@ -740,7 +740,7 @@ var ScheduleView = React.createClass({
                               
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.thursday_accept == 1) ? "accept" : (schedules.thursday_accept == 2) ? "decline" : (schedules.thursday.length > 0) ? "not-accept" : ""}>
                                 {schedules.thursday}
                                 <br />
                                 <b>{schedules.thursday_location}</b>
@@ -759,7 +759,7 @@ var ScheduleView = React.createClass({
                              
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.friday_accept == 1) ? "accept" : (schedules.friday_accept == 2) ? "decline" : (schedules.friday.length > 0) ? "not-accept" : ""}>
                                 {schedules.friday}
                                 <br />
                                 <b>{schedules.friday_location}</b>
@@ -778,7 +778,7 @@ var ScheduleView = React.createClass({
                               
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.saturday_accept == 1) ? "accept" : (schedules.saturday_accept == 2) ? "decline" : (schedules.saturday.length > 0) ? "not-accept" : ""}>
                                 {schedules.saturday}
                                 <br />
                                 <b>{schedules.saturday_location}</b>
@@ -797,7 +797,7 @@ var ScheduleView = React.createClass({
                               
                             </td>
                             <td>
-                              <div>
+                            <div className={(schedules.sunday_accept == 1) ? "accept" : (schedules.sunday_accept == 2) ? "decline" : (schedules.sunday.length > 0) ? "not-accept" : ""}>
                                 {schedules.sunday}
                                 <br />
                                 <b>{schedules.sunday_location}</b>
