@@ -8,6 +8,15 @@ module.exports = {
     filename: "public/bundle.js"
   },
 
+  //this is a workaround for a bug:
+  //"ERROR in ./~/isexe/mode.js
+  //Module not found: Error: Cannot resolve module 'fs' in /Users/inki/react-shift-scheduler/node_modules/isexe"
+  // solution was found here https://github.com/webpack-contrib/css-loader/issues/447
+  // apparently it's an issue with webpack
+  node: {
+    fs: 'empty'
+  },
+
   // This section desribes the transformations we will perform
   module: {
     loaders: [

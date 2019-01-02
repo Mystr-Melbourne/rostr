@@ -1,59 +1,63 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-var mongoexport = require('mongoexport-wrapper');
+//required for csv export
+const fs = require('fs');
+const json2csv = require('json2csv').parse;
+const mongoose = require('mongoose');
 
 var Export = React.createClass({
 
     getInitialState: function () {
         return {
- 
+            empSchedules: [],
         };
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.getEmployees();
         this.getAllDepartments();
-        helpers.getEmpSchedules().then(function(response) {
+        helpers.getEmpSchedules().then(function (response) {
             if (response !== this.state.empSchedules) {
-              this.setState({ empSchedules: response.data });
+                this.setState({ empSchedules: response.data });
             }
         }.bind(this));
     },
 
-    getAllDepartments: function() {
-        helpers.getAllDepartments().then(function(response){
+    getAllDepartments: function () {
+        helpers.getAllDepartments().then(function (response) {
             this.setState({
                 departments: response.data.department
             });
         }.bind(this));
     },
 
-    getEmployees: function() {
-        helpers.getAllEmployees().then(function(response) {
+    getEmployees: function () {
+        helpers.getAllEmployees().then(function (response) {
             if (response !== this.state.allEmployees) {
                 this.setState({ allEmployees: response.data });
             }
         }.bind(this));
     },
 
-    ExportData: function() {
+    ExportData: function (req, res) {
 
- 
-        var opt = {
-            host : '127.0.0.1:8080', //<hostname><:port>  Default: localhost:27017
-            db : 'test',
-            collection :'user',
-            fields : "user,email,contact",
-            out : 'users.csv',
-            type : 'csv'
-        }
-        //mongoexport command should be in path variable
-        //all options for mongoexport command can be used
-         
-        mongoexport(opt,(err,result)=>{
-            if(err) console.log(err);
-            else console.log(result);
-        });
+        var fields = ['car.make', 'car.model', 'price', 'color'];
+        
+        var EmployeeSchedule = this.state.empSchedules;
+
+        var csv = json2csv({ data: EmployeeSchedule, fields: fields });
+
+        // fs.writeFile('file.csv', csv, function (err) {
+        //     if (err) throw err;
+        //     console.log('file saved');
+        // });
+
+        console.log(csv);
+
+        res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+        res.set('Content-Type', 'text/csv');
+        res.status(200).send(csv);
+
     },
 
     render: function () {
