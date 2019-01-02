@@ -1,6 +1,5 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-const mongoose = require("mongoose");
 const mongotocsv = require('mongo-to-csv');
 
 var Export = React.createClass({
