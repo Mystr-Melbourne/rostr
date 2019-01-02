@@ -1,3 +1,15 @@
+.nav-wrapper{
+	background: #3D5A80;
+	color: white;
+}
+a.black-text{
+	color: white!important;
+}
+a.brand-logo{
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+}
 .mainview td {
 	border-right: 1px solid #ccc;
 	min-width: 155px;

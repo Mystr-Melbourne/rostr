@@ -25,7 +25,7 @@ var Employee = React.createClass({
                     <li><a className="black-text" href="/logout">Logout<i className="material-icons right">exit_to_app</i></a></li>
                 </ul>
                 <nav>
-                    <div className="nav-wrapper grey lighten-5">
+                    <div className="nav-wrapper">
                         <a href="/employee" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png" /><span className="hide-on-med-and-down">Rostr</span></a>
                         <a href="/" data-activates="slide-out" className="button-collapse blue-text text-darken-1"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
