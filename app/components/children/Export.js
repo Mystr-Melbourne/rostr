@@ -1,22 +1,13 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
+const mongoose = require("mongoose");
+const mongotocsv = require('mongo-to-csv');
 
 var Export = React.createClass({
 
     getInitialState: function () {
         return {
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            phoneType: "",
-            password: "",
-            allEmployees: [],
-            selectedEmployee: "",
-            emp_id: "",
-            department: "",
-            departments: [],
-            empSchedules: [],
+ 
         };
     },
 
@@ -42,58 +33,23 @@ var Export = React.createClass({
         helpers.getAllEmployees().then(function(response) {
             if (response !== this.state.allEmployees) {
                 this.setState({ allEmployees: response.data });
-                this.activeButtons();
             }
         }.bind(this));
     },
 
     ExportData: function() {
 
-        var UserSchema = new mongoose.Schema({
-            fullname: {type: String},
-            email: {type: String},
-            age: {type: Number},
-            username: {type: String}
-          });
-
-          UserSchema.plugin(mongooseToCsv, {
-            headers: 'Firstname Lastname Username Email Age',
-            constraints: {
-              'Username': 'username',
-              'Email': 'email',
-              'Age': 'age'
-            },
-            virtuals: {
-              'Firstname': function(doc) {
-                return doc.fullname.split(' ')[0];
-              },
-              'Lastname': function(doc) {
-                return doc.fullname.split(' ')[1];
-              }
-            }
-          });
-           
-          var User = mongoose.model('Users', UserSchema);
-           
-          // Query and stream
-          User.findAndStreamCsv({age: {$lt: 40}})
-            .pipe(fs.createWriteStream('users_under_40.csv'));
-           
-          // Create stream from query results
-          User.find({}).exec()
-            .then(function(docs) {
-              User.csvReadStream(docs)
-                .pipe(fs.createWriteStream('users.csv'));
-            });
-           
-          // Transform mongoose streams
-          User.find({})
-            .where('age').gt(20).lt(30)
-            .limit(10)
-            .sort('age')
-            .stream()
-            .pipe(User.csvTransformStream())
-            .pipe(fs.createWriteStream('users.csv'));
+        let options = {
+            database: 'users', // required
+            collection: 'pets', // required
+            fields: ['name','cost'], // required
+            output: './output/pets.csv', // required
+            allValidOptions: '-q \'{ "name": "cat" }\'' // optional
+        };
+        mongotocsv.export(options, function (err, success) {
+            console.log(err);
+            console.log(success);
+        });
     },
 
     render: function () {
