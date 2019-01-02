@@ -57,10 +57,10 @@ var AnnouncementsBuild = React.createClass({
     this.setState({ time: event.target.value });
   },
 
-  addAnnouncements: function(event) {
+  addAnnouncements: function (event) {
     event.preventDefault(event);
     helpers.addAnnouncements(this.state.location, this.state.content).then(
-      function(response) {
+      function (response) {
         this.clearStates();
       }.bind(this)
     );
@@ -68,7 +68,7 @@ var AnnouncementsBuild = React.createClass({
     this.clearForm();
   },
 
-  clearForm: function() {
+  clearForm: function () {
     var elements = document.getElementsByTagName("input");
     for (var i = 0; i < elements.length; i++) {
       elements[i].value = "";
@@ -76,58 +76,73 @@ var AnnouncementsBuild = React.createClass({
     }
   },
 
-  clearStates: function() {
+  clearStates: function () {
     this.setState({ location: "", content: "" });
   },
 
-  handleUpdateEmpSchedule: function(event) {
-    var saveButtonBlue = document.getElementById(event);
-    this.state.empSchedules.map((person, i) => {
-      if (this.state.sendTo == "all") {
-        person[this.state.day] = this.state.time;
-        person[this.state.day + "_location"] = this.state.location;
-        person[this.state.day + "_des"] = this.state.content;
-        person[this.state.day + "_accept"] = 0;
-        console.log(person);
-        helpers.updateEmpSchedule(person).then(
-          function(response) {
-            var empName = person.firstName + " " + person.lastName + "'s ";
-            Materialize.toast(empName + "schedule updated", 2000);
-          }.bind(this)
-        );
-        $.ajax({
-          url: "/sms-send",
-          type: "post",
-          data: {
-            to: person.phone,
-            des: person[this.state.day + "_des"]
-          }
-        })
-      } else if (person.department == this.state.sendTo) {
-        person[this.state.day] = this.state.time;
-        person[this.state.day + "_location"] = this.state.location;
-        person[this.state.day + "_des"] = this.state.content;
-        person[this.state.day + "_accept"] = 0;
-        console.log(person);
-        helpers.updateEmpSchedule(person).then(
-          function(response) {
-            var empName = person.firstName + " " + person.lastName + "'s ";
-            Materialize.toast(empName + "schedule updated", 2000);
-          }.bind(this)
-        );
-        $.ajax({
-          url: "/sms-send",
-          type: "post",
-          data: {
-            to: person.phone,       
-            des: person[this.state.day + "_des"]
-          }
-        })
-       
-      }
+  handleUpdateEmpSchedule: function (event) {
+    // array holds numbers and body holds message
+    var toArray = [];
+    var body = this.state.content;
 
+    // loop through all employees
+    this.state.empSchedules.map((person, i) => {
+      // no filter applied
+      if (this.state.sendTo == "all") {
+        // create person
+        person[this.state.day] = this.state.time;
+        person[this.state.day + "_location"] = this.state.location;
+        person[this.state.day + "_des"] = this.state.content;
+        person[this.state.day + "_accept"] = 0;
+
+        console.log(person); // log
+
+        helpers.updateEmpSchedule(person).then(
+          function (response) {
+            var empName = person.firstName + " " + person.lastName + "'s ";
+            Materialize.toast(empName + "schedule updated", 2000);
+          }.bind(this)
+        );
+
+        // add number to array
+        toArray.push(person.phoneCode);
+
+        // filter applied
+      } else if (person.department == this.state.sendTo) {
+        //create person
+        person[this.state.day] = this.state.time;
+        person[this.state.day + "_location"] = this.state.location;
+        person[this.state.day + "_des"] = this.state.content;
+        person[this.state.day + "_accept"] = 0;
+
+        console.log(person); // log
+
+        helpers.updateEmpSchedule(person).then(
+          function (response) {
+            var empName = person.firstName + " " + person.lastName + "'s ";
+            Materialize.toast(empName + "schedule updated", 2000);
+          }.bind(this)
+        );
+
+        // add number to array
+        toArray.push(person.phoneCode);
+      }
     });
-    
+
+    // send out the text blast
+    this.prepareSMS(body, toArray);
+  },
+
+  // send a sms text message with a populated array of numbers
+  prepareSMS: function (body, toArray) {
+    $.ajax({
+      url: "/sms-send",
+      type: "post",
+      data: {
+        to: toArray,
+        des: body
+      }
+    })
   },
 
   render: function() {

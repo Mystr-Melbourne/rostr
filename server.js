@@ -65,21 +65,31 @@ app.get("/", autoRedirect, function(req, res) {
 app.use(express.static(__dirname + "/public"));
 
 // TWILIO SMS functionality
-// THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
 // use ngrok to host up the service so that it can receive texts
-// Send sms
 var client = require("twilio")(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
 
 app.post("/sms-send", function (req, res) {
-  console.log("sending to number " + req.body.to);
-  client.messages.create({
-    from: process.env.TWILIO_PHONE_NUMBER,
-    to: req.body.to,
-    body: req.body.des
-  })
+  const numbers = req.body.to;
+  // loop through all numbers in the given array and send a text message to it
+  Promise.all(
+    numbers.map(numberPoint => {
+      
+      console.log("sending to number " + numberPoint);
+
+      return client.messages.create({
+        from: process.env.TWILIO_MESSAGING_SERVICE_SID,
+        to: numberPoint,
+        body: req.body.des
+      });
+    })
+  )
+    .then(messages => {
+      console.log("Messages sent!");
+    })
+    .catch(err => console.error(err));
 });
 
 app.post("/sms", function(req, res) {
@@ -91,32 +101,32 @@ app.post("/sms", function(req, res) {
   // req.body.From - get user phoen number.
   // use findOneAndUpdate({"phoneCode"}) -- need phoneCode
   var empList;
-  console.log("ok please")
-    
-  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
-    if(err) {
-      console.log("error:")
+  console.log("ok please");
+
+  EmployeeSchedule.find({ active: 1 }).exec(function(err, docs) {
+    if (err) {
+      console.log("error:");
       // console.log(err);
     } else {
-      console.log("respond: ")
+      console.log("respond: ");
       // console.log(docs);
     }
-  })
+  });
 
   console.log(req.body.From);
 
   var empList;
-  console.log("ok please")
-  
-  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
-    if(err) {
-      console.log("error:")
+  console.log("ok please");
+
+  EmployeeSchedule.find({ active: 1 }).exec(function(err, docs) {
+    if (err) {
+      console.log("error:");
       console.log(err);
     } else {
-      console.log("respond: ")
+      console.log("respond: ");
       console.log(docs);
     }
-  })
+  });
   // helpers.getEmpSchedules().then(function(response) {
   //   empList = response.data;
   //   console.log("response:");
