@@ -74,8 +74,9 @@ app.post("/sms-send", function(req,res) {
   client.messages.create({
     from: process.env.TWILIO_PHONE_NUMBER,
     to: req.body.to,
-    body: "There is a shift at " + req.body.title + " during " + req.body.time +
-    +"on " + req.body.day + ", " + req.body.des + ". Respond yes/no."
+    body: "Location: " + req.body.title + "\nTime: " + req.body.time
+    + " " + req.body.day + "\nDescription: " + req.body.des + "\nRespond "+
+    "y-" + req.body.day.slice(0,3) +"/ n-" + req.body.day.slice(0,3)
   })
 });
 
@@ -85,50 +86,168 @@ app.post("/sms", function(req, res) {
   const twiml = new MessagingResponse();
 
   console.log(req.body.Body);
-  // req.body.From - get user phoen number.
+  // req.body.From - get user phone number.
   // use findOneAndUpdate({"phoneCode"}) -- need phoneCode
   var empList;
   console.log("ok please")
-    
-  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
-    if(err) {
-      console.log("error:")
-      // console.log(err);
-    } else {
-      console.log("respond: ")
-      // console.log(docs);
-    }
-  })
+  req.body.Body = req.body.Body.toLowerCase();
 
-  console.log(req.body.From);
-
-  var empList;
-  console.log("ok please")
-  
-  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
-    if(err) {
-      console.log("error:")
-      console.log(err);
-    } else {
-      console.log("respond: ")
-      console.log(docs);
-    }
-  })
-  // helpers.getEmpSchedules().then(function(response) {
-  //   empList = response.data;
-  //   console.log("response:");
-  //   console.log(empList);
-
-  // }, (reject) => {
-  //   console.log("reject: ")
-  //   console.log(reject);
-  // })
-
-  if (req.body.Body == "yes") {
+  if (req.body.Body == "y-mon") {
     twiml.message("Alright we have comfirmed your shift");
-  } else if (req.body.Body == "no") {
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      monday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-tue") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      tuesday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-wed") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      wednesday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-thu") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      thursday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-fri") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      friday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-sat") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      saturday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "y-sun") {
+    twiml.message("Alright we have comfirmed your shift");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      sunday_accept: 1,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "n-mon") {
     twiml.message("We understand you cannot work");
-  } else {
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      monday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+    /* sry for hard coding */
+  } else if (req.body.Body == "n-tue") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      tuesday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "n-wed") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      wednesday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "n-thu") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      thursday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "n-fri") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      friday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  } else if (req.body.Body == "n-sat") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      saturday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  }  else if (req.body.Body == "n-sun") {
+    twiml.message("We understand you cannot work");
+    EmployeeSchedule.findOneAndUpdate({"phoneCode": req.body.From}, {
+      sunday_accept: 2,
+    }, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("Employee schedule updated")
+      }
+    });
+  }else {
     twiml.message("I did not quite understand that, can you please say yes/no");
   }
 
