@@ -104,7 +104,7 @@ var ScheduleView = React.createClass({
                             {schedules.firstName} {schedules.lastName}
                           </td>
                           <td className="schedule">
-                            <div>
+                            <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : "not-accept"}>
                               {schedules.monday}
                               <br />
                               <b>{schedules.monday_location}</b>

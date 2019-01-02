@@ -18,6 +18,29 @@ a[href="/logout"] {
 	border-right: 1px solid #ccc;
 	width: 155px;
 	height: 119px;
+	padding: .1em;
+}
+
+.mainview td div:first-child{
+	background: #e6e6e6;
+    border: 5px solid #ababab;
+	border-radius: 5px;
+	height: 100%;
+}
+
+.mainview td div.decline{
+	background: #ffd1d1;
+    border: 5px dashed #de6d6d;
+}
+
+.mainview td div.accept{
+	background: #c4ffde;
+    border: 5px solid #7cc18b;
+}
+
+.mainview td div.not-accept{
+	background: #ffddc4;
+    border: 5px solid #e2a928;
 }
 
 .mainview td div div{
