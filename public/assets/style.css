@@ -25,8 +25,8 @@ a[href="/logout"] {
 }
 
 .mainview td div:first-child{
-	background: #e6e6e6;
-    border: 5px solid #ababab;
+	/* background: #e6e6e6;
+    border: 5px solid #ababab; */
 	border-radius: 5px;
 	height: 100%;
 }
