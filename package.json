@@ -22,13 +22,6 @@
     "axios": "^0.15.3",
     "bluebird": "^3.5.3",
     "body-parser": "^1.15.2",
-<<<<<<< HEAD
-    "child_process": "^1.0.2",
-    "dotenv": "^4.0.0",
-    "execa": "^1.0.0",
-    "export-to-csv": "^0.1.2",
-=======
->>>>>>> dev_branch
     "express": "^4.16.4",
     "express-session": "^1.14.2",
     "fast-csv": "^2.4.1",
