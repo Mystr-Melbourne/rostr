@@ -26,8 +26,8 @@ var Employee = React.createClass({
                 </ul>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="/employee" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png" /><span className="hide-on-med-and-down">Rostr</span></a>
-                        <a href="/" data-activates="slide-out" className="button-collapse blue-text text-darken-1"><i className="material-icons">menu</i></a>
+                        <a href="/employee" className="brand-logo"><span className="">Rostr</span></a>
+                        <a href="/" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture} /></a></li>
                         </ul>
