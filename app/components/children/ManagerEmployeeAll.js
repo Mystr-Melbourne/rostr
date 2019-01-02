@@ -89,7 +89,7 @@ var ManagerEmployeeAll = React.createClass({
         helpers.updateEmployee(this.state.selectedEmployee, this.state.firstName, this.state.lastName, this.state.email, this.state.phone, this.state.phoneCode, this.state.phoneType, this.state.password, this.state.department).then(function (response) {
         }.bind(this));
 
-        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department,  this.state.phone, this.state.phoneCode).then(function (response) {
+        helpers.updateEmpName(this.state.emp_id, this.state.firstName, this.state.lastName, this.state.department, this.state.phone, this.state.phoneCode).then(function (response) {
             this.clearStates();
         }.bind(this));
 
@@ -324,7 +324,7 @@ var ManagerEmployeeAll = React.createClass({
                                     </button>
                                 </div>
                                 <div className="col s4">
-                                    <a  id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.handleUpdateForm}>Update
+                                    <a id="updateEmployee" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.handleUpdateForm}>Update
                                         <i className="material-icons right">edit</i>
                                     </a>
                                 </div>

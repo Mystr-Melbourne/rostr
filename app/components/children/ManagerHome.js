@@ -5,7 +5,7 @@ var AnnouncementsBuild = require("./AnnouncementsBuild");
 var AnnouncementsView = require("./AnnouncementsView");
 
 var ManagerHome = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       location: "",
       content: "",
@@ -13,7 +13,7 @@ var ManagerHome = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     this.getAnnouncements();
     this.getAllDepartments();
   },
@@ -23,18 +23,18 @@ var ManagerHome = React.createClass({
   //         this.getAnnouncements();
   //     }
   // },
-  getAllDepartments: function() {
+  getAllDepartments: function () {
     helpers.getAllDepartments().then(
-      function(response) {
+      function (response) {
         this.setState({
           department: response.data.department
         });
       }.bind(this)
     );
   },
-  getAnnouncements: function() {
+  getAnnouncements: function () {
     helpers.getAnnouncements().then(
-      function(response) {
+      function (response) {
         this.setState({
           location: response.data[response.data.length - 1].location,
           content: response.data[response.data.length - 1].content
@@ -43,7 +43,7 @@ var ManagerHome = React.createClass({
     );
   },
 
-  render: function() {
+  render: function () {
     return (
       <div>
         <ScheduleView />

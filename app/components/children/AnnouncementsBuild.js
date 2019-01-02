@@ -2,7 +2,7 @@ var React = require("react");
 var helpers = require("../utils/helpers");
 
 var AnnouncementsBuild = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       location: "",
       content: "",
@@ -15,9 +15,9 @@ var AnnouncementsBuild = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     helpers.getAllDepartments().then(
-      function(response) {
+      function (response) {
         this.setState(
           {
             departments: response.data.department
@@ -27,7 +27,7 @@ var AnnouncementsBuild = React.createClass({
       }.bind(this)
     );
     helpers.getEmpSchedules().then(
-      function(response) {
+      function (response) {
         if (response !== this.state.empSchedules) {
           this.setState({ empSchedules: response.data });
         }
@@ -132,7 +132,7 @@ var AnnouncementsBuild = React.createClass({
     })
   },
 
-  render: function() {
+  render: function () {
     return (
       <div className="card-panel">
         <div className="row">
@@ -156,8 +156,8 @@ var AnnouncementsBuild = React.createClass({
                 );
               })
             ) : (
-              <option>Nothing</option>
-            )}
+                <option>Nothing</option>
+              )}
           </select>
           <br />
           <select

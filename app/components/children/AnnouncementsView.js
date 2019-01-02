@@ -1,7 +1,7 @@
 var React = require("react");
 
 var AnnouncementsView = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <div className="card-panel">
         <div className="row">
