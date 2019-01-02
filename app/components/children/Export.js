@@ -39,7 +39,7 @@ var Export = React.createClass({
         }.bind(this));
     },
 
-    ExportData: function (req, res) {
+    ExportData: function () {
 
         var fields = ['car.make', 'car.model', 'price', 'color'];
         
@@ -51,12 +51,20 @@ var Export = React.createClass({
         //     if (err) throw err;
         //     console.log('file saved');
         // });
-
+        $.ajax({
+            url: '/getCSV',
+            type: 'post',
+            data: ({
+                csv: csv,
+            })
+        })
         console.log(csv);
 
-        res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
-        res.set('Content-Type', 'text/csv');
-        res.status(200).send(csv);
+
+        // res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+        // res.set('Content-Type', 'text/csv');
+        // res.status(200).send(csv)
+
 
     },
 
@@ -66,7 +74,7 @@ var Export = React.createClass({
                 <br></br>
                 <div className="row">
                     <div className="col s4">
-                        <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3" onClick={this.ExportData}>Export Excel File
+                        <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3" onClick="window.location.href='/exportCSV'">Export Excel File
                                         <i className="material-icons right">insert_drive_file</i>
                         </button>
                     </div>

@@ -35,12 +35,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -53,17 +53,48 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //Landing
-app.get("/", autoRedirect, function(req, res) {
+app.get("/", autoRedirect, function (req, res) {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
 //Public files <this needs to stay right below app.get("/")!!!!
 app.use(express.static(__dirname + "/public"));
 
+//this is for exporting csv
+
+app.post("/getCSV", function (req, res) {
+  // req.body.csv 
+  res.setHeader('Content-disposition', 'attachment; filename=schedules.csv');
+  res.set('Content-Type', 'text/csv');
+  res.status(200).send(req.body.csv);
+});
+
+app.get('/exportCSV', function (req, res) {
+
+  var field_headers = ['emp_id', 'firstName', 'lastName', 'sunday'];
+
+  var schedule;
+
+  helpers.getEmpSchedules().then(function (response) {
+    if (response !== schedule) {
+      this.setState({ empSchedules: response.data });
+    }
+  }.bind(this));
+
+
+  var csv = json2csv({ data: schedule, fields: field_headers });
+
+  res.setHeader('Content-Length', stat.size);
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename=Schedules.csv');
+  csv.pipe(res);
+}
+);
+
 // TWILIO SMS functionality
 // THIS MIGHT BREAK SOME THINGS, COMMENT OUT IF SOMETHING IS SERIOUSLY WRONG
 // use ngrok to host up the service so that it can receive texts
-app.post("/sms", function(req, res) {
+app.post("/sms", function (req, res) {
   console.log(req);
 
   const twiml = new MessagingResponse();
@@ -93,7 +124,7 @@ app.get(
   passport.authenticate("google", {
     failureRedirect: "/"
   }),
-  function(req, res) {
+  function (req, res) {
     res.redirect("/employee");
   }
 );
@@ -106,10 +137,10 @@ if (process.env.GOOGLE_CLIENT_ID)
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK_URL
       },
-      function(accessToken, refreshToken, profile, done) {
+      function (accessToken, refreshToken, profile, done) {
         User.findOne(
           { username: profile.displayName, email: profile.emails[0].value },
-          function(err, user) {
+          function (err, user) {
             console.log("Current user already stored = " + user);
             if (err) return done(err);
             if (user) {
@@ -121,7 +152,7 @@ if (process.env.GOOGLE_CLIENT_ID)
               newUser.userType = "employee";
               console.log("Storing new user to DB");
 
-              newUser.save(function(err) {
+              newUser.save(function (err) {
                 if (err) throw err;
                 return done(null, newUser);
               });
@@ -157,11 +188,11 @@ passport.use(
       callbackURL: process.env.LINKEDIN_CALLBACK,
       state: true
     },
-    function(accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, profile, done) {
       console.log(profile.photos[0].value);
       User.findOne(
         { username: profile.name.givenName, email: profile.emailAddress },
-        function(err, user) {
+        function (err, user) {
           console.log("Current user already stored = " + user);
           if (err) return done(err);
           if (user) {
@@ -174,7 +205,7 @@ passport.use(
             newUser.picture = profile.photos[0].value;
             console.log("Storing new user to DB");
 
-            newUser.save(function(err) {
+            newUser.save(function (err) {
               if (err) throw err;
               return done(null, newUser);
             });
@@ -186,7 +217,7 @@ passport.use(
 );
 
 //LOCAL AUTH
-app.post("/register", function(req, res) {
+app.post("/register", function (req, res) {
   if (req.body.redirect == 0) {
     // no redirect
     User.register(
@@ -199,12 +230,12 @@ app.post("/register", function(req, res) {
       }),
 
       req.body.password,
-      function(err, user) {
+      function (err, user) {
         if (err) {
           res.sendFile(path.resolve(__dirname, "public", "error.html"));
           console.log(err);
         } else {
-          passport.authenticate("local")(req, res, function() {
+          passport.authenticate("local")(req, res, function () {
             //  res.redirect("/");
           });
         }
@@ -222,12 +253,12 @@ app.post("/register", function(req, res) {
       }),
 
       req.body.password,
-      function(err, user) {
+      function (err, user) {
         if (err) {
           res.sendFile(path.resolve(__dirname, "public", "error.html"));
           console.log(err);
         } else {
-          passport.authenticate("local")(req, res, function() {
+          passport.authenticate("local")(req, res, function () {
             res.redirect("/");
           });
         }
@@ -242,7 +273,7 @@ app.post(
     // successRedirect: "/manager",
     failureRedirect: "/"
   }),
-  function(req, res) {
+  function (req, res) {
     reRoute(req, res);
   }
 );
@@ -271,20 +302,20 @@ function autoRedirect(req, res, next) {
   }
 }
 
-app.get("/user", function(req, res) {
+app.get("/user", function (req, res) {
   res.send(req.user);
 });
 
 //Restricting routes
-app.get("/login", function(req, res) {
+app.get("/login", function (req, res) {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
-app.get("/register", function(req, res) {
+app.get("/register", function (req, res) {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
-app.get("/manager", isLoggedIn, function(req, res) {
+app.get("/manager", isLoggedIn, function (req, res) {
   if (req.user.userType === "manager") {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
   } else {
@@ -292,7 +323,7 @@ app.get("/manager", isLoggedIn, function(req, res) {
   }
 });
 
-app.get("/manager/*", isLoggedIn, function(req, res) {
+app.get("/manager/*", isLoggedIn, function (req, res) {
   if (req.user.userType === "manager") {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
   } else {
@@ -300,7 +331,7 @@ app.get("/manager/*", isLoggedIn, function(req, res) {
   }
 });
 
-app.get("/employee", isLoggedIn, function(req, res) {
+app.get("/employee", isLoggedIn, function (req, res) {
   if (req.user.userType === "employee") {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
   } else {
@@ -308,7 +339,7 @@ app.get("/employee", isLoggedIn, function(req, res) {
   }
 });
 
-app.get("/employee/*", isLoggedIn, function(req, res) {
+app.get("/employee/*", isLoggedIn, function (req, res) {
   if (req.user.userType === "employee") {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
   } else {
@@ -316,7 +347,7 @@ app.get("/employee/*", isLoggedIn, function(req, res) {
   }
 });
 
-app.get("/logout", function(req, res) {
+app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
@@ -324,7 +355,7 @@ app.get("/logout", function(req, res) {
 var routes = require("./controllers/db_controller.js");
 app.use("/", isLoggedIn, routes);
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.resolve(__dirname, "public", "404.html"));
 });
 
