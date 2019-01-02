@@ -100,6 +100,30 @@ app.post("/sms", function(req, res) {
     }
   })
 
+  console.log(req.body.From);
+
+  var empList;
+  console.log("ok please")
+  
+  EmployeeSchedule.find({"active": 1}).exec(function(err,docs) {
+    if(err) {
+      console.log("error:")
+      console.log(err);
+    } else {
+      console.log("respond: ")
+      console.log(docs);
+    }
+  })
+  // helpers.getEmpSchedules().then(function(response) {
+  //   empList = response.data;
+  //   console.log("response:");
+  //   console.log(empList);
+
+  // }, (reject) => {
+  //   console.log("reject: ")
+  //   console.log(reject);
+  // })
+
   if (req.body.Body == "yes") {
     twiml.message("Alright we have comfirmed your shift");
   } else if (req.body.Body == "no") {
