@@ -26,7 +26,7 @@ var Manager = React.createClass({
                 </ul>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="/manager" className="brand-logo"><span className="hide-on-med-and-down">Rostr</span></a>
+                        <a href="/manager" className="brand-logo"><span className="">Rostr</span></a>
                         <a href="/" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>

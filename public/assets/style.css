@@ -1,6 +1,7 @@
 .nav-wrapper{
 	background: #3D5A80;
 	color: white;
+	padding: 0 3em;
 }
 a.black-text{
 	color: white!important;
@@ -10,9 +11,12 @@ a.brand-logo{
 	text-transform: uppercase;
 	font-weight: 700;
 }
+a[href="/logout"] {
+	color:black!important;
+}
 .mainview td {
 	border-right: 1px solid #ccc;
-	min-width: 155px;
+	width: 155px;
 	height: 119px;
 }
 
@@ -24,7 +28,6 @@ a.brand-logo{
 
 .mainview{
 	table-layout: fixed;
-	border-collapse: collapse;
 }
 
 .filter-option{
