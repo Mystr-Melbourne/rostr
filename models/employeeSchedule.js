@@ -1,8 +1,14 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var EmployeeScheduleSchema = new Schema({
   emp_id: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  phoneCode: {
     type: String
   },
   firstName: {
@@ -11,11 +17,21 @@ var EmployeeScheduleSchema = new Schema({
   lastName: {
     type: String
   },
+  department: {
+    type: String,
+    default: ""
+  },
+  active: {
+    type: Number,
+    default: 1
+  },
+
+  // needs refactoring
   monday: {
     type: String,
     default: ""
   },
-  monday_title: {
+  monday_location: {
     type: String,
     default: ""
   },
@@ -27,7 +43,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  tuesday_title: {
+  tuesday_location: {
     type: String,
     default: ""
   },
@@ -39,7 +55,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  wednesday_title: {
+  wednesday_location: {
     type: String,
     default: ""
   },
@@ -51,7 +67,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  thursday_title: {
+  thursday_location: {
     type: String,
     default: ""
   },
@@ -63,7 +79,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  friday_title: {
+  friday_location: {
     type: String,
     default: ""
   },
@@ -71,11 +87,11 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  saturday:{
+  saturday: {
     type: String,
     default: ""
   },
-  saturday_title: {
+  saturday_location: {
     type: String,
     default: ""
   },
@@ -87,7 +103,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  sunday_title: {
+  sunday_location: {
     type: String,
     default: ""
   },
@@ -95,14 +111,7 @@ var EmployeeScheduleSchema = new Schema({
     type: String,
     default: ""
   },
-  department:{
-    type: String,
-    default: ""
-  },
-  active: {
-    type: Number,
-    default: 1,
-  },
+
   monday_accept: {
     type: Number,
     default: 0 // 0 is not accepted, 1 accepted, 2 declined.
@@ -133,5 +142,8 @@ var EmployeeScheduleSchema = new Schema({
   }
 });
 
-var EmployeeSchedule = mongoose.model('EmployeeSchedule', EmployeeScheduleSchema);
+var EmployeeSchedule = mongoose.model(
+  "EmployeeSchedule",
+  EmployeeScheduleSchema
+);
 module.exports = EmployeeSchedule;

@@ -1,5 +1,4 @@
 module.exports = {
-
   // This is the entry point or start of our react applicaton
   entry: "./app/app.js",
 
@@ -18,7 +17,7 @@ module.exports = {
         // node modules and server files unnecessarily
         exclude: /node_modules/, 
         include: /app/,
-        loader: "babel",
+        loader: "babel-loader",
         query: {
           // These are the specific transformations we'll be using.
           presets: ["react"]

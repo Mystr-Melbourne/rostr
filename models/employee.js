@@ -8,13 +8,10 @@ var EmployeeSchema = new Schema({
     lastName: {
         type: String
     },
-    email: {
-        type: String
-    },
     phone: {
         type: String
     },
-    phoneType: {
+    phoneCode: {
         type: String
     },
     password: {
