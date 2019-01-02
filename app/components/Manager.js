@@ -3,22 +3,22 @@ var helpers = require("./utils/helpers");
 
 var Manager = React.createClass({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             username: "",
             picture: ""
         };
     },
 
-    componentDidMount: function() {
-       helpers.getCurrentUser().then(function(response) {
-          if (response !== this.state.username) {
-            this.setState({ picture: response.data.picture, username: response.data.username });
-          }
+    componentDidMount: function () {
+        helpers.getCurrentUser().then(function (response) {
+            if (response !== this.state.username) {
+                this.setState({ picture: response.data.picture, username: response.data.username });
+            }
         }.bind(this));
     },
 
-    render: function() {
+    render: function () {
         return (
             <div>
                 <ul id="dropdown1" className="dropdown-content">
@@ -26,22 +26,22 @@ var Manager = React.createClass({
                 </ul>
                 <nav>
                     <div className="nav-wrapper grey lighten-5">
-                        <a href="/manager" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png"/><span className="hide-on-med-and-down">Rostr</span></a>
+                        <a href="/manager" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png" /><span className="hide-on-med-and-down">Rostr</span></a>
                         <a href="/" data-activates="slide-out" className="button-collapse blue-text text-darken-1"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>
                             <li><a className="black-text" href="/manager/export">Export CSV<i className="material-icons right">group</i></a></li>
                             <li><a className="black-text" href="/manager/employeeAll">Edit Staff<i className="material-icons right">group</i></a></li>
                             {/* <li><a className="black-text" href="/manager/schedulesCreate">Edit Schedule<i className="material-icons right">access_time</i></a></li> */}
-                            <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture}/></a></li>
+                            <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture} /></a></li>
                         </ul>
                         <ul id="slide-out" className="side-nav">
                             <li>
                                 <div className="userView">
                                     <div className="background">
-                                        <img src="http://materializecss.com/images/office.jpg"/>
+                                        <img src="http://materializecss.com/images/office.jpg" />
                                     </div>
-                                    <a><img className="circle" src={this.state.picture}/></a>
+                                    <a><img className="circle" src={this.state.picture} /></a>
                                     <a><span className="white-text">Company Name</span></a>
                                     <a><span className="white-text name">{this.state.username}</span></a>
                                 </div>
