@@ -34,12 +34,6 @@ var AnnouncementsBuild = React.createClass({
       }.bind(this)
     );
   },
-  //
-  // getAnnouncements: function() {
-  //     helpers.getAnnouncements().then(function(response) {
-  //
-  //     }.bind(this));
-  // },
 
   handleAnnouncementBuild(event) {
     this.setState({ [event.target.id]: event.target.value });
@@ -81,102 +75,61 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleUpdateEmpSchedule: function (event) {
-    // array holds numbers and body holds message
+
     var toArray = [];
-    var body = this.state.content;
 
     // loop through all employees
     this.state.empSchedules.map((person, i) => {
-      // no filter applied
       if (this.state.sendTo == "all") {
-        // create person
-        person[this.state.day] = this.state.time;
-        person[this.state.day + "_location"] = this.state.location;
-        person[this.state.day + "_des"] = this.state.content;
-        person[this.state.day + "_accept"] = 0;
+        person = this.assignSchedule(person);
+        toArray.push(person.phoneCode);
 
-        console.log(person); // log
-
-        helpers.updateEmpSchedule(person).then(
-          function (response) {
-            var empName = person.firstName + " " + person.lastName + "'s ";
-            Materialize.toast(empName + "schedule updated", 2000);
-          }.bind(this)
-        );
-// <<<<<<< sms-test
-        $.ajax({
-          url: "/sms-send",
-          type: "post",
-          data: {
-            to: person.phone,
-            title: person[this.state.day + "_location"],
-            time: person[this.state.day],
-            des: person[this.state.day + "_des"],
-            day: this.state.day
-          }
-        })
-// =======
-
-//         // add number to array
-//         toArray.push(person.phoneCode);
-
-//         // filter applied
-// >>>>>>> sms
       } else if (person.department == this.state.sendTo) {
-        //create person
-        person[this.state.day] = this.state.time;
-        person[this.state.day + "_location"] = this.state.location;
-        person[this.state.day + "_des"] = this.state.content;
-        person[this.state.day + "_accept"] = 0;
-
-        console.log(person); // log
-
-        helpers.updateEmpSchedule(person).then(
-          function (response) {
-            var empName = person.firstName + " " + person.lastName + "'s ";
-            Materialize.toast(empName + "schedule updated", 2000);
-          }.bind(this)
-        );
-// <<<<<<< sms-test
-        $.ajax({
-          url: "/sms-send",
-          type: "post",
-          data: {
-            to: person.phone,
-            title: person[this.state.day + "_location"],
-            time: person[this.state.day],
-            des: person[this.state.day + "_des"],
-            day: this.state.day
-          }
-        })
-       
-// =======
-
-//         // add number to array
-//         toArray.push(person.phoneCode);
-// >>>>>>> sms
+        person = this.assignSchedule(person);
+        toArray.push(person.phoneCode);
       }
-
     });
-// <<<<<<< sms-test
-    
-// =======
 
-//     // send out the text blast
-//     this.prepareSMS(body, toArray);
-//   },
+    // send out the text blast
+    this.prepareSMS(toArray);
+  },
 
-//   // send a sms text message with a populated array of numbers
-//   prepareSMS: function (body, toArray) {
-//     $.ajax({
-//       url: "/sms-send",
-//       type: "post",
-//       data: {
-//         to: toArray,
-//         des: body
-//       }
-//     })
-// >>>>>>> sms
+  // assign announcement to this person
+  assignSchedule: function (person) {
+    person[this.state.day] = this.state.time;
+    person[this.state.day + "_location"] = this.state.location;
+    person[this.state.day + "_des"] = this.state.content;
+    person[this.state.day + "_accept"] = 0;
+
+    helpers.updateEmpSchedule(person).then(
+      function (response) {
+        var empName = person.firstName + " " + person.lastName + "'s ";
+        Materialize.toast(empName + "schedule updated", 2000);
+      }.bind(this)
+    );
+
+    return person; // BIG STRETCH
+  },
+
+  // blast out text messages
+  prepareSMS: function (toArray) {
+
+    // prepare string
+    var textBody = "Location: " + this.state.location +
+      " Time: " + this.state.time + " " + this.state.day +
+      " Description: " + this.state.content +
+      "\nRespond with y-" + this.state.day.slice(0, 3) +
+      " or n-" + this.state.day.slice(0, 3);
+
+    // send phone array and text to backend
+    $.ajax({
+      url: "/sms-send",
+      type: "post",
+      data: {
+        to: toArray,
+        des: textBody,
+      }
+    })
   },
 
   render: function() {
