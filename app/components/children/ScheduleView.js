@@ -46,7 +46,7 @@ var ScheduleView = React.createClass({
           <div className="section">
            <div className="filter-option">
                 <div className="left-hand">
-                  <h5>Edit Staff</h5>
+                  <h5>Schedule View</h5>
                 </div>
                 <div className="right-hand">
                     <select

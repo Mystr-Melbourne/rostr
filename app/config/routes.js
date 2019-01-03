@@ -16,7 +16,7 @@ var ManagerHome = require("../components/children/ManagerHome");
 var ManagerEmployeeAll = require("../components/children/ManagerEmployeeAll");
 var ManagerSchedulesCreate = require("../components/children/ManagerSchedulesCreate");
 var Export = require("../components/children/Export");
-
+var AnnouncementsBuild = require("../components/children/AnnouncementsBuild");
 // employee components
 var Employee = require("../components/Employee");
 var EmployeeHome = require("../components/children/EmployeeHome");
@@ -31,7 +31,7 @@ module.exports = (
             <Route path="employeeAll" component={ManagerEmployeeAll} />
             <Route path="schedulesCreate" component={ManagerSchedulesCreate} />
             <Route path="export" component={Export} />
-
+            <Route path="assignShift" component={AnnouncementsBuild} />
             <IndexRoute component={ManagerHome} />
         </Route>
         <Route path="employee" component={Employee}>
