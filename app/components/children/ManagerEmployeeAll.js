@@ -1,6 +1,5 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-// var User = require('../../../models/user');
 var phone = require('phone'); // phone validation dependency
 
 var ManagerEmployeeAll = React.createClass({
@@ -261,16 +260,7 @@ var ManagerEmployeeAll = React.createClass({
                                 </div>
                             </div>
                             <div className="row">
-                                {/* <div className="input-field col m12 s12">
-                                    <input
-                                        placeholder="Email"
-                                        name="email"
-                                        type="email"
-                                        className="validate"
-                                        value={this.state.email}
-                                        onChange={this.handleUserChange}
-                                        required />
-                                </div> */}
+
                                 <div className="input-field col m12 s12">
                                     <input
                                         placeholder="password"
@@ -297,14 +287,7 @@ var ManagerEmployeeAll = React.createClass({
                                     <input type="hidden" value="employee" name="userType" />
                                     <input type="hidden" value="0" name="redirect" />
                                 </div>
-                                {/* <div className="input-field col m4 s4">
-                                    <select className="browser-default" name="phoneType" value={this.state.phoneType} onChange={this.handleUserChange} required>
-                                        <option value="" disabled>Phone Type</option>
-                                        <option value="mobile">Mobile</option>
-                                        <option value="work">Work</option>
-                                        <option value="home">Home</option>
-                                    </select>
-                                </div> */}
+
                             </div>
                             <div className="row">
                                 <div className="input-field col m4 s4">

@@ -21,12 +21,6 @@ var EmployeeHome = React.createClass({
         }.bind(this));
     },
 
-    // componentDidUpdate: function(prevState) {
-    //     if (prevState.location !== this.state.location || prevState.content !== this.state.content) {
-    //         this.getAnnouncements();
-    //     }
-    // },
-
     getAnnouncements: function () {
         helpers.getAnnouncements().then(function (response) {
             this.setState({
@@ -39,7 +33,6 @@ var EmployeeHome = React.createClass({
     render: function () {
         return (
             <div>
-                {/* <AnnouncementsView location={this.state.location} content={this.state.content}/> */}
                 <IndividualView />
             </div>
         );

@@ -11,10 +11,8 @@ var AnnouncementsView = React.createClass({
         </div>
         <div className="row">
           <div className="col s6">
-            {/* <h5>{this.state.location}</h5> */}
             <h5>{this.props.location}</h5>
             <p>{this.props.content}</p>
-            {/* <p>{this.state.content}</p> */}
           </div>
           <div id="accept-reject-button" className="col s6">
             <button className="accept-button">
