@@ -15,6 +15,8 @@ var Manager = require("../components/Manager");
 var ManagerHome = require("../components/children/ManagerHome");
 var ManagerEmployeeAll = require("../components/children/ManagerEmployeeAll");
 var ManagerSchedulesCreate = require("../components/children/ManagerSchedulesCreate");
+var Export = require("../components/children/Export");
+
 // employee components
 var Employee = require("../components/Employee");
 var EmployeeHome = require("../components/children/EmployeeHome");
@@ -28,6 +30,8 @@ module.exports = (
         <Route path="manager" component={Manager}>
             <Route path="employeeAll" component={ManagerEmployeeAll} />
             <Route path="schedulesCreate" component={ManagerSchedulesCreate} />
+            <Route path="export" component={Export} />
+
             <IndexRoute component={ManagerHome} />
         </Route>
         <Route path="employee" component={Employee}>

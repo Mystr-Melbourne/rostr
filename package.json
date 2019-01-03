@@ -24,8 +24,16 @@
     "body-parser": "^1.15.2",
     "express": "^4.16.4",
     "express-session": "^1.14.2",
+    "fast-csv": "^2.4.1",
+    "fs": "0.0.1-security",
+    "js-file-download": "^0.4.4",
+    "json2csv": "^4.3.2",
+    "mongo-to-csv": "^1.0.1",
+    "mongoexport-wrapper": "^1.0.1",
     "mongoose": "^4.13.17",
+    "mongoose-to-csv": "^0.1.1",
     "morgan": "^1.9.1",
+    "node-csv-converter": "^1.0.0",
     "passport": "^0.3.2",
     "passport-google-auth": "^1.0.1",
     "passport-google-oauth": "^1.0.0",
@@ -46,6 +54,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "concurrently": "^4.1.0",
+    "spawn-sync": "^2.0.0",
     "webpack": "^1.13.1"
   }
 }

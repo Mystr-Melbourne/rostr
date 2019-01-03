@@ -1,22 +1,46 @@
+// var express = require("express");
+// var dotenv = require("dotenv").config();
+// var bodyParser = require("body-parser");
+// var logger = require("morgan");
+// var passport = require("passport");
+// var LocalStrategy = require("passport-local");
+// var passportLocalMongoose = require("passport-local-mongoose");
+// var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+// var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
+// var path = require("path");
+// var db = require("./db/db.js");
+// var User = require("./models/user");
+// //exportCSV
+// const json2csv = require('json2csv').parse;
+// var fs = require('fs');
+// var axios = require("axios");
+// var router = express.Router();
+// //twilio
+// const http = require("http");
+// const MessagingResponse = require("twilio").twiml.MessagingResponse;
+// const app = express();
+// var PORT = process.env.PORT || 8080;
+
 var express = require("express");
-var dotenv = require("dotenv").config();
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
-var passportLocalMongoose = require("passport-local-mongoose");
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
-var db = require("./db/db.js");
 var User = require("./models/user");
-var helpers = require("./app/components/utils/helpers");
-var router = express.Router();
 var EmployeeSchedule = require("./models/employeeSchedule");
 const http = require("http");
 const MessagingResponse = require("twilio").twiml.MessagingResponse;
 const app = express();
 var PORT = process.env.PORT || 8080;
+var passportLocalMongoose = require("passport-local-mongoose");
+var helpers = require("./app/components/utils/helpers");
+var router = express.Router();
+var db = require("./db/db.js");
+var dotenv = require("dotenv").config();
+
 
 //Express session
 app.use(
@@ -55,6 +79,24 @@ app.get("/", autoRedirect, function(req, res) {
 
 //Public files <this needs to stay right below app.get("/")!!!!
 app.use(express.static(__dirname + "/public"));
+
+
+
+// //this is an attmept to export CSV properly with an express endpoint....
+// app.get('/getCSV', function(req, res){
+
+//   var fields = ['emp_id', 'firstName', 'lastName', 'day'];
+
+//    var EmployeeSchedule = axios.get('/getEmpSchedules')
+//   .then(function(response){
+//       return response;
+//   })
+  
+//   var csv = json2csv({ data: EmployeeSchedule, fields: fields });
+//   res.download(req.body.csv); 
+
+// });
+
 
 // TWILIO SMS functionality
 // use ngrok to host up the service so that it can receive texts
