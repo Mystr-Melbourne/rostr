@@ -37,7 +37,7 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleAnnouncementBuild(event) {
-    this.setState({ [event.target.id]: event.target.value, wordCount: $(".preview").text().length });
+    this.setState({ [event.target.id]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
   },
 
   wordCount(event) {
@@ -45,11 +45,11 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleManagerSelect(event) {
-    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length });
+    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
   },
 
   setTime(event) {
-    this.setState({ time: event.target.value, wordCount: $(".preview").text().length });
+    this.setState({ time: event.target.value, wordCount: $(".preview").text().length + event.target.value.length});
   },
 
   addAnnouncements: function (event) {
@@ -212,13 +212,22 @@ var AnnouncementsBuild = React.createClass({
 
             </div>
           </div>
+          {(this.state.wordCount > 160) ?
           <div className="row">
-            <div className="input-field col s12">
+              <div className="col s12">
+                 <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. This will result in sending <strong>2 seperated sms.</strong></div>
+              </div>
+          </div>: null}
+          <div className="row">
+            <div className="col s12">
+            <h5>PREVIEW</h5>
               <div className="preview">
               Location: {this.state.location} Time: {this.state.time} {this.state.day} Description: {this.state.content}<br />
               Respond with y-{this.state.day.slice(0, 3)} or n-{this.state.day.slice(0, 3)}
               </div>
-              <p>Word count: {this.state.wordCount}</p>
+              <div className="wordCount">
+                  Character count: {this.state.wordCount} / 160
+              </div>
             </div>
           </div>
           <div className="row">
