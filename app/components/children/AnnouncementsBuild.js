@@ -45,11 +45,11 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleManagerSelect(event) {
-    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
+    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length });
   },
 
   setTime(event) {
-    this.setState({ time: event.target.value, wordCount: $(".preview").text().length + event.target.value.length});
+    this.setState({ time: event.target.value, wordCount: $(".preview").text().length});
   },
 
   addAnnouncements: function (event) {
