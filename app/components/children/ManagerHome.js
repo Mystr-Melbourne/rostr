@@ -47,7 +47,7 @@ var ManagerHome = React.createClass({
     return (
       <div>
         <ScheduleView />
-        <AnnouncementsBuild />
+        {/* <AnnouncementsBuild /> */}
       </div>
     );
   }
