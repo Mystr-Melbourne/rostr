@@ -25,9 +25,9 @@ var Manager = React.createClass({
                     <li><a className="black-text" href="/logout">Logout<i className="material-icons right">exit_to_app</i></a></li>
                 </ul>
                 <nav>
-                    <div className="nav-wrapper grey lighten-5">
-                        <a href="/manager" className="brand-logo blue-text text-darken-1"><img id="logo" src="/assets/images/logo.png" /><span className="hide-on-med-and-down">Rostr</span></a>
-                        <a href="/" data-activates="slide-out" className="button-collapse blue-text text-darken-1"><i className="material-icons">menu</i></a>
+                    <div className="nav-wrapper">
+                        <a href="/manager" className="brand-logo"><span className="">Rostr</span></a>
+                        <a href="/" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>
                             <li><a className="black-text" href="/manager/export">Export CSV<i className="material-icons right">group</i></a></li>
@@ -46,14 +46,14 @@ var Manager = React.createClass({
                                     <a><span className="white-text name">{this.state.username}</span></a>
                                 </div>
                             </li>
-                            <li><a href="/manager" className="black-text"><i className="material-icons">group</i>Home</a></li>
-                            <li><a href="/manager/employeeAll" className="black-text"><i className="material-icons">group</i>Edit Staff</a></li>
+                            <li><a href="/manager" className=""><i className="material-icons">group</i>Home</a></li>
+                            <li><a href="/manager/employeeAll" className=""><i className="material-icons">group</i>Edit Staff</a></li>
                             {/* <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li> */}
-                            <li><a href="/logout" className="black-text"><i className="material-icons">exit_to_app</i>Logout</a></li>
+                            <li><a href="/logout" className=""><i className="material-icons">exit_to_app</i>Logout</a></li>
                         </ul>
                     </div>
                 </nav>
-                <div className="container">
+                <div className="container-fluid">
                     {this.props.children}
                 </div>
             </div>

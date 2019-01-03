@@ -1,3 +1,83 @@
+.nav-wrapper{
+	background: #3D5A80;
+	color: white;
+	padding: 0 3em;
+}
+ul.slideout li a.black-text{
+	color: black!important;
+}
+a.black-text{
+	color: white!important;
+}
+a.brand-logo{
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+a[href="/logout"] {
+	color:black!important;
+}
+.mainview td {
+	border-right: 1px solid #ccc;
+	width: 155px;
+	height: 119px;
+	padding: .1em;
+}
+
+.mainview td div:first-child{
+	/* background: #e6e6e6;
+    border: 5px solid #ababab; */
+	border-radius: 5px;
+	height: 100%;
+	padding: 5px;
+}
+
+.mainview td div.decline{
+	background: #ffd1d1;
+    border: 5px dashed #de6d6d;
+}
+
+.mainview td div.accept{
+	background: #c4ffde;
+    border: 5px solid #7cc18b;
+}
+
+.mainview td div.not-accept{
+	background: #ffddc4;
+    border: 5px solid #e2a928;
+}
+
+.mainview td div div{
+	width: 100%;
+    overflow-y: auto;
+    max-height: 5em;
+}
+
+.mainview{
+	table-layout: fixed;
+}
+
+.filter-option{
+	position: sticky;
+    overflow: hidden;
+    top: 0;
+    background: #ffffffd9;
+    padding: .1em;
+}
+
+.filter-option select {
+	width: 200px;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.filter-option .right-hand{
+	float:right;
+}
+
+.filter-option .left-hand{
+	float: left;
+}
 .brand-logo {
 	margin-left: 20px;
 }
