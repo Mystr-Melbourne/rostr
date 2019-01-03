@@ -37,7 +37,7 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleAnnouncementBuild(event) {
-    this.setState({ [event.target.id]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
+    this.setState({ [event.target.id]: event.target.value });
   },
 
   wordCount(event) {
@@ -45,11 +45,11 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleManagerSelect(event) {
-    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length });
+    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
   },
 
   setTime(event) {
-    this.setState({ time: event.target.value, wordCount: $(".preview").text().length});
+    this.setState({ time: event.target.value });
   },
 
   addAnnouncements: function (event) {
@@ -185,7 +185,7 @@ var AnnouncementsBuild = React.createClass({
                 type="text"
                 className="validate"
                 value={this.state.location}
-                onChange={this.handleAnnouncementBuild}
+                onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
                 required
               />
             </div>
@@ -193,7 +193,7 @@ var AnnouncementsBuild = React.createClass({
 
           <div className="row">
             <div className="input-field col s12">
-              <input type="text" placeholder="Time" onInput={this.setTime} />
+              <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount}/>
 
             </div>
           </div>
@@ -206,7 +206,7 @@ var AnnouncementsBuild = React.createClass({
                 type="text"
                 className="materialize-textarea"
                 value={this.state.content}
-                onChange={this.handleAnnouncementBuild}
+                onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
                 required
               />
 
