@@ -29,26 +29,27 @@ var AnnouncementsBuild = React.createClass({
     helpers.getEmpSchedules().then(
       function (response) {
         if (response !== this.state.empSchedules) {
-          this.setState({ empSchedules: response.data });
+          this.setState({ empSchedules: response.data, wordCount: $(".preview").text().length });
+
         }
       }.bind(this)
     );
   },
 
   handleAnnouncementBuild(event) {
-    this.setState({ [event.target.id]: event.target.value });
+    this.setState({ [event.target.id]: event.target.value, wordCount: $(".preview").text().length });
   },
 
   wordCount(event) {
-    this.setState({ wordCount: event.target.value.length });
+    this.setState({ wordCount: $(".preview").text().length });
   },
 
   handleManagerSelect(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length });
   },
 
   setTime(event) {
-    this.setState({ time: event.target.value });
+    this.setState({ time: event.target.value, wordCount: $(".preview").text().length });
   },
 
   addAnnouncements: function (event) {
@@ -174,9 +175,7 @@ var AnnouncementsBuild = React.createClass({
             <option value="saturday">Saturday</option>
             <option value="sunday">Sunday</option>
           </select>
-
-          <input type="text" placeholder="Time" onInput={this.setTime} />
-          <br />
+      
 
           <div className="row">
             <div className="input-field col s12">
@@ -194,6 +193,13 @@ var AnnouncementsBuild = React.createClass({
 
           <div className="row">
             <div className="input-field col s12">
+              <input type="text" placeholder="Time" onInput={this.setTime} />
+
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-field col s12">
               <textarea
                 placeholder="Description"
                 id="content"
@@ -201,9 +207,17 @@ var AnnouncementsBuild = React.createClass({
                 className="materialize-textarea"
                 value={this.state.content}
                 onChange={this.handleAnnouncementBuild}
-                onInput={this.wordCount}
                 required
               />
+
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12">
+              <div className="preview">
+              Location: {this.state.location} Time: {this.state.time} {this.state.day} Description: {this.state.content}<br />
+              Respond with y-{this.state.day.slice(0, 3)} or n-{this.state.day.slice(0, 3)}
+              </div>
               <p>Word count: {this.state.wordCount}</p>
             </div>
           </div>
