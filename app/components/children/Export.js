@@ -96,13 +96,13 @@ var Export = React.createClass({
                 <br></br>
                 <div className="row">
                     <div className="col s4">
-                        <a href="/getCSV">
+                        {/* <a href="/getCSV">
 
                             <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3">ExpressEndpoint
                                         <i className="material-icons right">insert_drive_file</i>
                             </button>
 
-                        </a>
+                        </a> */}
 
                     </div>
                     <div className="col s4">
