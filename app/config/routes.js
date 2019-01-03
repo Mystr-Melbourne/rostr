@@ -22,21 +22,21 @@ var Employee = require("../components/Employee");
 var EmployeeHome = require("../components/children/EmployeeHome");
 
 module.exports = (
-  <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-        <Route path="login" component={Login} />
-        <Route path="register" component={Register} />
-        <IndexRoute component={Login} />
-        <Route path="manager" component={Manager}>
-            <Route path="employeeAll" component={ManagerEmployeeAll} />
-            <Route path="schedulesCreate" component={ManagerSchedulesCreate} />
-            <Route path="export" component={Export} />
-            <Route path="assignShift" component={AnnouncementsBuild} />
-            <IndexRoute component={ManagerHome} />
+    <Router history={browserHistory}>
+        <Route path="/" component={Main}>
+            <Route path="login" component={Login} />
+            <Route path="register" component={Register} />
+            <IndexRoute component={Login} />
+            <Route path="manager" component={Manager}>
+                <Route path="employeeAll" component={ManagerEmployeeAll} />
+                <Route path="schedulesCreate" component={ManagerSchedulesCreate} />
+                <Route path="export" component={Export} />
+                <Route path="assignShift" component={AnnouncementsBuild} />
+                <IndexRoute component={ManagerHome} />
+            </Route>
+            <Route path="employee" component={Employee}>
+                <IndexRoute component={EmployeeHome} />
+            </Route>
         </Route>
-        <Route path="employee" component={Employee}>
-            <IndexRoute component={EmployeeHome} />
-        </Route>
-    </Route>
-  </Router>
-);
+    </Router>
+); 

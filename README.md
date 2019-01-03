@@ -24,13 +24,13 @@ Open another terminal window and navigate to project directory and run
 Create a .env file with and add the code below (not strings)
 
 ``` 
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GOOGLE_CALLBACK_URL=http://YOUR_DOMAIN/auth/google/callback
-    
-LINKEDIN_ID=
-LINKEDIN_SECRET=
-LINKEDIN_CALLBACK=http://YOUR_DOMAIN/auth/linkedin/callback
+# twillio account authentication
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+
+# phone numbers
+TWILIO_PHONE_NUMBER=
+CELL_PHONE_NUMBER=
 ```
 
 If you dont want to go through the trouble of creating the API keys, put in dummy numbers/text and the app should still work, however passport social login will not.

@@ -1,5 +1,5 @@
 {
-  "name": "Mystr",
+  "name": "Rostr",
   "version": "1.0.0",
   "description": "Employee management system",
   "main": "server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mystr-Melbourne/Mystr"
+    "url": "git+https://github.com/Mystr-Melbourne/Rostr"
   },
   "author": "HB,NC,AR,CS",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Mystr-Melbourne/Mystr/issues"
+    "url": "https://github.com/Mystr-Melbourne/Rostr/issues"
   },
-  "homepage": "https://github.com/Mystr-Melbourne/Mystr#readme",
+  "homepage": "https://github.com/Mystr-Melbourne/Rostr#readme",
   "dependencies": {
     "axios": "^0.15.3",
     "bluebird": "^3.5.3",
