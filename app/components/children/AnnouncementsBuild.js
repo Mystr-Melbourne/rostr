@@ -39,10 +39,18 @@ var AnnouncementsBuild = React.createClass({
 
   handleAnnouncementBuild(event) {
     this.setState({ [event.target.id]: event.target.value });
+
   },
 
   handleManagerSelect(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    var trimDay = event.target.value.slice(0, 3);
+
+    this.setState({
+      [event.target.name]: event.target.value, textBody: this.state.time + " " + event.target.value +
+        " at " + this.state.location + " " + this.state.content +
+        " Please respond with y-" + trimDay + " or n-" + trimDay
+    });
+
     this.wordCount();
   },
 
@@ -116,7 +124,7 @@ var AnnouncementsBuild = React.createClass({
   wordCount(event) {
     this.prepareTextBody();
     //this.setState({ wordCount: $(".preview").text().length });
-    this.state.wordCount = this.state.textBody.length;
+    this.setState({ wordCount: this.state.textBody.length });
     this.forceUpdate();
   },
 
@@ -234,7 +242,7 @@ var AnnouncementsBuild = React.createClass({
 
           <div className="row">
             <div className="input-field col s12">
-              <input type="text" announcementsBuild placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
+              <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
 
             </div>
           </div>
