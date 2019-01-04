@@ -39,7 +39,6 @@ var AnnouncementsBuild = React.createClass({
 
   handleAnnouncementBuild(event) {
     this.setState({ [event.target.id]: event.target.value });
-
   },
 
   handleDepartmentSelect(event) {
@@ -48,13 +47,11 @@ var AnnouncementsBuild = React.createClass({
     });
   },
 
-  handleDaySelect(event) {
-    var trimDay = event.target.value.slice(0, 3);
-    var content = this.state.time + " " + event.target.value +
-      " at " + this.state.location + " " + this.state.content +
-      " Please respond with y-" + trimDay + " or n-" + trimDay;
-    this.setState({
-      [event.target.name]: event.target.value, textBody: content, wordCount: content.length
+  handleDaySelect: function (event) {
+    // set day, i put all of this in a function so that the callback make sure this updates
+    this.setState({ day: event.target.value }, function () {
+      this.prepareTextBody();
+      this.wordCount();
     });
   },
 
@@ -127,7 +124,6 @@ var AnnouncementsBuild = React.createClass({
   // prepare string and increase word count
   wordCount(event) {
     this.prepareTextBody();
-    //this.setState({ wordCount: $(".preview").text().length });
     this.setState({ wordCount: this.state.textBody.length });
     this.forceUpdate();
   },
