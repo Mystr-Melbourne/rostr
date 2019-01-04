@@ -28,7 +28,6 @@
     "fs": "0.0.1-security",
     "js-file-download": "^0.4.4",
     "json2csv": "^4.3.2",
-    "letter-count": "^2.8.9",
     "mongo-to-csv": "^1.0.1",
     "mongoexport-wrapper": "^1.0.1",
     "mongoose": "^4.13.17",
