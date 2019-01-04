@@ -11,7 +11,8 @@ var AnnouncementsBuild = React.createClass({
       empSchedules: [],
       day: "",
       time: "",
-      wordCount: 0
+      wordCount: 0,
+      textBody: ""
     };
   },
 
@@ -40,11 +41,8 @@ var AnnouncementsBuild = React.createClass({
     this.setState({ [event.target.id]: event.target.value });
   },
 
-  wordCount(event) {
-    this.setState({ wordCount: $(".preview").text().length });
-  },
-
   handleManagerSelect(event) {
+    this.wordCount();
     this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
   },
 
@@ -76,6 +74,8 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleUpdateEmpSchedule: function (event) {
+
+    this.validateEntries();
 
     var toArray = [];
 
@@ -109,19 +109,27 @@ var AnnouncementsBuild = React.createClass({
       }.bind(this)
     );
 
-    return person; // BIG STRETCH
+    return person;
+  },
+
+  // prepare string and increase word count
+  wordCount(event) {
+    this.prepareTextBody();
+    this.setState({ wordCount: $(".preview").text().length });
+  },
+
+  prepareTextBody: function () {
+    // prepare string
+    this.state.textBody = "Location: " + this.state.location +
+      "\nTime: " + this.state.time + " " + this.state.day +
+      "\nDescription: " + this.state.content +
+      "\nRespond with y-" + this.state.day.slice(0, 3) +
+      " or n-" + this.state.day.slice(0, 3);
   },
 
   // blast out text messages
   prepareSMS: function (toArray) {
-
-    // prepare string
-    var textBody = "Location: " + this.state.location +
-      " Time: " + this.state.time + " " + this.state.day +
-      " Description: " + this.state.content +
-      "\nRespond with y-" + this.state.day.slice(0, 3) +
-      " or n-" + this.state.day.slice(0, 3);
-
+    this.prepareTextBody();
     // send phone array and text to backend
     $.ajax({
       url: "/sms-send",
@@ -133,6 +141,34 @@ var AnnouncementsBuild = React.createClass({
     })
   },
 
+
+  validateEntries: function (event) {
+
+    // ensure day is picked
+    if (this.state.day === "") {
+      Materialize.toast('Please pick a day', 3000);
+      // prevent form from submitting
+      event.preventDefault();
+    }
+    else if (this.state.location === "") {
+      Materialize.toast('Please enter a location', 3000);
+      // prevent form from submitting
+      event.preventDefault();
+    }
+
+    else if (this.state.time === "") {
+      Materialize.toast('Please enter a time', 3000);
+      // prevent form from submitting
+      event.preventDefault();
+    }
+
+    else if (this.state.content === "") {
+      Materialize.toast('Please enter a description', 3000);
+      // prevent form from submitting
+      event.preventDefault();
+    }
+  },
+
   render: function () {
     return (
       <div className="card-panel">
@@ -141,6 +177,7 @@ var AnnouncementsBuild = React.createClass({
             <h5>Assign new shifts</h5>
           </div>
         </div>
+
         <form onSubmit={this.addAnnouncements}>
           <select
             className="browser-default"
@@ -164,9 +201,11 @@ var AnnouncementsBuild = React.createClass({
           <select
             className="browser-default"
             name="day"
+            value={this.state.day}
             onChange={this.handleManagerSelect}
+            required
           >
-            <option value="">Select a day</option>
+            <option value="" disabled>Select a day</option>
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
@@ -175,7 +214,7 @@ var AnnouncementsBuild = React.createClass({
             <option value="saturday">Saturday</option>
             <option value="sunday">Sunday</option>
           </select>
-      
+
 
           <div className="row">
             <div className="input-field col s12">
@@ -193,7 +232,7 @@ var AnnouncementsBuild = React.createClass({
 
           <div className="row">
             <div className="input-field col s12">
-              <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount}/>
+              <input type="text" announcementsBuild placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
 
             </div>
           </div>
@@ -209,24 +248,22 @@ var AnnouncementsBuild = React.createClass({
                 onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
                 required
               />
-
             </div>
           </div>
           {(this.state.wordCount > 160) ?
-          <div className="row">
+            <div className="row">
               <div className="col s12">
-                 <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. This will result in charging <strong>twice as much.</strong></div>
+                <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. <strong>This will cost more.</strong></div>
               </div>
-          </div>: null}
+            </div> : null}
           <div className="row">
             <div className="col s12">
-            <h5>PREVIEW</h5>
+              <h5>PREVIEW</h5>
               <div className="preview">
-              Location: {this.state.location} Time: {this.state.time} {this.state.day} Description: {this.state.content}<br />
-              Respond with y-{this.state.day.slice(0, 3)} or n-{this.state.day.slice(0, 3)}
+                <p>{this.state.textBody}</p>
               </div>
               <div className="wordCount">
-                  Character count: {this.state.wordCount} / 160
+                Character count: {this.state.wordCount} / 160
               </div>
             </div>
           </div>
