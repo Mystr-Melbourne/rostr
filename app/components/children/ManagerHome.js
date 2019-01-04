@@ -18,11 +18,6 @@ var ManagerHome = React.createClass({
     this.getAllDepartments();
   },
 
-  // componentDidUpdate: function(prevState) {
-  //     if (prevState.location !== this.state.location || prevState.content !== this.state.content) {
-  //         this.getAnnouncements();
-  //     }
-  // },
   getAllDepartments: function () {
     helpers.getAllDepartments().then(
       function (response) {
@@ -47,7 +42,6 @@ var ManagerHome = React.createClass({
     return (
       <div>
         <ScheduleView />
-        {/* <AnnouncementsBuild /> */}
       </div>
     );
   }
