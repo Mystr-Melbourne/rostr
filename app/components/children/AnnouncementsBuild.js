@@ -42,16 +42,20 @@ var AnnouncementsBuild = React.createClass({
 
   },
 
-  handleManagerSelect(event) {
-    var trimDay = event.target.value.slice(0, 3);
-
+  handleDepartmentSelect(event) {
     this.setState({
-      [event.target.name]: event.target.value, textBody: this.state.time + " " + event.target.value +
-        " at " + this.state.location + " " + this.state.content +
-        " Please respond with y-" + trimDay + " or n-" + trimDay
+      [event.target.name]: event.target.value
     });
+  },
 
-    this.wordCount();
+  handleDaySelect(event) {
+    var trimDay = event.target.value.slice(0, 3);
+    var content = this.state.time + " " + event.target.value +
+      " at " + this.state.location + " " + this.state.content +
+      " Please respond with y-" + trimDay + " or n-" + trimDay;
+    this.setState({
+      [event.target.name]: event.target.value, textBody: content, wordCount: content.length
+    });
   },
 
   setTime(event) {
@@ -192,7 +196,7 @@ var AnnouncementsBuild = React.createClass({
           <select
             className="browser-default"
             name="sendTo"
-            onChange={this.handleManagerSelect}
+            onChange={this.handleDepartmentSelect}
           >
             <option value="all">All Departments</option>
             {this.state.isLoaded ? (
@@ -212,7 +216,7 @@ var AnnouncementsBuild = React.createClass({
             className="browser-default"
             name="day"
             value={this.state.day}
-            onChange={this.handleManagerSelect}
+            onChange={this.handleDaySelect}
             required
           >
             <option value="" disabled>Select a day</option>
