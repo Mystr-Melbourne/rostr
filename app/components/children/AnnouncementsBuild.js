@@ -215,7 +215,7 @@ var AnnouncementsBuild = React.createClass({
           {(this.state.wordCount > 160) ?
           <div className="row">
               <div className="col s12">
-                 <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. This will result in sending <strong>2 seperated sms.</strong></div>
+                 <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. This will result in charging <strong>twice as much.</strong></div>
               </div>
           </div>: null}
           <div className="row">
