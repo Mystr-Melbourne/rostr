@@ -21,6 +21,7 @@
     border-radius: 25px;
 	clear: both;
 	max-width: 300px;
+	min-height: 50px;
 }
 .preview::before{
     content: "";
