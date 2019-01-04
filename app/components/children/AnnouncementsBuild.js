@@ -42,8 +42,8 @@ var AnnouncementsBuild = React.createClass({
   },
 
   handleManagerSelect(event) {
+    this.setState({ [event.target.name]: event.target.value });
     this.wordCount();
-    this.setState({ [event.target.name]: event.target.value, wordCount: $(".preview").text().length + event.target.value.length });
   },
 
   setTime(event) {
@@ -115,16 +115,19 @@ var AnnouncementsBuild = React.createClass({
   // prepare string and increase word count
   wordCount(event) {
     this.prepareTextBody();
-    this.setState({ wordCount: $(".preview").text().length });
+    //this.setState({ wordCount: $(".preview").text().length });
+    this.state.wordCount = this.state.textBody.length;
+    this.forceUpdate();
   },
 
   prepareTextBody: function () {
-    // prepare string
-    this.state.textBody = "Location: " + this.state.location +
-      "\nTime: " + this.state.time + " " + this.state.day +
-      "\nDescription: " + this.state.content +
-      "\nRespond with y-" + this.state.day.slice(0, 3) +
-      " or n-" + this.state.day.slice(0, 3);
+    var trimDay = this.state.day.slice(0, 3);
+
+    this.state.textBody = this.state.time + " " + this.state.day +
+      " at " + this.state.location + " " + this.state.content +
+      " Please respond with y-" + trimDay + " or n-" + trimDay;
+
+    this.state.textBody.trim();
   },
 
   // blast out text messages
@@ -140,7 +143,6 @@ var AnnouncementsBuild = React.createClass({
       }
     })
   },
-
 
   validateEntries: function (event) {
 
@@ -260,7 +262,7 @@ var AnnouncementsBuild = React.createClass({
             <div className="col s12">
               <h5>PREVIEW</h5>
               <div className="preview">
-                <p>{this.state.textBody}</p>
+                {this.state.textBody}
               </div>
               <div className="wordCount">
                 Character count: {this.state.wordCount} / 160
