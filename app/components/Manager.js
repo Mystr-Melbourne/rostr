@@ -51,7 +51,7 @@ var Manager = React.createClass({
                             <li><a href="/manager/assignShift"><i className="material-icons">calendar_today</i>Assign shifts</a></li>
                             <li><a href="/manager/export"><i className="material-icons">cloud_download</i>Export CSV</a></li>
                             <li><a href="/manager/employeeAll" className=""><i className="material-icons">group</i>Edit Staff</a></li>
-                            
+
                             {/* <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li> */}
                             <li><a href="/logout" className=""><i className="material-icons">exit_to_app</i>Logout</a></li>
                         </ul>

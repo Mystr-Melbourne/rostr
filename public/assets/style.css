@@ -1,3 +1,54 @@
+.alert{
+	background-color: #f2dede;
+    border-color: #ebcccc;
+	color: #a94442;
+	padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+.wordCount{
+}
+.preview{
+	background: #3D5A80;
+    color: black;
+    max-width: 90%;
+    word-wrap: break-word;
+	margin-bottom: 20px;
+	position: relative;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 25px;
+	clear: both;
+	max-width: 300px;
+	min-height: 50px;
+}
+.preview::before{
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: -2px;
+    left: -7px;
+    height: 19px;
+    border-left: 20px solid #3D5A80;
+    border-bottom-right-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+    transform: translate(0, -2px);
+}
+
+.preview::after{
+    content: "";
+    position: absolute;
+    z-index: 3;
+    bottom: -2px;
+    left: 4px;
+    width: 26px;
+    height: 20px;
+    background: white;
+    border-bottom-right-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+    transform: translate(-30px, -2px);
+}
 .nav-wrapper{
 	background: #3D5A80;
 	color: white;

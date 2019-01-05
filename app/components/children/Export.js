@@ -96,27 +96,18 @@ var Export = React.createClass({
                 <br></br>
                 <div className="row">
                     <div className="col s4"></div>
-                    {/* <div className="col s4">
-                        <a href="/getCSV">
 
-                            <button id="Export Excel" className="btn btn-large waves-effect waves-light green accent-3">ExpressEndpoint
-                                        <i className="material-icons right">insert_drive_file</i>
-                            </button>
-
+                    <div className="col s2">
+                        <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
+                                            <i className="material-icons right">insert_drive_file</i>
                         </a>
+                    </div>
+                    <div className="col s3">
+                        <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportEmployeeData}>Export Employee List
+                                            <i className="material-icons right">insert_drive_file</i>
+                        </a>
+                    </div>
 
-                    </div> */}
-                        <div className="col s2">
-                            <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
-                                            <i className="material-icons right">insert_drive_file</i>
-                            </a>
-                        </div>
-                        <div className="col s3">
-                            <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportEmployeeData}>Export Employee List
-                                            <i className="material-icons right">insert_drive_file</i>
-                            </a>
-                        </div>
-                   
 
                 </div>
             </div>
