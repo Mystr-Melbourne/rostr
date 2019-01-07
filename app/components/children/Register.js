@@ -20,6 +20,12 @@ class Register extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  handleLogin() {
+    // helpers.errorMessage().then(function(response) {
+    //      console.log(response)
+    //          this.setState({ error: response.data});
+    //        }.bind(this));
+  }
   render() {
     return (
       <div className="container">
