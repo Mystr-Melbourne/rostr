@@ -147,7 +147,7 @@ var AnnouncementsBuild = React.createClass({
       type: "post",
       data: {
         to: toArray,
-        des: textBody,
+        des: this.state.textBody,
       }
     })
   },
