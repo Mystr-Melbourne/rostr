@@ -3,8 +3,6 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
-var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-var LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 var path = require("path");
 var User = require("./models/user");
 var EmployeeSchedule = require("./models/employeeSchedule");
@@ -55,7 +53,6 @@ app.get("/", autoRedirect, function (req, res) {
 
 //Public files <this needs to stay right below app.get("/")!!!!
 app.use(express.static(__dirname + "/public"));
-
 
 // TWILIO SMS functionality
 // use ngrok to host up the service so that it can receive texts
