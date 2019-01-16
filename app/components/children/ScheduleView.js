@@ -54,9 +54,68 @@ var ScheduleView = React.createClass({
               <div className="foreground">
 
               </div>
+
+
+
               <div className="main-panel">
-                test
-            </div>
+                <form onSubmit={this.addAnoucements}>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input
+                          placeholder="Job location"
+                          id="location"
+                          type="text"
+                          className="validate"
+                          value={this.state.location}
+                          onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
+
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <textarea
+                          placeholder="Description"
+                          id="content"
+                          type="text"
+                          className="materialize-textarea"
+                          value={this.state.content}
+                          onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col s12">
+                          <button
+                            className="btn waves-effect waves-light btn-large green accent-3 loginButtons"
+                            type="submit"
+                            value="Submit"
+                            name="action"
+                            onClick={this.handleUpdateEmpSchedule}
+                          >
+                            Submit<i className="material-icons right">add</i>
+                          </button>
+                        </div>
+                    </div>
+                </form>
+
+
+              </div>
+
+
+
+
+
             </div>
             <div className="filter-option">
               <div className="left-hand">
