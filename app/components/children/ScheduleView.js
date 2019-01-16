@@ -8,7 +8,9 @@ var ScheduleView = React.createClass({
       departments: [],
       isLoaded: false,
       filter: "all",
-      view: "all"
+      view: "all",
+      day_selected: "",
+      emp_selected: []
     };
   },
 
@@ -41,6 +43,14 @@ var ScheduleView = React.createClass({
     );
   },
 
+  handleSquareSelection(user, day) {
+    this.setState({
+      day_selected: day,
+      emp_selected: user
+    })
+
+  },
+
   handleUserChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   },
@@ -59,54 +69,54 @@ var ScheduleView = React.createClass({
 
               <div className="main-panel">
                 <form onSubmit={this.addAnoucements}>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          placeholder="Job location"
-                          id="location"
-                          type="text"
-                          className="validate"
-                          value={this.state.location}
-                          onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
-                          required
-                        />
-                      </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input
+                        placeholder="Job location"
+                        id="location"
+                        type="text"
+                        className="validate"
+                        value={this.state.location}
+                        onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
+                        required
+                      />
                     </div>
+                  </div>
 
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input type="text" placeholder="Time" onInput={this.setTime} onKeyDown={this.wordCount} onKeyUp={this.wordCount} />
 
-                      </div>
                     </div>
+                  </div>
 
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <textarea
-                          placeholder="Description"
-                          id="content"
-                          type="text"
-                          className="materialize-textarea"
-                          value={this.state.content}
-                          onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
-                          required
-                        />
-                      </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <textarea
+                        placeholder="Description"
+                        id="content"
+                        type="text"
+                        className="materialize-textarea"
+                        value={this.state.content}
+                        onChange={this.handleAnnouncementBuild} onKeyDown={this.wordCount} onKeyUp={this.wordCount}
+                        required
+                      />
                     </div>
+                  </div>
 
-                    <div className="row">
-                      <div className="col s12">
-                          <button
-                            className="btn waves-effect waves-light btn-large green accent-3 loginButtons"
-                            type="submit"
-                            value="Submit"
-                            name="action"
-                            onClick={this.handleUpdateEmpSchedule}
-                          >
-                            Submit<i className="material-icons right">add</i>
-                          </button>
-                        </div>
+                  <div className="row">
+                    <div className="col s12">
+                      <button
+                        className="btn waves-effect waves-light btn-large green accent-3 loginButtons"
+                        type="submit"
+                        value="Submit"
+                        name="action"
+                        onClick={this.handleUpdateEmpSchedule}
+                      >
+                        Submit<i className="material-icons right">add</i>
+                      </button>
                     </div>
+                  </div>
                 </form>
 
 
@@ -176,7 +186,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule">
+                          <td className="schedule" onClick={() => {this.handleSquareSelection(schedules, "monday")}}>
                             <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : (schedules.monday.length > 0) ? "not-accept" : ""}>
                               {schedules.monday}
                               <br />
