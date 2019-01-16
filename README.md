@@ -7,6 +7,7 @@ Rostr is an employee management and scheduling app that allows…
 * Employees to view work scheduleso
 
 View app live on [Heroku](https://rostrlive.herokuapp.com/)
+* Heroku version doesn't support SMS push notification *
 
 ```
 Login details:
