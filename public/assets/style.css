@@ -1,3 +1,44 @@
+
+td div:first-child:hover{
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: all .2s ease;
+	box-shadow: 0 0 15px #00000052;
+}
+
+td div:first-child{
+	transition: all 0.2s ease;
+}
+.module {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top:0;
+	left:0;
+	display: none;
+}
+
+.module .foreground {
+	background: #000;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+}
+
+.module .main-panel {
+    background: #fff;
+    min-width: 50vw;
+    min-height: 200px;
+    border-radius: 1em;
+    padding: 2em 3em;
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    box-shadow: 0 0 151px #00000052;
+}
+
 .alert{
 	background-color: #f2dede;
     border-color: #ebcccc;
