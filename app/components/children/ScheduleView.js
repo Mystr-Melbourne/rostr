@@ -9,8 +9,13 @@ var ScheduleView = React.createClass({
       isLoaded: false,
       filter: "all",
       view: "all",
-      day_selected: "",
-      emp_selected: []
+      day: "",
+      emp_selected: [],
+      location: "",
+      content: "",
+      wordCount: 0,
+      textBody: "",
+      time: ""
     };
   },
 
@@ -43,9 +48,38 @@ var ScheduleView = React.createClass({
     );
   },
 
+  handleUpdateEmpSchedule: function (event) {
+
+
+    var toArray = [];
+
+    // loop through all employees
+    this.assignSchedule(this.state.emp_selected);
+    toArray.push(this.state.emp_selected.phoneCode);
+
+    // send out the text blast
+    this.prepareSMS(toArray);
+
+  },
+
+
+  prepareSMS: function (toArray) {
+    this.prepareTextBody();
+    // send phone array and text to backend
+    $.ajax({
+      url: "/sms-send",
+      type: "post",
+      data: {
+        to: toArray,
+        des: this.state.textBody,
+      }
+    })
+  },
+
+
   handleSquareSelection(user, day) {
     this.setState({
-      day_selected: day,
+      day: day,
       emp_selected: user
     })
 
@@ -53,6 +87,55 @@ var ScheduleView = React.createClass({
 
   handleUserChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+  },
+
+
+  addAnnouncements: function (event) {
+    event.preventDefault(event);
+    helpers.addAnnouncements(this.state.location, this.state.content).then(
+      function (response) {
+        this.clearStates();
+      }.bind(this)
+    );
+    Materialize.toast("Announcement added", 3000);
+    this.clearForm();
+  },
+
+  handleAnnouncementBuild(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  },
+
+  wordCount(event) {
+    this.prepareTextBody();
+    this.setState({ wordCount: this.state.textBody.length });
+    this.forceUpdate();
+  },
+
+  prepareTextBody: function () {
+    var trimDay = this.state.day.slice(0, 3);
+
+    this.state.textBody = this.state.time + " " + this.state.day +
+      " at " + this.state.location + " " + this.state.content +
+      " Please respond with y-" + trimDay + " or n-" + trimDay;
+
+    this.state.textBody.trim();
+  },
+
+  assignSchedule: function (person) {
+    person[this.state.day] = this.state.time;
+    person[this.state.day + "_location"] = this.state.location;
+    person[this.state.day + "_des"] = this.state.content;
+    person[this.state.day + "_accept"] = 0;
+    helpers.updateEmpSchedule(person).then(
+      function (response) {
+        var empName = person.firstName + " " + person.lastName + "'s ";
+        Materialize.toast(empName + "schedule updated", 2000);
+      }.bind(this)
+    );
+  },
+
+  setTime(event) {
+    this.setState({ time: event.target.value });
   },
 
   render: function () {
@@ -90,6 +173,7 @@ var ScheduleView = React.createClass({
                     </div>
                   </div>
 
+
                   <div className="row">
                     <div className="input-field col s12">
                       <textarea
@@ -103,6 +187,25 @@ var ScheduleView = React.createClass({
                       />
                     </div>
                   </div>
+
+                  {(this.state.wordCount > 160) ?
+                    <div className="row">
+                      <div className="col s12">
+                        <div className="alert"><strong>Oh snap!</strong> You exceeded 160 characters. <strong>This will cost more.</strong></div>
+                      </div>
+                    </div> : null}
+                  <div className="row">
+                    <div className="col s12">
+                      <h5>PREVIEW</h5>
+                      <div className="preview">
+                        {this.state.textBody}
+                      </div>
+                      <div className="wordCount">
+                        Character count: {this.state.wordCount} / 160
+                      </div>
+                    </div>
+                  </div>
+
 
                   <div className="row">
                     <div className="col s12">
@@ -186,7 +289,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule" onClick={() => {this.handleSquareSelection(schedules, "monday")}}>
+                          <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : (schedules.monday.length > 0) ? "not-accept" : ""}>
                               {schedules.monday}
                               <br />
@@ -205,7 +308,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             <div className={(schedules.tuesday_accept == 1) ? "accept" : (schedules.tuesday_accept == 2) ? "decline" : (schedules.tuesday.length > 0) ? "not-accept" : ""}>
                               {schedules.tuesday}
                               <br />
@@ -224,7 +327,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             <div className={(schedules.wednesday_accept == 1) ? "accept" : (schedules.wednesday_accept == 2) ? "decline" : (schedules.wednesday.length > 0) ? "not-accept" : ""}>
                               {schedules.wednesday}
 
@@ -244,7 +347,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             <div className={(schedules.thursday_accept == 1) ? "accept" : (schedules.thursday_accept == 2) ? "decline" : (schedules.thursday.length > 0) ? "not-accept" : ""}>
                               {schedules.thursday}
                               <br />
@@ -263,7 +366,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                             <div className={(schedules.friday_accept == 1) ? "accept" : (schedules.friday_accept == 2) ? "decline" : (schedules.friday.length > 0) ? "not-accept" : ""}>
                               {schedules.friday}
                               <br />
@@ -282,7 +385,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                             <div className={(schedules.saturday_accept == 1) ? "accept" : (schedules.saturday_accept == 2) ? "decline" : (schedules.saturday.length > 0) ? "not-accept" : ""}>
                               {schedules.saturday}
                               <br />
@@ -301,7 +404,7 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                             <div className={(schedules.sunday_accept == 1) ? "accept" : (schedules.sunday_accept == 2) ? "decline" : (schedules.sunday.length > 0) ? "not-accept" : ""}>
                               {schedules.sunday}
                               <br />
@@ -329,7 +432,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule">
+                          <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             {schedules.monday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.monday}
@@ -343,7 +446,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             {schedules.tuesday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.tuesday}
@@ -357,7 +460,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             {schedules.wednesday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.wednesday}
@@ -371,7 +474,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             {schedules.thursday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.thursday}
@@ -385,7 +488,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                             {schedules.friday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.friday}
@@ -399,7 +502,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                             {schedules.saturday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.saturday}
@@ -413,7 +516,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                             {schedules.sunday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.sunday}
@@ -436,7 +539,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule">
+                          <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             {schedules.monday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.monday}
@@ -450,7 +553,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             {schedules.tuesday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.tuesday}
@@ -464,7 +567,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             {schedules.wednesday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.wednesday}
@@ -478,7 +581,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             {schedules.thursday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.thursday}
@@ -492,7 +595,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                             {schedules.friday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.friday}
@@ -506,7 +609,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                             {schedules.saturday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.saturday}
@@ -520,7 +623,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                             {schedules.sunday_accept == 1 ? (
                               <div className="accept">
                                 {schedules.sunday}
@@ -543,7 +646,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule">
+                          <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             {schedules.monday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.monday}
@@ -557,7 +660,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             {schedules.tuesday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.tuesday}
@@ -571,7 +674,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             {schedules.wednesday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.wednesday}
@@ -585,7 +688,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             {schedules.thursday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.thursday}
@@ -599,7 +702,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                             {schedules.friday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.friday}
@@ -613,7 +716,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                             {schedules.saturday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.saturday}
@@ -627,7 +730,7 @@ var ScheduleView = React.createClass({
                               </div>
                             ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                             {schedules.sunday_accept == 2 ? (
                               <div className="decline">
                                 {schedules.sunday}
@@ -650,7 +753,7 @@ var ScheduleView = React.createClass({
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
-                          <td className="schedule">
+                          <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             {schedules.monday_accept == 0 &&
                               schedules.monday.length > 0 ? (
                                 <div className="not-accept">
@@ -665,7 +768,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             {schedules.tuesday_accept == 0 &&
                               schedules.tuesday.length > 0 ? (
                                 <div className="not-accept">
@@ -680,7 +783,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             {schedules.wednesday_accept == 0 &&
                               schedules.wednesday.length > 0 ? (
                                 <div className="not-accept">
@@ -695,7 +798,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             {schedules.thursday_accept == 0 &&
                               schedules.thursday.length > 0 ? (
                                 <div className="not-accept">
@@ -710,7 +813,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                             {schedules.friday_accept == 0 &&
                               schedules.friday.length > 0 ? (
                                 <div className="not-accept">
@@ -725,7 +828,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                             {schedules.saturday_accept == 0 &&
                               schedules.saturday.length > 0 ? (
                                 <div className="not-accept">
@@ -740,7 +843,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                           </td>
-                          <td>
+                          <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                             {schedules.sunday_accept == 0 &&
                               schedules.sunday.length > 0 ? (
                                 <div className="not-accept">
@@ -767,7 +870,7 @@ var ScheduleView = React.createClass({
                             <td className="fullName">
                               {schedules.firstName} {schedules.lastName}
                             </td>
-                            <td className="schedule">
+                            <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                               <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : (schedules.monday.length > 0) ? "not-accept" : ""}>
                                 {schedules.monday}
                                 <br />
@@ -786,7 +889,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                               <div className={(schedules.tuesday_accept == 1) ? "accept" : (schedules.tuesday_accept == 2) ? "decline" : (schedules.tuesday.length > 0) ? "not-accept" : ""}>
                                 {schedules.tuesday}
                                 <br />
@@ -805,7 +908,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                               <div className={(schedules.wednesday_accept == 1) ? "accept" : (schedules.wednesday_accept == 2) ? "decline" : (schedules.wednesday.length > 0) ? "not-accept" : ""}>
                                 {schedules.wednesday}
                                 <br />
@@ -824,7 +927,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                               <div className={(schedules.thursday_accept == 1) ? "accept" : (schedules.thursday_accept == 2) ? "decline" : (schedules.thursday.length > 0) ? "not-accept" : ""}>
                                 {schedules.thursday}
                                 <br />
@@ -843,7 +946,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                               <div className={(schedules.friday_accept == 1) ? "accept" : (schedules.friday_accept == 2) ? "decline" : (schedules.friday.length > 0) ? "not-accept" : ""}>
                                 {schedules.friday}
                                 <br />
@@ -862,7 +965,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                               <div className={(schedules.saturday_accept == 1) ? "accept" : (schedules.saturday_accept == 2) ? "decline" : (schedules.saturday.length > 0) ? "not-accept" : ""}>
                                 {schedules.saturday}
                                 <br />
@@ -881,7 +984,7 @@ var ScheduleView = React.createClass({
                               </div>
 
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                               <div className={(schedules.sunday_accept == 1) ? "accept" : (schedules.sunday_accept == 2) ? "decline" : (schedules.sunday.length > 0) ? "not-accept" : ""}>
                                 {schedules.sunday}
                                 <br />
@@ -909,7 +1012,7 @@ var ScheduleView = React.createClass({
                             <td className="fullName">
                               {schedules.firstName} {schedules.lastName}
                             </td>
-                            <td className="schedule">
+                            <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                               {schedules.monday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.monday}
@@ -923,7 +1026,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                               {schedules.tuesday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.tuesday}
@@ -937,7 +1040,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                               {schedules.wednesday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.wednesday}
@@ -951,7 +1054,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                               {schedules.thursday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.thursday}
@@ -965,7 +1068,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                               {schedules.friday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.friday}
@@ -979,7 +1082,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                               {schedules.saturday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.saturday}
@@ -993,7 +1096,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                               {schedules.sunday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.sunday}
@@ -1016,7 +1119,7 @@ var ScheduleView = React.createClass({
                             <td className="fullName">
                               {schedules.firstName} {schedules.lastName}
                             </td>
-                            <td className="schedule">
+                            <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                               {schedules.monday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.monday}
@@ -1030,7 +1133,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                               {schedules.tuesday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.tuesday}
@@ -1044,7 +1147,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                               {schedules.wednesday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.wednesday}
@@ -1058,7 +1161,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                               {schedules.thursday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.thursday}
@@ -1072,7 +1175,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                               {schedules.friday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.friday}
@@ -1086,7 +1189,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                               {schedules.saturday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.saturday}
@@ -1100,7 +1203,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                               {schedules.sunday_accept == 1 ? (
                                 <div className="accept">
                                   {schedules.sunday}
@@ -1123,7 +1226,7 @@ var ScheduleView = React.createClass({
                             <td className="fullName">
                               {schedules.firstName} {schedules.lastName}
                             </td>
-                            <td className="schedule">
+                            <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                               {schedules.monday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.monday}
@@ -1137,7 +1240,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                               {schedules.tuesday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.tuesday}
@@ -1151,7 +1254,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                               {schedules.wednesday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.wednesday}
@@ -1165,7 +1268,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                               {schedules.thursday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.thursday}
@@ -1179,7 +1282,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                               {schedules.friday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.friday}
@@ -1193,7 +1296,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                               {schedules.saturday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.saturday}
@@ -1207,7 +1310,7 @@ var ScheduleView = React.createClass({
                                 </div>
                               ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                               {schedules.sunday_accept == 2 ? (
                                 <div className="decline">
                                   {schedules.sunday}
@@ -1230,7 +1333,7 @@ var ScheduleView = React.createClass({
                             <td className="fullName">
                               {schedules.firstName} {schedules.lastName}
                             </td>
-                            <td className="schedule">
+                            <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                               {schedules.monday_accept == 0 &&
                                 schedules.monday.length > 0 ? (
                                   <div className="not-accept">
@@ -1247,7 +1350,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                               {schedules.tuesday_accept == 0 &&
                                 schedules.tuesday.length > 0 ? (
                                   <div className="not-accept">
@@ -1264,7 +1367,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                               {schedules.wednesday_accept == 0 &&
                                 schedules.wednesday.length > 0 ? (
                                   <div className="not-accept">
@@ -1281,7 +1384,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                               {schedules.thursday_accept == 0 &&
                                 schedules.thursday.length > 0 ? (
                                   <div className="not-accept">
@@ -1298,7 +1401,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "friday") }}>
                               {schedules.friday_accept == 0 &&
                                 schedules.friday.length > 0 ? (
                                   <div className="not-accept">
@@ -1315,7 +1418,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "saturday") }}>
                               {schedules.saturday_accept == 0 &&
                                 schedules.saturday.length > 0 ? (
                                   <div className="not-accept">
@@ -1332,7 +1435,7 @@ var ScheduleView = React.createClass({
                                   </div>
                                 ) : null}
                             </td>
-                            <td>
+                            <td onClick={() => { this.handleSquareSelection(schedules, "sunday") }}>
                               {schedules.sunday_accept == 0 &&
                                 schedules.sunday.length > 0 ? (
                                   <div className="not-accept">
