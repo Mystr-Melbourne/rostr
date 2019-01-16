@@ -1,6 +1,13 @@
 
-td div:hover{
+td div:first-child:hover{
 	cursor: pointer;
+	transform: scale(1.1);
+	transition: all .2s ease;
+	box-shadow: 0 0 15px #00000052;
+}
+
+td div:first-child{
+	transition: all 0.2s ease;
 }
 .module {
 	position: fixed;
