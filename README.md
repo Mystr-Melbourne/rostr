@@ -8,6 +8,13 @@ Rostr is an employee management and scheduling app that allows…
 
 View app live on [Heroku](https://rostrlive.herokuapp.com/)
 
+```
+Login details:
+--------------
+username: admin
+password: root
+```
+
 ## Run locally
 
 Rostr requires [Node.js](https://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/) to run
