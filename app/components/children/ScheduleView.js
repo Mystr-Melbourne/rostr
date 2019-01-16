@@ -44,6 +44,14 @@ var ScheduleView = React.createClass({
       <div className="row">
         <div className="col s12">
           <div className="section">
+          <div className="module">
+            <div className="foreground">
+            
+            </div>
+            <div className="main-panel">
+              test
+            </div>
+          </div>
            <div className="filter-option">
                 <div className="left-hand">
                   <h5>Schedule View</h5>
