@@ -330,7 +330,7 @@ var ScheduleView = React.createClass({
                   </ul>
                 </div>
 
-                <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Assign shifts
+                <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Mass Assign
                         <i className="material-icons left">calendar_today</i>
                 </a>
               </div>
