@@ -1,6 +1,9 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-
+const fs = require('fs');
+const Json2csvParser = require('json2csv').Parser;
+const mongoose = require('mongoose');
+var fileDownload = require('js-file-download');
 var ScheduleView = React.createClass({
   getInitialState: function () {
     return {
@@ -15,8 +18,64 @@ var ScheduleView = React.createClass({
       content: "",
       wordCount: 0,
       textBody: "",
-      time: ""
+      time: "",
+      allEmployees: []
     };
+  },
+
+  getEmployees: function () {
+    helpers.getAllEmployees().then(function (response) {
+      if (response !== this.state.allEmployees) {
+        this.setState({ allEmployees: response.data });
+      }
+    }.bind(this));
+  },
+
+  ExportEmployeeData: function () {
+
+    const fields = [
+      "_id",
+      "firstName",
+      "lastName",
+      "email",
+      "phone",
+      "phoneType",
+      "department",
+      "active"
+    ];
+
+    const json2csvParser2 = new Json2csvParser({ fields });
+    const csv2 = json2csvParser2.parse(this.state.empSchedules);
+
+    console.log(csv2);
+
+    fileDownload(csv2, 'employeelist.csv');
+
+
+  },
+
+  ExportScheduleData: function () {
+
+    const fields = [
+      'emp_id',
+      'firstName',
+      'lastName',
+      'department',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday'
+    ];
+
+    const json2csvParser = new Json2csvParser({ fields });
+    const csv = json2csvParser.parse(this.state.empSchedules);
+
+    console.log(csv);
+
+    fileDownload(csv, 'empschedules.csv');
   },
 
   componentDidMount: function () {
@@ -225,16 +284,13 @@ var ScheduleView = React.createClass({
 
               </div>
 
-
-
-
-
             </div>
             <div className="filter-option">
               <div className="left-hand">
                 <h5>Schedule View</h5>
               </div>
               <div className="right-hand">
+
                 <select
                   className="browser-default"
                   name="view"
@@ -264,6 +320,19 @@ var ScheduleView = React.createClass({
                       <option>Nothing</option>
                     )}
                 </select>
+                <div className="fixed-action-btn">
+                  <a className="btn-floating btn-large red">
+                    <i className="large material-icons">cloud_download</i>
+                  </a>
+                  <ul>
+                    <li><a className="btn-floating green tooltipped" data-position="left" data-tooltip="Export Roster" onClick={this.ExportScheduleData}><i className="material-icons">schedule</i></a></li>
+                    <li><a className="btn-floating blue tooltipped" data-position="left" data-tooltip="Export Employee list" onClick={this.ExportEmployeeData}><i className="material-icons">people</i></a></li>
+                  </ul>
+                </div>
+
+                <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Mass Assign
+                        <i className="material-icons left">calendar_today</i>
+                </a>
               </div>
             </div>
             <table className="bordered highlight mainview">
