@@ -138,18 +138,22 @@ var ScheduleView = React.createClass({
     this.setState({ time: event.target.value });
   },
 
+
+  writeTableData: function () {
+
+  },
+
   render: function () {
+    var names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
     return (
       <div className="row">
         <div className="col s12">
           <div className="section">
             <div className="module">
+              {/* what is this doing here */}
               <div className="foreground">
-
               </div>
-
-
-
               <div className="main-panel">
                 <form onSubmit={this.addAnoucements}>
                   <div className="row">
@@ -222,7 +226,6 @@ var ScheduleView = React.createClass({
                   </div>
                 </form>
 
-
               </div>
 
             </div>
@@ -276,15 +279,18 @@ var ScheduleView = React.createClass({
                   <th data-field="name">Department</th>
                 </tr>
               </thead>
+
               <tbody>
                 {this.state.empSchedules.map(function (schedules, i) {
                   if (this.state.filter == "all") {
                     if (this.state.view == "all") {
                       return (
                         <tr key={i}>
+
                           <td className="fullName">
                             {schedules.firstName} {schedules.lastName}
                           </td>
+
                           <td className="schedule" onClick={() => { this.handleSquareSelection(schedules, "monday") }}>
                             <div className={(schedules.monday_accept == 1) ? "accept" : (schedules.monday_accept == 2) ? "decline" : (schedules.monday.length > 0) ? "not-accept" : ""}>
                               {schedules.monday}
@@ -304,6 +310,48 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
+
+                          {/* For loop */}
+                          {
+                            names.map(function (arrDay, index) {
+
+                              var acceptString = arrDay + "_accept";
+                              var locationString = arrDay + "_location";
+                              var desString = arrDay + "_des";
+
+                              console.log(schedules);
+
+                              console.log(acceptString);
+                              console.log(schedules.acceptString);
+
+                              return (
+                                <td key={index} onClick={() => { this.handleSquareSelection(schedules, arrDay) }}>
+                                  <div className={(schedules.acceptString == 1) ? "accept" : (schedules.acceptString == 2) ? "decline" : (schedules.arrDay.length > 0) ? "not-accept" : ""}>
+
+                                    {schedules.arrDay}
+                                    <br />
+                                    <b>{schedules.locationString}</b>
+                                    <br />
+                                    <div>
+                                      <i>{schedules.desString}</i>
+                                    </div>
+
+                                    {schedules.acceptString == 1 ? (
+                                      <b style={{ color: "green" }}>Accepted</b>
+                                    ) : schedules.acceptString == 2 ? (
+                                      <b style={{ color: "red" }}>Declined</b>
+                                    ) : schedules.arrDay.length > 0 ? (
+                                      <b style={{ color: "orange" }}>Not Accepted</b>
+                                    ) : null}
+                                  </div>
+
+                                </td >
+
+                              );
+                            })
+                          }
+
+
                           <td onClick={() => { this.handleSquareSelection(schedules, "tuesday") }}>
                             <div className={(schedules.tuesday_accept == 1) ? "accept" : (schedules.tuesday_accept == 2) ? "decline" : (schedules.tuesday.length > 0) ? "not-accept" : ""}>
                               {schedules.tuesday}
@@ -323,10 +371,10 @@ var ScheduleView = React.createClass({
                             </div>
 
                           </td>
+
                           <td onClick={() => { this.handleSquareSelection(schedules, "wednesday") }}>
                             <div className={(schedules.wednesday_accept == 1) ? "accept" : (schedules.wednesday_accept == 2) ? "decline" : (schedules.wednesday.length > 0) ? "not-accept" : ""}>
                               {schedules.wednesday}
-
                               <br />
                               <b>{schedules.wednesday_location}</b>
                               <br />
@@ -341,8 +389,8 @@ var ScheduleView = React.createClass({
                                 <b style={{ color: "orange" }}>Not Accepted</b>
                               ) : null}
                             </div>
-
                           </td>
+
                           <td onClick={() => { this.handleSquareSelection(schedules, "thursday") }}>
                             <div className={(schedules.thursday_accept == 1) ? "accept" : (schedules.thursday_accept == 2) ? "decline" : (schedules.thursday.length > 0) ? "not-accept" : ""}>
                               {schedules.thursday}
