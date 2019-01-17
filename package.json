@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node server",
+    "heroku-postbuild": "npm install && npm run build",
     "dev": "npm run build && npm start"
   },
   "repository": {
@@ -16,6 +17,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Mystr-Melbourne/Rostr/issues"
+  },
+  "engines": {
+    "node": "8.9.2"
   },
   "homepage": "https://github.com/Mystr-Melbourne/Rostr#readme",
   "dependencies": {

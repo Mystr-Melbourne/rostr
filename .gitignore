@@ -1,5 +1,6 @@
-node_modules
-public/bundle.js
-.env
-ngrok
 .DS_Store
+node_modules/
+.env
+*.orig
+.idea/
+.vscode/
