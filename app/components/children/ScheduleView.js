@@ -290,7 +290,7 @@ var ScheduleView = React.createClass({
                 <h5>Schedule View</h5>
               </div>
               <div className="right-hand">
-               
+
                 <select
                   className="browser-default"
                   name="view"
@@ -320,14 +320,16 @@ var ScheduleView = React.createClass({
                       <option>Nothing</option>
                     )}
                 </select>
-                <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportEmployeeData}>Export Employee List
-                                            <i className="material-icons right">insert_drive_file</i>
-                </a>
+                <div className="fixed-action-btn">
+                  <a className="btn-floating btn-large red">
+                    <i className="large material-icons">cloud_download</i>
+                  </a>
+                  <ul>
+                    <li><a className="btn-floating green tooltipped" data-position="left" data-tooltip="Export Roster" onClick={this.ExportScheduleData}><i className="material-icons">schedule</i></a></li>
+                    <li><a className="btn-floating blue tooltipped" data-position="left" data-tooltip="Export Employee list" onClick={this.ExportEmployeeData}><i className="material-icons">people</i></a></li>
+                  </ul>
+                </div>
 
-                <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
-                                            <i className="material-icons right">insert_drive_file</i>
-                </a>
-                
                 <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Assign shifts
                         <i className="material-icons left">calendar_today</i>
                 </a>
