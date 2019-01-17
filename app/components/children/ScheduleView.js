@@ -15,8 +15,64 @@ var ScheduleView = React.createClass({
       content: "",
       wordCount: 0,
       textBody: "",
-      time: ""
+      time: "",
+      allEmployees: []
     };
+  },
+
+  getEmployees: function () {
+    helpers.getAllEmployees().then(function (response) {
+      if (response !== this.state.allEmployees) {
+        this.setState({ allEmployees: response.data });
+      }
+    }.bind(this));
+  },
+
+  ExportEmployeeData: function () {
+
+    const fields = [
+      "_id",
+      "firstName",
+      "lastName",
+      "email",
+      "phone",
+      "phoneType",
+      "department",
+      "active"
+    ];
+
+    const json2csvParser2 = new Json2csvParser({ fields });
+    const csv2 = json2csvParser2.parse(this.state.empSchedules);
+
+    console.log(csv2);
+
+    fileDownload(csv2, 'employeelist.csv');
+
+
+  },
+
+  ExportScheduleData: function () {
+
+    const fields = [
+      'emp_id',
+      'firstName',
+      'lastName',
+      'department',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday'
+    ];
+
+    const json2csvParser = new Json2csvParser({ fields });
+    const csv = json2csvParser.parse(this.state.empSchedules);
+
+    console.log(csv);
+
+    fileDownload(csv, 'empschedules.csv');
   },
 
   componentDidMount: function () {
