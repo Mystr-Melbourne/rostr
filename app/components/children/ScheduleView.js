@@ -1,6 +1,9 @@
 var React = require("react");
 var helpers = require("../utils/helpers");
-
+const fs = require('fs');
+const Json2csvParser = require('json2csv').Parser;
+const mongoose = require('mongoose');
+var fileDownload = require('js-file-download');
 var ScheduleView = React.createClass({
   getInitialState: function () {
     return {
@@ -287,6 +290,7 @@ var ScheduleView = React.createClass({
                 <h5>Schedule View</h5>
               </div>
               <div className="right-hand">
+               
                 <select
                   className="browser-default"
                   name="view"
@@ -316,6 +320,17 @@ var ScheduleView = React.createClass({
                       <option>Nothing</option>
                     )}
                 </select>
+                <a id="Export CSV Text File" className="btn btn-large waves-effect waves-light red accent-3" onClick={this.ExportEmployeeData}>Export Employee List
+                                            <i className="material-icons right">insert_drive_file</i>
+                </a>
+
+                <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
+                                            <i className="material-icons right">insert_drive_file</i>
+                </a>
+                
+                <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Assign shifts
+                        <i className="material-icons left">calendar_today</i>
+                </a>
               </div>
             </div>
             <table className="bordered highlight mainview">
