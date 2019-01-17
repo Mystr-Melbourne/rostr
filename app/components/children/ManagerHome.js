@@ -3,6 +3,7 @@ var helpers = require("../utils/helpers");
 var ScheduleView = require("./ScheduleView");
 var AnnouncementsBuild = require("./AnnouncementsBuild");
 var AnnouncementsView = require("./AnnouncementsView");
+var ExportView = require("./ExportView");
 
 var ManagerHome = React.createClass({
   getInitialState: function () {
@@ -41,6 +42,7 @@ var ManagerHome = React.createClass({
   render: function () {
     return (
       <div>
+        <ExportView />
         <ScheduleView />
       </div>
     );

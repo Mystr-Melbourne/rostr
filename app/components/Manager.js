@@ -30,8 +30,8 @@ var Manager = React.createClass({
                         <a href="/" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><a className="black-text" href="/manager">Home<i className="material-icons right">group</i></a></li>
-                            <li><a className="black-text" href="/manager/assignShift">Assign shifts<i className="material-icons right">calendar_today</i></a></li>
-                            <li><a className="black-text" href="/manager/export">Export CSV<i className="material-icons right">cloud_download</i></a></li>
+                            {/* <li><a className="black-text" href="/manager/assignShift">Assign shifts<i className="material-icons right">calendar_today</i></a></li> */}
+                            {/* <li><a className="black-text" href="/manager/export">Export CSV<i className="material-icons right">cloud_download</i></a></li> */}
                             <li><a className="black-text" href="/manager/employeeAll">Edit Staff<i className="material-icons right">group</i></a></li>
                             {/* <li><a className="black-text" href="/manager/schedulesCreate">Edit Schedule<i className="material-icons right">access_time</i></a></li> */}
                             <li><a className="dropdown-button black-text" href="#" data-activates="dropdown1" data-beloworigin="true" data-hover="true">{this.state.username}<img className="circle circle-small" src={this.state.picture} /></a></li>
@@ -47,9 +47,9 @@ var Manager = React.createClass({
                                     <a><span className="white-text name">{this.state.username}</span></a>
                                 </div>
                             </li>
-                            <li><a href="/manager" className=""><i className="material-icons">group</i>Home</a></li>
-                            <li><a href="/manager/assignShift"><i className="material-icons">calendar_today</i>Assign shifts</a></li>
-                            <li><a href="/manager/export"><i className="material-icons">cloud_download</i>Export CSV</a></li>
+                            <li><a href="/manager" className=""><i className="material-icons">home</i>Home</a></li>
+                            {/* <li><a href="/manager/assignShift"><i className="material-icons">calendar_today</i>Assign shifts</a></li> */}
+                            {/* <li><a href="/manager/export"><i className="material-icons">cloud_download</i>Export CSV</a></li> */}
                             <li><a href="/manager/employeeAll" className=""><i className="material-icons">group</i>Edit Staff</a></li>
 
                             {/* <li><a href="/manager/schedulesCreate" className="black-text"><i className="material-icons">access_time</i>Edit Schedule</a></li> */}

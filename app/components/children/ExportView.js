@@ -6,7 +6,7 @@ const Json2csvParser = require('json2csv').Parser;
 const mongoose = require('mongoose');
 var fileDownload = require('js-file-download');
 
-var Export = React.createClass({
+var ExportView = React.createClass({
 
     getInitialState: function () {
         return {
@@ -65,7 +65,6 @@ var Export = React.createClass({
 
     },
 
-
     ExportScheduleData: function () {
 
         const fields = [
@@ -95,7 +94,14 @@ var Export = React.createClass({
             <div>
                 <br></br>
                 <div className="row">
-                    <div className="col s4"></div>
+                    <div className="col s3"></div>
+
+                    {/* This just has to be here for now, needs to be moved somewhere else */}
+                    <div className="col s2">
+                        <a href="/manager/assignShift" id="Assign Shifts" className="btn btn-large waves-effect waves-light green accent-3">Assign shifts
+                        <i className="material-icons right">calendar_today</i>
+                        </a>
+                    </div>
 
                     <div className="col s2">
                         <a id="Export Google Sheets" className="btn btn-large waves-effect waves-light blue accent-3" onClick={this.ExportScheduleData}>Export Roster
@@ -115,4 +121,4 @@ var Export = React.createClass({
     }
 });
 
-module.exports = Export;
+module.exports = ExportView;

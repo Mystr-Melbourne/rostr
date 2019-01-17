@@ -225,10 +225,6 @@ var ScheduleView = React.createClass({
 
               </div>
 
-
-
-
-
             </div>
             <div className="filter-option">
               <div className="left-hand">
