@@ -1,6 +1,5 @@
-.DS_Store
-node_modules/
+node_modules
+public/bundle.js
 .env
-*.orig
-.idea/
-.vscode/
+ngrok
+.DS_Store
