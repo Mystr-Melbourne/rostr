@@ -62,31 +62,31 @@ var client = require("twilio")(
 );
 
 // TWILIO SMS DISPATCH
-// app.post("/sms-send", function (req, res) {
-//   // array holds all the numbers to send a text to
-//   const numbers = req.body.to;
+app.post("/sms-send", function (req, res) {
+  // array holds all the numbers to send a text to
+  const numbers = req.body.to;
 
-//   console.log(numbers);
+  console.log(numbers);
 
-//   // loop through the numbers to send
-//   Promise.all(numbers.map(numberIndex => {
-//     // log number being sent to
-//     console.log("sending to number " + numberIndex);
+  // loop through the numbers to send
+  Promise.all(numbers.map(numberIndex => {
+    // log number being sent to
+    console.log("sending to number " + numberIndex);
 
-//     // dispatch SMS via api
-//     client.messages.create({
-//       from: process.env.TWILIO_PHONE_NUMBER,
-//       to: numberIndex,
-//       body: req.body.des
-//     });
-//   }))
+    // dispatch SMS via api
+    client.messages.create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: numberIndex,
+      body: req.body.des
+    });
+  }))
 
-//     // log to console
-//     .then(messages => {
-//       console.log("Messages sent!");
-//     })
-//     .catch(err => console.error(err));
-// });
+    // log to console
+    .then(messages => {
+      console.log("Messages sent!");
+    })
+    .catch(err => console.error(err));
+});
 
 // OMG WE GOTTA REFACTOR THIS
 app.post("/sms", function (req, res) {

@@ -1,7 +1,8 @@
-
-.btn-medium {
-
+.responsiveTable{
+	overflow: scroll;
 }
+
+
 td div:first-child:hover{
 	cursor: pointer;
 	transform: scale(1.1);
@@ -150,6 +151,7 @@ a[href="/logout"] {
 
 .mainview{
 	table-layout: fixed;
+	min-width: 800px;
 }
 
 .filter-option{
@@ -163,7 +165,7 @@ a[href="/logout"] {
 .filter-option select {
 	width: 200px;
 	display: inline-block;
-	margin-right: 1em;
+	margin-left: 1em;
 }
 
 .filter-option .right-hand{
