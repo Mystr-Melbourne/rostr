@@ -42,9 +42,13 @@ passport.deserializeUser(function (id, done) {
 //Body-Parser
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({
+  type: "application/vnd.api+json"
+}));
 
 //Landing
 app.get("/", autoRedirect, function (req, res) {
@@ -70,16 +74,16 @@ app.post("/sms-send", function (req, res) {
 
   // loop through the numbers to send
   Promise.all(numbers.map(numberIndex => {
-    // log number being sent to
-    console.log("sending to number " + numberIndex);
+      // log number being sent to
+      console.log("sending to number " + numberIndex);
 
-    // dispatch SMS via api
-    client.messages.create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: numberIndex,
-      body: req.body.des
-    });
-  }))
+      // dispatch SMS via api
+      client.messages.create({
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: numberIndex,
+        body: req.body.des
+      });
+    }))
 
     // log to console
     .then(messages => {
@@ -102,9 +106,9 @@ app.post("/sms", function (req, res) {
 
   if (req.body.Body == "y-mon") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         monday_accept: 1
       },
       function (err) {
@@ -117,9 +121,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-tue") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         tuesday_accept: 1
       },
       function (err) {
@@ -132,9 +136,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-wed") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         wednesday_accept: 1
       },
       function (err) {
@@ -147,9 +151,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-thu") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         thursday_accept: 1
       },
       function (err) {
@@ -162,9 +166,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-fri") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         friday_accept: 1
       },
       function (err) {
@@ -177,9 +181,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-sat") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         saturday_accept: 1
       },
       function (err) {
@@ -192,9 +196,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "y-sun") {
     twiml.message("Alright we have comfirmed your shift");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         sunday_accept: 1
       },
       function (err) {
@@ -207,9 +211,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-mon") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         monday_accept: 2
       },
       function (err) {
@@ -223,9 +227,9 @@ app.post("/sms", function (req, res) {
     /* sry for hard coding */
   } else if (req.body.Body == "n-tue") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         tuesday_accept: 2
       },
       function (err) {
@@ -238,9 +242,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-wed") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         wednesday_accept: 2
       },
       function (err) {
@@ -253,9 +257,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-thu") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         thursday_accept: 2
       },
       function (err) {
@@ -268,9 +272,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-fri") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         friday_accept: 2
       },
       function (err) {
@@ -283,9 +287,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-sat") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         saturday_accept: 2
       },
       function (err) {
@@ -298,9 +302,9 @@ app.post("/sms", function (req, res) {
     );
   } else if (req.body.Body == "n-sun") {
     twiml.message("We understand you cannot work");
-    EmployeeSchedule.findOneAndUpdate(
-      { phoneCode: req.body.From },
-      {
+    EmployeeSchedule.findOneAndUpdate({
+        phoneCode: req.body.From
+      }, {
         sunday_accept: 2
       },
       function (err) {
@@ -315,7 +319,9 @@ app.post("/sms", function (req, res) {
     twiml.message("I did not quite understand that, can you please say yes/no");
   }
 
-  res.writeHead(200, { "Content-Type": "text/xml" });
+  res.writeHead(200, {
+    "Content-Type": "text/xml"
+  });
   res.end(twiml.toString());
 });
 
@@ -328,8 +334,7 @@ app.post("/register", function (req, res) {
         username: req.body.username,
         email: req.body.email,
         userType: req.body.userType,
-        picture:
-          "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
+        picture: "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
       }),
 
       req.body.password,
@@ -351,8 +356,7 @@ app.post("/register", function (req, res) {
         username: req.body.username,
         email: req.body.email,
         userType: req.body.userType,
-        picture:
-          "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
+        picture: "https://raw.githubusercontent.com/clsavino/react-shift-scheduler/master/public/assets/images/logo.png"
       }),
 
       req.body.password,
