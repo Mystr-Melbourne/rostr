@@ -1,3 +1,7 @@
+.responsiveTable{
+	overflow: scroll;
+}
+
 
 td div:first-child:hover{
 	cursor: pointer;
@@ -147,6 +151,7 @@ a[href="/logout"] {
 
 .mainview{
 	table-layout: fixed;
+	min-width: 800px;
 }
 
 .filter-option{
