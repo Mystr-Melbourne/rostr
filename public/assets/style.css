@@ -2,7 +2,10 @@
 	overflow: scroll;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 580950c... Merge pull request #69 from Mystr-Melbourne/buttonArrange
 td div:first-child:hover{
 	cursor: pointer;
 	transform: scale(1.1);
