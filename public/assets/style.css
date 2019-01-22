@@ -2,10 +2,6 @@
 	overflow: scroll;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 580950c... Merge pull request #69 from Mystr-Melbourne/buttonArrange
 td div:first-child:hover{
 	cursor: pointer;
 	transform: scale(1.1);
@@ -168,7 +164,7 @@ a[href="/logout"] {
 .filter-option select {
 	width: 200px;
 	display: inline-block;
-	margin-left: 1em;
+	margin-right: 1em;
 }
 
 .filter-option .right-hand{
