@@ -269,7 +269,7 @@ router.put("/updateSchedule/:id", function (req, res) {
         })
       });
     }
-    if (employeeSchedule.sunday_accept == 1 && newSchedule.sunday_accept == ) { 
+    if (employeeSchedule.sunday_accept == 1 && newSchedule.sunday_accept == 0) { 
       authTokenSun = "";
       fetch('http://localhost:5000/remove/', {
         method: 'POST',
