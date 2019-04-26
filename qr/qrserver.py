@@ -22,7 +22,7 @@ def callGenerate():
 
 @app.route("/remove" , methods=['POST'])
 @cross_origin()
-def callGenerate():
+def removeQr():
     if not request.json:
         return "Not a JSON post!"
     data = request.json
@@ -30,8 +30,15 @@ def callGenerate():
     os.remove("static/"+ authToken +".jpg")
     return "Existing QR Code successfully removed from server!"
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+@app.route("/verify" , methods=['POST'])
+@cross_origin()
+def verifyAuthToken():
+    if not request.json:
+        return "Not a JSON post!"
+    data = request.json
+    authToken = data['authToken']
+    # talk to mongodb to verify!
+    return "Existing QR Code successfully removed from server!"
 
 def qrgenerate(data, authToken):
     qr = qrcode.QRCode(
@@ -44,3 +51,6 @@ def qrgenerate(data, authToken):
     qr.make(fit=True)
     img = qr.make_image()
     img.save("static/"+ authToken +".jpg")
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
