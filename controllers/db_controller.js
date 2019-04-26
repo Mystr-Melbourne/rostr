@@ -23,6 +23,7 @@ router.get("/getAllDepartments", function (req, res) {
 router.get("/getAllEmployees", function (req, res) {
   employee.find({ "active": 1 }).exec(function (err, doc) {
     if (err) {
+      z
       console.log(err);
     }
     else {
@@ -67,52 +68,277 @@ router.post("/addEmpSchedule", function (req, res) {
 //Updating existing employee schedule
 router.put("/updateSchedule/:id", function (req, res) {
   var newSchedule = req.body.employeeSchedule;
-  EmployeeSchedule.findOneAndUpdate({ "_id": req.params.id }, {
-    phone: newSchedule.phone,
 
-    monday: newSchedule.monday,
-    monday_location: newSchedule.monday_location,
-    monday_des: newSchedule.monday_des,
-    monday_accept: newSchedule.monday_accept,
+  // r/programmingHorror content, refectoring needed
+  EmployeeSchedule.findOne({ '_id': 'req.params.id' }, 'monday_accept tuesday_accept wednesday_accept thursday_accept friday_accept saturday_accept sunday_accept monday_authCode tuesday_authCode wednesday_authCode thursday_authCode friday_authCode saturday_authCode sunday_authCode', function (err, employeeSchedule) {
+    if (err) return handleError(err);
 
-    tuesday: newSchedule.tuesday,
-    tuesday_location: newSchedule.tuesday_location,
-    tuesday_des: newSchedule.tuesday_des,
-    tuesday_accept: newSchedule.tuesday_accept,
-
-    wednesday: newSchedule.wednesday,
-    wednesday_location: newSchedule.wednesday_location,
-    wednesday_des: newSchedule.wednesday_des,
-    wednesday_accept: newSchedule.wednesday_accept,
-
-    thursday: newSchedule.thursday,
-    thursday_location: newSchedule.thursday_location,
-    thursday_des: newSchedule.thursday_des,
-    thursday_accept: newSchedule.thursday_accept,
-
-    friday: newSchedule.friday,
-    friday_location: newSchedule.friday_location,
-    friday_des: newSchedule.friday_des,
-    friday_accept: newSchedule.friday_accept,
-
-    saturday: newSchedule.saturday,
-    saturday_location: newSchedule.saturday_location,
-    saturday_des: newSchedule.saturday_des,
-    saturday_accept: newSchedule.saturday_accept,
-
-    sunday: newSchedule.sunday,
-    sunday_location: newSchedule.sunday_location,
-    sunday_des: newSchedule.sunday_des,
-    sunday_accept: newSchedule.sunday_accept,
-
-    department: newSchedule.department
-  }, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send("Employee schedule updated");
+    // if employee accepts new schedule, generate new authToken and QR code
+    if (employeeSchedule.monday_accept == 0 && newSchedule.monday_accept == 1) {
+      authTokenMon = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenMon,
+        })
+      });
     }
+    if (employeeSchedule.tuesday_accept == 0 && newSchedule.tuesday_accept == 1) {
+      authTokenTues = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenTues,
+        })
+      });
+    }
+    if (employeeSchedule.wednesday_accept == 0 && newSchedule.wednesday_accept == 1) {
+      authTokenWed = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenWed,
+        })
+      });
+    }
+    if (employeeSchedule.thursday_accept == 0 && newSchedule.thursday_accept == 1) {
+      authTokenThurs = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenThurs,
+        })
+      });
+    }
+    if (employeeSchedule.friday_accept == 0 && newSchedule.friday_accept == 1) {
+      authTokenFri = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenFri,
+        })
+      });
+    }
+    if (employeeSchedule.saturday_accept == 0 && newSchedule.saturday_accept == 1) {
+      authTokenSat = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenSat,
+        })
+      });
+    }
+    if (employeeSchedule.sunday_accept == 0 && newSchedule.sunday_accept == 1) {
+      authTokenSun = Math.random().toString(36).substr(2);
+      fetch('http://localhost:5000/generate/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenSun,
+        })
+      });
+
+    }
+
+    // if schedule isn't changed, get previous authToken to prevent it from updating
+    if (employeeSchedule.monday_accept == 1 && newSchedule.monday_accept == 1) { 
+      authTokenMon = employeeSchedule.monday_authCode; 
+    }
+    if (employeeSchedule.tuesday_accept == 0 && newSchedule.tuesday_accept == 1) { 
+      authTokenTues = employeeSchedule.tuesday_authCode; 
+    }
+    if (employeeSchedule.wednesday_accept == 0 && newSchedule.wednesday_accept == 1) { 
+      authTokenWed = employeeSchedule.wednesday_authCode; 
+    }
+    if (employeeSchedule.thursday_accept == 0 && newSchedule.thursday_accept == 1) { 
+      authTokenThurs = employeeSchedule.thursday_authCode; 
+    }
+    if (employeeSchedule.friday_accept == 0 && newSchedule.friday_accept == 1) {
+       authTokenFri = employeeSchedule.friday_authCode; 
+      }
+    if (employeeSchedule.saturday_accept == 0 && newSchedule.saturday_accept == 1) { 
+      authTokenSat = employeeSchedule.saturday_authCode; 
+    }
+    if (employeeSchedule.sunday_accept == 0 && newSchedule.sunday_accept == 1) { 
+      authTokenSun = employeeSchedule.sunday_authCode; 
+    }
+
+    // reset authToken if schedule is renewed, delete QR code
+    if (employeeSchedule.monday_accept == 1 && newSchedule.monday_accept == 0) { 
+      authTokenMon = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenMon,
+        })
+      });
+    }
+    if (employeeSchedule.tuesday_accept == 1 && newSchedule.tuesday_accept == 0) { 
+      authTokenTues = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenTues,
+        })
+      });
+    }
+    if (employeeSchedule.wednesday_accept == 1 && newSchedule.wednesday_accept == 0) { 
+      authTokenWed = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenWed,
+        })
+      });
+    }
+    if (employeeSchedule.thursday_accept == 1 && newSchedule.thursday_accept == 0) { 
+      authTokenThurs = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenThurs,
+        })
+      });
+    }
+    if (employeeSchedule.friday_accept == 1 && newSchedule.friday_accept == 0) {
+      authTokenFri = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenFri,
+        })
+      });
+      }
+    if (employeeSchedule.saturday_accept == 1 && newSchedule.saturday_accept == 0) { 
+      authTokenSat = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenSat,
+        })
+      });
+    }
+    if (employeeSchedule.sunday_accept == 1 && newSchedule.sunday_accept == ) { 
+      authTokenSun = "";
+      fetch('http://localhost:5000/remove/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authToken: authTokenSun,
+        })
+      });
+    }
+
+    EmployeeSchedule.findOneAndUpdate({ "_id": req.params.id }, {
+      phone: newSchedule.phone,
+
+      monday: newSchedule.monday,
+      monday_location: newSchedule.monday_location,
+      monday_des: newSchedule.monday_des,
+      monday_accept: newSchedule.monday_accept,
+      monday_authCode: authTokenMon,
+
+      tuesday: newSchedule.tuesday,
+      tuesday_location: newSchedule.tuesday_location,
+      tuesday_des: newSchedule.tuesday_des,
+      tuesday_accept: newSchedule.tuesday_accept,
+      tuesday_authCode: authTokenTues,
+
+      wednesday: newSchedule.wednesday,
+      wednesday_location: newSchedule.wednesday_location,
+      wednesday_des: newSchedule.wednesday_des,
+      wednesday_accept: newSchedule.wednesday_accept,
+      wednesday_authCode: authTokenWed,
+
+      thursday: newSchedule.thursday,
+      thursday_location: newSchedule.thursday_location,
+      thursday_des: newSchedule.thursday_des,
+      thursday_accept: newSchedule.thursday_accept,
+      thursday_authCode: authTokenThurs,
+
+      friday: newSchedule.friday,
+      friday_location: newSchedule.friday_location,
+      friday_des: newSchedule.friday_des,
+      friday_accept: newSchedule.friday_accept,
+      friday_authCode: authTokenFri,
+
+      saturday: newSchedule.saturday,
+      saturday_location: newSchedule.saturday_location,
+      saturday_des: newSchedule.saturday_des,
+      saturday_accept: newSchedule.saturday_accept,
+      saturday_authCode: authTokenSat,
+
+      sunday: newSchedule.sunday,
+      sunday_location: newSchedule.sunday_location,
+      sunday_des: newSchedule.sunday_des,
+      sunday_accept: newSchedule.sunday_accept,
+      sunday_authCode: authTokenSun,
+
+      department: newSchedule.department
+    }, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Employee schedule updated");
+      }
+    });
   });
+
+
 });
 
 //Posting new Employee to the database
