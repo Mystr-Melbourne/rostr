@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Mystr-Melbourne/Rostr#readme",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "bluebird": "^3.5.3",
     "body-parser": "^1.15.2",
     "express": "^4.16.4",
