@@ -30,7 +30,7 @@
     "json2csv": "^4.3.2",
     "mongo-to-csv": "^1.0.1",
     "mongoexport-wrapper": "^1.0.1",
-    "mongoose": "^4.13.17",
+    "mongoose": "^5.7.5",
     "mongoose-to-csv": "^0.1.1",
     "morgan": "^1.9.1",
     "node-csv-converter": "^1.0.0",
